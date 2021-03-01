@@ -31,6 +31,10 @@ namespace AP8PO_Projekt
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.employeeTab = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.NumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.IsDoctorand = new System.Windows.Forms.CheckBox();
             this.TextBox3 = new System.Windows.Forms.TextBox();
@@ -62,6 +66,8 @@ namespace AP8PO_Projekt
             this.Label13 = new System.Windows.Forms.Label();
             this.Label12 = new System.Windows.Forms.Label();
             this.subjectTab = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.NumericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.Label11 = new System.Windows.Forms.Label();
             this.Button2 = new System.Windows.Forms.Button();
@@ -87,12 +93,8 @@ namespace AP8PO_Projekt
             this.Label2 = new System.Windows.Forms.Label();
             this.subject_shortcut = new System.Windows.Forms.Label();
             this.scheduleAction = new System.Windows.Forms.TabPage();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown1)).BeginInit();
@@ -149,6 +151,38 @@ namespace AP8PO_Projekt
             this.employeeTab.TabIndex = 0;
             this.employeeTab.Text = "Přidat zaměstnance";
             this.employeeTab.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(23, 222);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(177, 28);
+            this.label21.TabIndex = 16;
+            this.label21.Text = "Soukromé tel. číslo";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(23, 182);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(162, 28);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "Pracovní tel. číslo";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(202, 222);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(711, 34);
+            this.textBox9.TabIndex = 14;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(202, 182);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(711, 34);
+            this.textBox8.TabIndex = 13;
             // 
             // NumericUpDown1
             // 
@@ -257,6 +291,8 @@ namespace AP8PO_Projekt
             // 
             // fieldTab
             // 
+            this.fieldTab.Controls.Add(this.label23);
+            this.fieldTab.Controls.Add(this.listBox2);
             this.fieldTab.Controls.Add(this.Button3);
             this.fieldTab.Controls.Add(this.TextBox7);
             this.fieldTab.Controls.Add(this.Label19);
@@ -280,12 +316,12 @@ namespace AP8PO_Projekt
             this.fieldTab.Padding = new System.Windows.Forms.Padding(3);
             this.fieldTab.Size = new System.Drawing.Size(921, 380);
             this.fieldTab.TabIndex = 1;
-            this.fieldTab.Text = "Přidat skupinku";
+            this.fieldTab.Text = "Přidat skupinu";
             this.fieldTab.UseVisualStyleBackColor = true;
             // 
             // Button3
             // 
-            this.Button3.Location = new System.Drawing.Point(619, 300);
+            this.Button3.Location = new System.Drawing.Point(332, 298);
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(294, 72);
             this.Button3.TabIndex = 16;
@@ -460,6 +496,23 @@ namespace AP8PO_Projekt
             this.subjectTab.TabIndex = 2;
             this.subjectTab.Text = "Přidat předmět";
             this.subjectTab.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(330, 142);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 28);
+            this.label22.TabIndex = 25;
+            this.label22.Text = "Ústav";
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(471, 139);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(150, 36);
+            this.comboBox7.TabIndex = 24;
             // 
             // NumericUpDown7
             // 
@@ -668,54 +721,23 @@ namespace AP8PO_Projekt
             this.scheduleAction.Text = "Rozvrhové akce";
             this.scheduleAction.UseVisualStyleBackColor = true;
             // 
-            // textBox8
+            // listBox2
             // 
-            this.textBox8.Location = new System.Drawing.Point(202, 182);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(711, 34);
-            this.textBox8.TabIndex = 13;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 28;
+            this.listBox2.Location = new System.Drawing.Point(635, 114);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(278, 256);
+            this.listBox2.TabIndex = 17;
             // 
-            // textBox9
+            // label23
             // 
-            this.textBox9.Location = new System.Drawing.Point(202, 222);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(711, 34);
-            this.textBox9.TabIndex = 14;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(23, 182);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(162, 28);
-            this.label20.TabIndex = 15;
-            this.label20.Text = "Pracovní tel. číslo";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(23, 222);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(177, 28);
-            this.label21.TabIndex = 16;
-            this.label21.Text = "Soukromé tel. číslo";
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(471, 139);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(150, 36);
-            this.comboBox7.TabIndex = 24;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(330, 142);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(61, 28);
-            this.label22.TabIndex = 25;
-            this.label22.Text = "Ústav";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(635, 83);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(171, 28);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "Seznam předmětů";
             // 
             // Form1
             // 
@@ -811,6 +833,8 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label22;
         internal System.Windows.Forms.ComboBox comboBox7;
+        internal System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 
