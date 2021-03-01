@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AP8PO_Projekt.Employee">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="ScheduleActionList" Type="AP8PO_Projekt.ScheduleAction" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.562" Y="2.95" />
+        <Point X="1.562" Y="5.656" />
+        <Point X="9.812" Y="5.656" />
+        <Point X="9.812" Y="3.803" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AwAAgEAAAQAAAAAAAAAAAAAIAAAAAEAAAEAAAAAAAAg=</HashCode>
+      <FileName>Employee.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ScheduleActionList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AP8PO_Projekt.Group">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AP8PO_Projekt.Group.Semester" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Group.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.Group.FormOfStudy" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Group.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.Group.TypeOfStudy" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Group.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.Group.Language" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Group.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAQAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Group.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SubjectList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AP8PO_Projekt.ScheduleAction">
+    <Position X="9.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AP8PO_Projekt.ScheduleAction.Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ScheduleAction.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.ScheduleAction.Language" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ScheduleAction.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAEAAAIAAQQAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScheduleAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Employee" />
+      <Property Name="Subject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AP8PO_Projekt.Subject">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AP8PO_Projekt.Subject.FormOfCompletion" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Subject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.Subject.Language" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Subject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="AP8PO_Projekt.Subject.GuarantorInstitute" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Subject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>wAAAAAAAAAAAAQAAAAAAUQQEAAAAAAAAEAAAAAAAAEA=</HashCode>
+      <FileName>Subject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GroupList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

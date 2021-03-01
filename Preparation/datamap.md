@@ -1,4 +1,4 @@
-emunNávrh datové mapy
+Návrh datové mapy
 
 Formát: název – datový typ – příklad hodnoty
 //Zakomentované položky nemusíte implementovat na začátku vývoje.

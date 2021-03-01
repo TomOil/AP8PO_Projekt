@@ -87,6 +87,12 @@ namespace AP8PO_Projekt
             this.Label2 = new System.Windows.Forms.Label();
             this.subject_shortcut = new System.Windows.Forms.Label();
             this.scheduleAction = new System.Windows.Forms.TabPage();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown1)).BeginInit();
@@ -119,6 +125,10 @@ namespace AP8PO_Projekt
             // 
             // employeeTab
             // 
+            this.employeeTab.Controls.Add(this.label21);
+            this.employeeTab.Controls.Add(this.label20);
+            this.employeeTab.Controls.Add(this.textBox9);
+            this.employeeTab.Controls.Add(this.textBox8);
             this.employeeTab.Controls.Add(this.NumericUpDown1);
             this.employeeTab.Controls.Add(this.IsDoctorand);
             this.employeeTab.Controls.Add(this.TextBox3);
@@ -143,7 +153,7 @@ namespace AP8PO_Projekt
             // NumericUpDown1
             // 
             this.NumericUpDown1.DecimalPlaces = 2;
-            this.NumericUpDown1.Location = new System.Drawing.Point(202, 181);
+            this.NumericUpDown1.Location = new System.Drawing.Point(202, 262);
             this.NumericUpDown1.Maximum = new decimal(new int[] {
             1,
             0,
@@ -156,7 +166,7 @@ namespace AP8PO_Projekt
             // IsDoctorand
             // 
             this.IsDoctorand.AutoSize = true;
-            this.IsDoctorand.Location = new System.Drawing.Point(205, 224);
+            this.IsDoctorand.Location = new System.Drawing.Point(205, 305);
             this.IsDoctorand.Name = "IsDoctorand";
             this.IsDoctorand.Size = new System.Drawing.Size(158, 32);
             this.IsDoctorand.TabIndex = 11;
@@ -196,7 +206,7 @@ namespace AP8PO_Projekt
             // harness
             // 
             this.harness.AutoSize = true;
-            this.harness.Location = new System.Drawing.Point(23, 184);
+            this.harness.Location = new System.Drawing.Point(23, 265);
             this.harness.Name = "harness";
             this.harness.Size = new System.Drawing.Size(75, 28);
             this.harness.TabIndex = 6;
@@ -416,6 +426,8 @@ namespace AP8PO_Projekt
             // 
             // subjectTab
             // 
+            this.subjectTab.Controls.Add(this.label22);
+            this.subjectTab.Controls.Add(this.comboBox7);
             this.subjectTab.Controls.Add(this.NumericUpDown7);
             this.subjectTab.Controls.Add(this.Label11);
             this.subjectTab.Controls.Add(this.Button2);
@@ -656,6 +668,55 @@ namespace AP8PO_Projekt
             this.scheduleAction.Text = "Rozvrhové akce";
             this.scheduleAction.UseVisualStyleBackColor = true;
             // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(202, 182);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(711, 34);
+            this.textBox8.TabIndex = 13;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(202, 222);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(711, 34);
+            this.textBox9.TabIndex = 14;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(23, 182);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(162, 28);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "Pracovní tel. číslo";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(23, 222);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(177, 28);
+            this.label21.TabIndex = 16;
+            this.label21.Text = "Soukromé tel. číslo";
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(471, 139);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(150, 36);
+            this.comboBox7.TabIndex = 24;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(330, 142);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 28);
+            this.label22.TabIndex = 25;
+            this.label22.Text = "Ústav";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -744,6 +805,12 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label subject_shortcut;
         internal System.Windows.Forms.TabPage scheduleAction;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label22;
+        internal System.Windows.Forms.ComboBox comboBox7;
     }
 }
 
