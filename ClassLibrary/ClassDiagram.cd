@@ -9,6 +9,9 @@
         <Point X="9.812" Y="5.656" />
         <Point X="9.812" Y="3.803" />
       </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.024" Y="0.079" />
+      </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AwAAgEAAAQAAAAAAAAAAAAAIAAAAAEAAAEAAAAAAAAg=</HashCode>
