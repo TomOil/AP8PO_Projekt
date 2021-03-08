@@ -17,5 +17,9 @@ namespace AP8PO_Projekt
             InitializeComponent();
         }
 
+        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

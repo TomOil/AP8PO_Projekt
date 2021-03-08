@@ -4,35 +4,61 @@ using System.Text;
 
 namespace AP8PO_Projekt
 {
-    class Group
+    public class Group
     {
-        public string Name { get; set; } //Název
-        public string NameShort { get; set; } //Zkratka
-        public int Grade { get; set; } //Ročník
-        public enum Semester  //Semestr
+        /// <summary>
+        /// Název skupiny
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Zkratka názvu skupiny
+        /// </summary>
+        public string NameShort { get; set; }
+        /// <summary>
+        /// Ročník, ve kterém je skupina
+        /// </summary>
+        public int Grade { get; set; }
+        /// <summary>
+        /// Semestr, ve kterém je skupina
+        /// </summary>
+        public enum Semester 
         {
             LS,
             ZS
         }
-        public int NumberOfStudents { get; set; } //Počet studentů
-        public enum FormOfStudy //Forma studia
+        /// <summary>
+        /// Počet studentů ve skupině
+        /// </summary>
+        public int NumberOfStudents { get; set; }
+        /// <summary>
+        /// Forma studia skupiny
+        /// </summary>
+        public enum FormOfStudy 
         {
             P,
             K
         }
-        public enum TypeOfStudy //Typ studia
+        /// <summary>
+        /// Typ studia skupiny
+        /// </summary>
+        public enum TypeOfStudy
         {
             Bc,
             Mgr,
             PhD
         }
-
-        public enum Language //Jazyk
+        /// <summary>
+        /// Jazyk, ve kterém se předměty skupiny vyučují
+        /// </summary>
+        public enum Language 
         {
             CZ,
             EN
         }
-        public List<Subject> SubjectList { get; set; } //Seznam předmětů
+        /// <summary>
+        /// List předmětů skupinky
+        /// </summary>
+        public List<Subject> SubjectList { get; set; }
     }
 
     

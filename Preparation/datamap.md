@@ -34,7 +34,7 @@ Seznam skupin – List<Skupinka> - množina referencí na 1)
 Doplňující info, zatím bez přímého vlivu na aplikaci:
 
 Název předmětu – string – Pokročilé programování
-Počet kreditů – int - 5
+Počet kreditů – int - 5d
 //Garantující ústav – enum – UIUI
 //Jméno garanta – string – Pavel Vařacha 
 

@@ -4,16 +4,43 @@ using System.Text;
 
 namespace AP8PO_Projekt
 {
-    class Employee
+    public class Employee
     {
+        /// <summary>
+        /// Křestní jméno zaměstnance
+        /// </summary>
         public string FirstName { get; set; }
+        /// <summary>
+        /// Příjmení zaměstnance
+        /// </summary>
         public string LastName { get; set; }
+        /// <summary>
+        /// Pracovní email zaměstnance
+        /// </summary>
         public string WorkEmail { get; set; }
+        /// <summary>
+        /// Osobní email zaměstnance
+        /// </summary>
         public string PersonalEmail { get; set; }
+        /// <summary>
+        /// Pracovní telefonní číslo zaměstnance
+        /// </summary>
         public string WorkPhoneNumber { get; set; }
+        /// <summary>
+        /// Osobní telefoní číslo zaměstnance
+        /// </summary>
         public string PersonalPhoneNumber { get; set; }
+        /// <summary>
+        /// True jestli je zaměstnanec zároveň doktorantem
+        /// </summary>
         public bool DoctoralStudent { get; set; }
+        /// <summary>
+        /// Úvazek zaměstnance (hodnota mezi 0.0 a 1.0)
+        /// </summary>
         public double Load { get; set; }
+        /// <summary>
+        /// List rozvrhových akci toho určitého zaměstnance
+        /// </summary>
         public List<ScheduleAction> ScheduleActionList { get; set; }
     }
 }

@@ -71,9 +71,7 @@ namespace AP8PO_Projekt
             this.NumericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.Label11 = new System.Windows.Forms.Label();
             this.Button2 = new System.Windows.Forms.Button();
-            this.Label10 = new System.Windows.Forms.Label();
             this.Label9 = new System.Windows.Forms.Label();
-            this.ListBox1 = new System.Windows.Forms.ListBox();
             this.TextBox5 = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
             this.ComboBox2 = new System.Windows.Forms.ComboBox();
@@ -93,8 +91,10 @@ namespace AP8PO_Projekt
             this.Label2 = new System.Windows.Forms.Label();
             this.subject_shortcut = new System.Windows.Forms.Label();
             this.scheduleAction = new System.Windows.Forms.TabPage();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.Label10 = new System.Windows.Forms.Label();
+            this.ListBox1 = new System.Windows.Forms.ListBox();
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown1)).BeginInit();
@@ -108,6 +108,7 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown2)).BeginInit();
+            this.scheduleAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -124,6 +125,7 @@ namespace AP8PO_Projekt
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(929, 416);
             this.tabs.TabIndex = 1;
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             // 
             // employeeTab
             // 
@@ -291,8 +293,6 @@ namespace AP8PO_Projekt
             // 
             // fieldTab
             // 
-            this.fieldTab.Controls.Add(this.label23);
-            this.fieldTab.Controls.Add(this.listBox2);
             this.fieldTab.Controls.Add(this.Button3);
             this.fieldTab.Controls.Add(this.TextBox7);
             this.fieldTab.Controls.Add(this.Label19);
@@ -325,7 +325,7 @@ namespace AP8PO_Projekt
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(294, 72);
             this.Button3.TabIndex = 16;
-            this.Button3.Text = "Přidat skupinku";
+            this.Button3.Text = "Přidat skupinu";
             this.Button3.UseVisualStyleBackColor = true;
             // 
             // TextBox7
@@ -467,9 +467,7 @@ namespace AP8PO_Projekt
             this.subjectTab.Controls.Add(this.NumericUpDown7);
             this.subjectTab.Controls.Add(this.Label11);
             this.subjectTab.Controls.Add(this.Button2);
-            this.subjectTab.Controls.Add(this.Label10);
             this.subjectTab.Controls.Add(this.Label9);
-            this.subjectTab.Controls.Add(this.ListBox1);
             this.subjectTab.Controls.Add(this.TextBox5);
             this.subjectTab.Controls.Add(this.Label8);
             this.subjectTab.Controls.Add(this.ComboBox2);
@@ -532,21 +530,12 @@ namespace AP8PO_Projekt
             // 
             // Button2
             // 
-            this.Button2.Location = new System.Drawing.Point(327, 300);
+            this.Button2.Location = new System.Drawing.Point(619, 300);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(294, 72);
             this.Button2.TabIndex = 21;
             this.Button2.Text = "Přidat předmět";
             this.Button2.UseVisualStyleBackColor = true;
-            // 
-            // Label10
-            // 
-            this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(648, 88);
-            this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(142, 28);
-            this.Label10.TabIndex = 20;
-            this.Label10.Text = "Seznam skupin";
             // 
             // Label9
             // 
@@ -555,15 +544,6 @@ namespace AP8PO_Projekt
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(0, 28);
             this.Label9.TabIndex = 19;
-            // 
-            // ListBox1
-            // 
-            this.ListBox1.FormattingEnabled = true;
-            this.ListBox1.ItemHeight = 28;
-            this.ListBox1.Location = new System.Drawing.Point(645, 116);
-            this.ListBox1.Name = "ListBox1";
-            this.ListBox1.Size = new System.Drawing.Size(273, 256);
-            this.ListBox1.TabIndex = 18;
             // 
             // TextBox5
             // 
@@ -713,31 +693,53 @@ namespace AP8PO_Projekt
             // 
             // scheduleAction
             // 
+            this.scheduleAction.Controls.Add(this.Label10);
+            this.scheduleAction.Controls.Add(this.ListBox1);
+            this.scheduleAction.Controls.Add(this.label23);
+            this.scheduleAction.Controls.Add(this.listBox2);
             this.scheduleAction.Location = new System.Drawing.Point(4, 32);
             this.scheduleAction.Name = "scheduleAction";
             this.scheduleAction.Padding = new System.Windows.Forms.Padding(3);
             this.scheduleAction.Size = new System.Drawing.Size(921, 380);
             this.scheduleAction.TabIndex = 3;
-            this.scheduleAction.Text = "Rozvrhové akce";
+            this.scheduleAction.Text = "Přiřazení";
             this.scheduleAction.UseVisualStyleBackColor = true;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 28;
-            this.listBox2.Location = new System.Drawing.Point(635, 114);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(278, 256);
-            this.listBox2.TabIndex = 17;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(635, 83);
+            this.label23.Location = new System.Drawing.Point(8, 12);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(171, 28);
-            this.label23.TabIndex = 21;
+            this.label23.Size = new System.Drawing.Size(130, 20);
+            this.label23.TabIndex = 23;
             this.label23.Text = "Seznam předmětů";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 20;
+            this.listBox2.Location = new System.Drawing.Point(8, 43);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(278, 244);
+            this.listBox2.TabIndex = 22;
+            // 
+            // Label10
+            // 
+            this.Label10.AutoSize = true;
+            this.Label10.Location = new System.Drawing.Point(295, 15);
+            this.Label10.Name = "Label10";
+            this.Label10.Size = new System.Drawing.Size(107, 20);
+            this.Label10.TabIndex = 25;
+            this.Label10.Text = "Seznam skupin";
+            // 
+            // ListBox1
+            // 
+            this.ListBox1.FormattingEnabled = true;
+            this.ListBox1.ItemHeight = 20;
+            this.ListBox1.Location = new System.Drawing.Point(292, 43);
+            this.ListBox1.Name = "ListBox1";
+            this.ListBox1.Size = new System.Drawing.Size(273, 244);
+            this.ListBox1.TabIndex = 24;
             // 
             // Form1
             // 
@@ -746,7 +748,7 @@ namespace AP8PO_Projekt
             this.ClientSize = new System.Drawing.Size(929, 416);
             this.Controls.Add(this.tabs);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AP8PO_Project";
             this.tabs.ResumeLayout(false);
             this.employeeTab.ResumeLayout(false);
             this.employeeTab.PerformLayout();
@@ -763,6 +765,8 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown2)).EndInit();
+            this.scheduleAction.ResumeLayout(false);
+            this.scheduleAction.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -805,9 +809,7 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.NumericUpDown NumericUpDown7;
         internal System.Windows.Forms.Label Label11;
         internal System.Windows.Forms.Button Button2;
-        internal System.Windows.Forms.Label Label10;
         internal System.Windows.Forms.Label Label9;
-        internal System.Windows.Forms.ListBox ListBox1;
         internal System.Windows.Forms.TextBox TextBox5;
         internal System.Windows.Forms.Label Label8;
         internal System.Windows.Forms.ComboBox ComboBox2;
@@ -833,6 +835,8 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label22;
         internal System.Windows.Forms.ComboBox comboBox7;
+        internal System.Windows.Forms.Label Label10;
+        internal System.Windows.Forms.ListBox ListBox1;
         internal System.Windows.Forms.Label label23;
         private System.Windows.Forms.ListBox listBox2;
     }

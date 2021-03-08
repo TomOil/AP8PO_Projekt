@@ -4,28 +4,65 @@ using System.Text;
 
 namespace AP8PO_Projekt
 {
-    class Subject
+    public class Subject
     {
-        public string Name { get; set; } //Nazev
-        public string NameShort { get; set; } //Zkratka
-        public int NumberOfWeeks { get; set; } //Počet týdnů
-        public int LectureHours { get; set; } //Hodiny přednášek
-        public int PracticeHours { get; set; } //Hodiny cvičení
-        public int SeminarHours { get; set; } //Hodiny seminářů
-        public enum FormOfCompletion //Forma zakončení
+        /// <summary>
+        /// Název předmětu
+        /// </summary>
+        public string Name { get; set; } 
+        /// <summary>
+        /// Zkratka názvu předmětu
+        /// </summary>
+        public string NameShort { get; set; }
+        /// <summary>
+        /// Počet týdnů které bude předmět trvat
+        /// </summary>
+        public int NumberOfWeeks { get; set; } 
+        /// <summary>
+        /// Počet hodin přednášek v jednom týdnu
+        /// </summary>
+        public int LectureHours { get; set; }
+        /// <summary>
+        /// Počet hodin cvičení v jednom týdnu
+        /// </summary>
+        public int PracticeHours { get; set; }
+        /// <summary>
+        /// Počet hodin seminářů v jednom týdnu
+        /// </summary>
+        public int SeminarHours { get; set; }
+        /// <summary>
+        /// Forma ukončení předmětu
+        /// </summary>
+        public enum FormOfCompletion 
         {
             Z,
-            ZK
+            ZK,
+            KL
         }
-        public enum Language //Jazyk
+        /// <summary>
+        /// Jazyk ve kterém se předmět vyučuje
+        /// </summary>
+        public enum Language
         {
             CZ,
             EN
         }
-        public int ClassSize { get; set; } //Velikost třídy
-        public List<Group> GroupList { get; set; } //Seznam skupin
-        public int Credits { get; set; } //Počet kreditů
-        public enum GuarantorInstitute //Garantující ústav
+        /// <summary>
+        /// Velikost třídy, ve které se předmět vyučuje
+        /// </summary>
+        public int ClassSize { get; set; } 
+        /// <summary>
+        /// Seznam skupin, které mají tento předmět
+        /// </summary>
+        public List<Group> GroupList { get; set; }
+        /// <summary>
+        /// Počet kreditů přiřazených studentovi po úspěšném ukončení předmětu
+        /// </summary>
+        public int Credits { get; set; }
+        /// <summary>
+        /// Útvar garantující tento předmět
+        /// </summary>
+        public enum GuarantorInstitute
         {
             AUIUI,
             AUPKS,
@@ -33,6 +70,9 @@ namespace AP8PO_Projekt
             AUEM
             //atd...
         } 
+        /// <summary>
+        /// Jméno garanta předmětu
+        /// </summary>
         public string GuarantorName { get; set; }
     }
 }
