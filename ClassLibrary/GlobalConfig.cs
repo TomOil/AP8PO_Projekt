@@ -8,12 +8,18 @@ namespace ClassLibrary
     {
         public static List<IDataConnection> Connections { get; set; } = new List<IDataConnection>();
 
-        public static void InitializeConnections(bool xmlFiles)
+        public static void InitializeConnections(bool xmlFiles, bool database)
         {
             if (xmlFiles)
             {
                 XmlConnector xml = new XmlConnector();
                 Connections.Add(xml);
+            }
+
+            if (database)
+            {
+                SqlConnector sql = new SqlConnector();
+                Connections.Add(sql);
             }
         }
     }

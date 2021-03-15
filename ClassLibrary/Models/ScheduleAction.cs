@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AP8PO_Projekt
+namespace AP8PO_Projekt.Models
 {
     public class ScheduleAction
     {
+        /// <summary>
+        /// Unikátní identifikátor rozvrhové akce
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Název rozvrhové akce
         /// </summary>
@@ -39,7 +43,7 @@ namespace AP8PO_Projekt
         /// </summary>
         public int NumberOfHours { get; set; }
         /// <summary>
-        /// počet týdný, které ta rozvrhová akce trvá
+        /// Počet týdnů, které ta rozvrhová akce trvá
         /// </summary>
         public int NumberOfWeeks { get; set; }
         /// <summary>

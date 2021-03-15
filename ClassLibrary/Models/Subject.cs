@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AP8PO_Projekt
+namespace AP8PO_Projekt.Models
 {
     public class Subject
     {
+        /// <summary>
+        /// Unikátní identifikátor předmětu
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Název předmětu
         /// </summary>
@@ -71,8 +75,12 @@ namespace AP8PO_Projekt
             //atd...
         } 
         /// <summary>
-        /// Jméno garanta předmětu
+        /// Křestní jméno garanta předmětu
         /// </summary>
-        public string GuarantorName { get; set; }
+        public string GuarantorFirstName { get; set; }
+        /// <summary>
+        /// Příjmení garanta předmětu
+        /// </summary>
+        public string GuarantorLastName { get; set; }
     }
 }

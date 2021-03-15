@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AP8PO_Projekt
+namespace AP8PO_Projekt.Models
 {
     public class Group
     {
+        /// <summary>
+        /// Unikátní identifikátor skupiny
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Název skupiny
         /// </summary>
@@ -60,6 +64,4 @@ namespace AP8PO_Projekt
         /// </summary>
         public List<Subject> SubjectList { get; set; }
     }
-
-    
 }

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AP8PO_Projekt
+namespace AP8PO_Projekt.Models
 {
     public class Employee
     {
+        /// <summary>
+        /// Unikátní identifikátor zaměstnance
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Křestní jméno zaměstnance
         /// </summary>
@@ -37,7 +41,7 @@ namespace AP8PO_Projekt
         /// <summary>
         /// Úvazek zaměstnance (hodnota mezi 0.0 a 1.0)
         /// </summary>
-        public double Load { get; set; }
+        public double EmployeeLoad { get; set; }
         /// <summary>
         /// List rozvrhových akci toho určitého zaměstnance
         /// </summary>

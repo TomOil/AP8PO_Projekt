@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel.DataAnnotations;
 
 namespace AP8PO_Projekt
 {
@@ -25,6 +26,11 @@ namespace AP8PO_Projekt
         private void addEmployeeButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public bool IsValidEmail(string source)
+        {
+            return new EmailAddressAttribute().IsValid(source);
         }
     }
 }
