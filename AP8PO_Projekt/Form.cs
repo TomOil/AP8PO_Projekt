@@ -21,5 +21,10 @@ namespace AP8PO_Projekt
         {
 
         }
+
+        private void addEmployeeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

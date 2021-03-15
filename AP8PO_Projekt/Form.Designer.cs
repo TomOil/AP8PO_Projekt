@@ -33,31 +33,31 @@ namespace AP8PO_Projekt
             this.employeeTab = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.NumericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.IsDoctorand = new System.Windows.Forms.CheckBox();
-            this.TextBox3 = new System.Windows.Forms.TextBox();
-            this.TextBox2 = new System.Windows.Forms.TextBox();
-            this.TextBox1 = new System.Windows.Forms.TextBox();
-            this.Button1 = new System.Windows.Forms.Button();
+            this.privatePhoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.workPhoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.loadNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.IsDoctorandCheckbox = new System.Windows.Forms.CheckBox();
+            this.privateEmailTextBox = new System.Windows.Forms.TextBox();
+            this.workEmailTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.addEmployeeButton = new System.Windows.Forms.Button();
             this.harness = new System.Windows.Forms.Label();
             this.private_email = new System.Windows.Forms.Label();
             this.work_email = new System.Windows.Forms.Label();
             this.last_name = new System.Windows.Forms.Label();
             this.first_name = new System.Windows.Forms.Label();
-            this.first_name_form = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.fieldTab = new System.Windows.Forms.TabPage();
-            this.Button3 = new System.Windows.Forms.Button();
-            this.TextBox7 = new System.Windows.Forms.TextBox();
+            this.addGroupButton = new System.Windows.Forms.Button();
+            this.groupNameTextBox = new System.Windows.Forms.TextBox();
             this.Label19 = new System.Windows.Forms.Label();
-            this.ComboBox6 = new System.Windows.Forms.ComboBox();
-            this.NumericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.ComboBox5 = new System.Windows.Forms.ComboBox();
-            this.ComboBox4 = new System.Windows.Forms.ComboBox();
-            this.NumericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.ComboBox3 = new System.Windows.Forms.ComboBox();
-            this.TextBox6 = new System.Windows.Forms.TextBox();
+            this.groupLanguageComboBox = new System.Windows.Forms.ComboBox();
+            this.gradeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.typeOfStudyComboBox = new System.Windows.Forms.ComboBox();
+            this.formOfStudyComboBox = new System.Windows.Forms.ComboBox();
+            this.numberOfStudentsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.semesterComboBox = new System.Windows.Forms.ComboBox();
+            this.groupNameShortTextBox = new System.Windows.Forms.TextBox();
             this.Label18 = new System.Windows.Forms.Label();
             this.Label17 = new System.Windows.Forms.Label();
             this.Label16 = new System.Windows.Forms.Label();
@@ -67,21 +67,21 @@ namespace AP8PO_Projekt
             this.Label12 = new System.Windows.Forms.Label();
             this.subjectTab = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.NumericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.guarantorInstituteComboBox = new System.Windows.Forms.ComboBox();
+            this.creditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Label11 = new System.Windows.Forms.Label();
             this.Button2 = new System.Windows.Forms.Button();
             this.Label9 = new System.Windows.Forms.Label();
-            this.TextBox5 = new System.Windows.Forms.TextBox();
+            this.subjectNameTextBox = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
-            this.ComboBox2 = new System.Windows.Forms.ComboBox();
-            this.ComboBox1 = new System.Windows.Forms.ComboBox();
-            this.NumericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.NumericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.NumericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.NumericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.NumericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.TextBox4 = new System.Windows.Forms.TextBox();
+            this.subjectLanguageComboBox = new System.Windows.Forms.ComboBox();
+            this.formOfCompletionComboBox = new System.Windows.Forms.ComboBox();
+            this.classSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.seminarHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.practiceHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lectureHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numberOfWeeksNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.subjectNameShortTextBox = new System.Windows.Forms.TextBox();
             this.Label7 = new System.Windows.Forms.Label();
             this.Label6 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
@@ -91,24 +91,26 @@ namespace AP8PO_Projekt
             this.Label2 = new System.Windows.Forms.Label();
             this.subject_shortcut = new System.Windows.Forms.Label();
             this.scheduleAction = new System.Windows.Forms.TabPage();
-            this.label23 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.Label10 = new System.Windows.Forms.Label();
-            this.ListBox1 = new System.Windows.Forms.ListBox();
+            this.employeesListBox = new System.Windows.Forms.ListBox();
+            this.employeesGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.scheduleActionsListBox = new System.Windows.Forms.ListBox();
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).BeginInit();
             this.fieldTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfStudentsNumericUpDown)).BeginInit();
             this.subjectTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seminarHoursNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceHoursNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).BeginInit();
             this.scheduleAction.SuspendLayout();
+            this.employeesGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -131,20 +133,20 @@ namespace AP8PO_Projekt
             // 
             this.employeeTab.Controls.Add(this.label21);
             this.employeeTab.Controls.Add(this.label20);
-            this.employeeTab.Controls.Add(this.textBox9);
-            this.employeeTab.Controls.Add(this.textBox8);
-            this.employeeTab.Controls.Add(this.NumericUpDown1);
-            this.employeeTab.Controls.Add(this.IsDoctorand);
-            this.employeeTab.Controls.Add(this.TextBox3);
-            this.employeeTab.Controls.Add(this.TextBox2);
-            this.employeeTab.Controls.Add(this.TextBox1);
-            this.employeeTab.Controls.Add(this.Button1);
+            this.employeeTab.Controls.Add(this.privatePhoneNumberTextBox);
+            this.employeeTab.Controls.Add(this.workPhoneNumberTextBox);
+            this.employeeTab.Controls.Add(this.loadNumericUpDown);
+            this.employeeTab.Controls.Add(this.IsDoctorandCheckbox);
+            this.employeeTab.Controls.Add(this.privateEmailTextBox);
+            this.employeeTab.Controls.Add(this.workEmailTextBox);
+            this.employeeTab.Controls.Add(this.lastNameTextBox);
+            this.employeeTab.Controls.Add(this.addEmployeeButton);
             this.employeeTab.Controls.Add(this.harness);
             this.employeeTab.Controls.Add(this.private_email);
             this.employeeTab.Controls.Add(this.work_email);
             this.employeeTab.Controls.Add(this.last_name);
             this.employeeTab.Controls.Add(this.first_name);
-            this.employeeTab.Controls.Add(this.first_name_form);
+            this.employeeTab.Controls.Add(this.firstNameTextBox);
             this.employeeTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.employeeTab.Location = new System.Drawing.Point(4, 32);
             this.employeeTab.Name = "employeeTab";
@@ -172,72 +174,73 @@ namespace AP8PO_Projekt
             this.label20.TabIndex = 15;
             this.label20.Text = "Pracovní tel. číslo";
             // 
-            // textBox9
+            // privatePhoneNumberTextBox
             // 
-            this.textBox9.Location = new System.Drawing.Point(202, 222);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(711, 34);
-            this.textBox9.TabIndex = 14;
+            this.privatePhoneNumberTextBox.Location = new System.Drawing.Point(202, 222);
+            this.privatePhoneNumberTextBox.Name = "privatePhoneNumberTextBox";
+            this.privatePhoneNumberTextBox.Size = new System.Drawing.Size(711, 34);
+            this.privatePhoneNumberTextBox.TabIndex = 14;
             // 
-            // textBox8
+            // workPhoneNumberTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(202, 182);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(711, 34);
-            this.textBox8.TabIndex = 13;
+            this.workPhoneNumberTextBox.Location = new System.Drawing.Point(202, 182);
+            this.workPhoneNumberTextBox.Name = "workPhoneNumberTextBox";
+            this.workPhoneNumberTextBox.Size = new System.Drawing.Size(711, 34);
+            this.workPhoneNumberTextBox.TabIndex = 13;
             // 
-            // NumericUpDown1
+            // loadNumericUpDown
             // 
-            this.NumericUpDown1.DecimalPlaces = 2;
-            this.NumericUpDown1.Location = new System.Drawing.Point(202, 262);
-            this.NumericUpDown1.Maximum = new decimal(new int[] {
+            this.loadNumericUpDown.DecimalPlaces = 2;
+            this.loadNumericUpDown.Location = new System.Drawing.Point(202, 262);
+            this.loadNumericUpDown.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.NumericUpDown1.Name = "NumericUpDown1";
-            this.NumericUpDown1.Size = new System.Drawing.Size(222, 34);
-            this.NumericUpDown1.TabIndex = 12;
+            this.loadNumericUpDown.Name = "loadNumericUpDown";
+            this.loadNumericUpDown.Size = new System.Drawing.Size(222, 34);
+            this.loadNumericUpDown.TabIndex = 12;
             // 
-            // IsDoctorand
+            // IsDoctorandCheckbox
             // 
-            this.IsDoctorand.AutoSize = true;
-            this.IsDoctorand.Location = new System.Drawing.Point(205, 305);
-            this.IsDoctorand.Name = "IsDoctorand";
-            this.IsDoctorand.Size = new System.Drawing.Size(158, 32);
-            this.IsDoctorand.TabIndex = 11;
-            this.IsDoctorand.Text = "Je doktorand?";
-            this.IsDoctorand.UseVisualStyleBackColor = true;
+            this.IsDoctorandCheckbox.AutoSize = true;
+            this.IsDoctorandCheckbox.Location = new System.Drawing.Point(205, 305);
+            this.IsDoctorandCheckbox.Name = "IsDoctorandCheckbox";
+            this.IsDoctorandCheckbox.Size = new System.Drawing.Size(158, 32);
+            this.IsDoctorandCheckbox.TabIndex = 11;
+            this.IsDoctorandCheckbox.Text = "Je doktorand?";
+            this.IsDoctorandCheckbox.UseVisualStyleBackColor = true;
             // 
-            // TextBox3
+            // privateEmailTextBox
             // 
-            this.TextBox3.Location = new System.Drawing.Point(202, 141);
-            this.TextBox3.Name = "TextBox3";
-            this.TextBox3.Size = new System.Drawing.Size(711, 34);
-            this.TextBox3.TabIndex = 10;
+            this.privateEmailTextBox.Location = new System.Drawing.Point(202, 141);
+            this.privateEmailTextBox.Name = "privateEmailTextBox";
+            this.privateEmailTextBox.Size = new System.Drawing.Size(711, 34);
+            this.privateEmailTextBox.TabIndex = 10;
             // 
-            // TextBox2
+            // workEmailTextBox
             // 
-            this.TextBox2.Location = new System.Drawing.Point(202, 101);
-            this.TextBox2.Name = "TextBox2";
-            this.TextBox2.Size = new System.Drawing.Size(711, 34);
-            this.TextBox2.TabIndex = 9;
+            this.workEmailTextBox.Location = new System.Drawing.Point(202, 101);
+            this.workEmailTextBox.Name = "workEmailTextBox";
+            this.workEmailTextBox.Size = new System.Drawing.Size(711, 34);
+            this.workEmailTextBox.TabIndex = 9;
             // 
-            // TextBox1
+            // lastNameTextBox
             // 
-            this.TextBox1.Location = new System.Drawing.Point(202, 61);
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.Size = new System.Drawing.Size(711, 34);
-            this.TextBox1.TabIndex = 8;
+            this.lastNameTextBox.Location = new System.Drawing.Point(202, 61);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(711, 34);
+            this.lastNameTextBox.TabIndex = 8;
             // 
-            // Button1
+            // addEmployeeButton
             // 
-            this.Button1.Location = new System.Drawing.Point(619, 300);
-            this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(294, 72);
-            this.Button1.TabIndex = 7;
-            this.Button1.Text = "Přidat zaměstnance";
-            this.Button1.UseVisualStyleBackColor = true;
+            this.addEmployeeButton.Location = new System.Drawing.Point(619, 300);
+            this.addEmployeeButton.Name = "addEmployeeButton";
+            this.addEmployeeButton.Size = new System.Drawing.Size(294, 72);
+            this.addEmployeeButton.TabIndex = 7;
+            this.addEmployeeButton.Text = "Přidat zaměstnance";
+            this.addEmployeeButton.UseVisualStyleBackColor = true;
+            this.addEmployeeButton.Click += new System.EventHandler(this.addEmployeeButton_Click);
             // 
             // harness
             // 
@@ -284,25 +287,25 @@ namespace AP8PO_Projekt
             this.first_name.TabIndex = 1;
             this.first_name.Text = "Jméno";
             // 
-            // first_name_form
+            // firstNameTextBox
             // 
-            this.first_name_form.Location = new System.Drawing.Point(202, 21);
-            this.first_name_form.Name = "first_name_form";
-            this.first_name_form.Size = new System.Drawing.Size(711, 34);
-            this.first_name_form.TabIndex = 0;
+            this.firstNameTextBox.Location = new System.Drawing.Point(202, 21);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(711, 34);
+            this.firstNameTextBox.TabIndex = 0;
             // 
             // fieldTab
             // 
-            this.fieldTab.Controls.Add(this.Button3);
-            this.fieldTab.Controls.Add(this.TextBox7);
+            this.fieldTab.Controls.Add(this.addGroupButton);
+            this.fieldTab.Controls.Add(this.groupNameTextBox);
             this.fieldTab.Controls.Add(this.Label19);
-            this.fieldTab.Controls.Add(this.ComboBox6);
-            this.fieldTab.Controls.Add(this.NumericUpDown9);
-            this.fieldTab.Controls.Add(this.ComboBox5);
-            this.fieldTab.Controls.Add(this.ComboBox4);
-            this.fieldTab.Controls.Add(this.NumericUpDown8);
-            this.fieldTab.Controls.Add(this.ComboBox3);
-            this.fieldTab.Controls.Add(this.TextBox6);
+            this.fieldTab.Controls.Add(this.groupLanguageComboBox);
+            this.fieldTab.Controls.Add(this.gradeNumericUpDown);
+            this.fieldTab.Controls.Add(this.typeOfStudyComboBox);
+            this.fieldTab.Controls.Add(this.formOfStudyComboBox);
+            this.fieldTab.Controls.Add(this.numberOfStudentsNumericUpDown);
+            this.fieldTab.Controls.Add(this.semesterComboBox);
+            this.fieldTab.Controls.Add(this.groupNameShortTextBox);
             this.fieldTab.Controls.Add(this.Label18);
             this.fieldTab.Controls.Add(this.Label17);
             this.fieldTab.Controls.Add(this.Label16);
@@ -319,21 +322,21 @@ namespace AP8PO_Projekt
             this.fieldTab.Text = "Přidat skupinu";
             this.fieldTab.UseVisualStyleBackColor = true;
             // 
-            // Button3
+            // addGroupButton
             // 
-            this.Button3.Location = new System.Drawing.Point(332, 298);
-            this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(294, 72);
-            this.Button3.TabIndex = 16;
-            this.Button3.Text = "Přidat skupinu";
-            this.Button3.UseVisualStyleBackColor = true;
+            this.addGroupButton.Location = new System.Drawing.Point(332, 298);
+            this.addGroupButton.Name = "addGroupButton";
+            this.addGroupButton.Size = new System.Drawing.Size(294, 72);
+            this.addGroupButton.TabIndex = 16;
+            this.addGroupButton.Text = "Přidat skupinu";
+            this.addGroupButton.UseVisualStyleBackColor = true;
             // 
-            // TextBox7
+            // groupNameTextBox
             // 
-            this.TextBox7.Location = new System.Drawing.Point(460, 6);
-            this.TextBox7.Name = "TextBox7";
-            this.TextBox7.Size = new System.Drawing.Size(453, 34);
-            this.TextBox7.TabIndex = 15;
+            this.groupNameTextBox.Location = new System.Drawing.Point(460, 6);
+            this.groupNameTextBox.Name = "groupNameTextBox";
+            this.groupNameTextBox.Size = new System.Drawing.Size(453, 34);
+            this.groupNameTextBox.TabIndex = 15;
             // 
             // Label19
             // 
@@ -344,58 +347,58 @@ namespace AP8PO_Projekt
             this.Label19.TabIndex = 14;
             this.Label19.Text = "Název oboru";
             // 
-            // ComboBox6
+            // groupLanguageComboBox
             // 
-            this.ComboBox6.FormattingEnabled = true;
-            this.ComboBox6.Location = new System.Drawing.Point(182, 252);
-            this.ComboBox6.Name = "ComboBox6";
-            this.ComboBox6.Size = new System.Drawing.Size(106, 36);
-            this.ComboBox6.TabIndex = 13;
+            this.groupLanguageComboBox.FormattingEnabled = true;
+            this.groupLanguageComboBox.Location = new System.Drawing.Point(182, 252);
+            this.groupLanguageComboBox.Name = "groupLanguageComboBox";
+            this.groupLanguageComboBox.Size = new System.Drawing.Size(106, 36);
+            this.groupLanguageComboBox.TabIndex = 13;
             // 
-            // NumericUpDown9
+            // gradeNumericUpDown
             // 
-            this.NumericUpDown9.Location = new System.Drawing.Point(183, 212);
-            this.NumericUpDown9.Name = "NumericUpDown9";
-            this.NumericUpDown9.Size = new System.Drawing.Size(105, 34);
-            this.NumericUpDown9.TabIndex = 12;
+            this.gradeNumericUpDown.Location = new System.Drawing.Point(183, 212);
+            this.gradeNumericUpDown.Name = "gradeNumericUpDown";
+            this.gradeNumericUpDown.Size = new System.Drawing.Size(105, 34);
+            this.gradeNumericUpDown.TabIndex = 12;
             // 
-            // ComboBox5
+            // typeOfStudyComboBox
             // 
-            this.ComboBox5.FormattingEnabled = true;
-            this.ComboBox5.Location = new System.Drawing.Point(183, 170);
-            this.ComboBox5.Name = "ComboBox5";
-            this.ComboBox5.Size = new System.Drawing.Size(105, 36);
-            this.ComboBox5.TabIndex = 11;
+            this.typeOfStudyComboBox.FormattingEnabled = true;
+            this.typeOfStudyComboBox.Location = new System.Drawing.Point(183, 170);
+            this.typeOfStudyComboBox.Name = "typeOfStudyComboBox";
+            this.typeOfStudyComboBox.Size = new System.Drawing.Size(105, 36);
+            this.typeOfStudyComboBox.TabIndex = 11;
             // 
-            // ComboBox4
+            // formOfStudyComboBox
             // 
-            this.ComboBox4.FormattingEnabled = true;
-            this.ComboBox4.Location = new System.Drawing.Point(184, 128);
-            this.ComboBox4.Name = "ComboBox4";
-            this.ComboBox4.Size = new System.Drawing.Size(104, 36);
-            this.ComboBox4.TabIndex = 10;
+            this.formOfStudyComboBox.FormattingEnabled = true;
+            this.formOfStudyComboBox.Location = new System.Drawing.Point(184, 128);
+            this.formOfStudyComboBox.Name = "formOfStudyComboBox";
+            this.formOfStudyComboBox.Size = new System.Drawing.Size(104, 36);
+            this.formOfStudyComboBox.TabIndex = 10;
             // 
-            // NumericUpDown8
+            // numberOfStudentsNumericUpDown
             // 
-            this.NumericUpDown8.Location = new System.Drawing.Point(184, 88);
-            this.NumericUpDown8.Name = "NumericUpDown8";
-            this.NumericUpDown8.Size = new System.Drawing.Size(104, 34);
-            this.NumericUpDown8.TabIndex = 9;
+            this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(184, 88);
+            this.numberOfStudentsNumericUpDown.Name = "numberOfStudentsNumericUpDown";
+            this.numberOfStudentsNumericUpDown.Size = new System.Drawing.Size(104, 34);
+            this.numberOfStudentsNumericUpDown.TabIndex = 9;
             // 
-            // ComboBox3
+            // semesterComboBox
             // 
-            this.ComboBox3.FormattingEnabled = true;
-            this.ComboBox3.Location = new System.Drawing.Point(184, 46);
-            this.ComboBox3.Name = "ComboBox3";
-            this.ComboBox3.Size = new System.Drawing.Size(104, 36);
-            this.ComboBox3.TabIndex = 8;
+            this.semesterComboBox.FormattingEnabled = true;
+            this.semesterComboBox.Location = new System.Drawing.Point(184, 46);
+            this.semesterComboBox.Name = "semesterComboBox";
+            this.semesterComboBox.Size = new System.Drawing.Size(104, 36);
+            this.semesterComboBox.TabIndex = 8;
             // 
-            // TextBox6
+            // groupNameShortTextBox
             // 
-            this.TextBox6.Location = new System.Drawing.Point(184, 6);
-            this.TextBox6.Name = "TextBox6";
-            this.TextBox6.Size = new System.Drawing.Size(104, 34);
-            this.TextBox6.TabIndex = 7;
+            this.groupNameShortTextBox.Location = new System.Drawing.Point(184, 6);
+            this.groupNameShortTextBox.Name = "groupNameShortTextBox";
+            this.groupNameShortTextBox.Size = new System.Drawing.Size(104, 34);
+            this.groupNameShortTextBox.TabIndex = 7;
             // 
             // Label18
             // 
@@ -463,21 +466,21 @@ namespace AP8PO_Projekt
             // subjectTab
             // 
             this.subjectTab.Controls.Add(this.label22);
-            this.subjectTab.Controls.Add(this.comboBox7);
-            this.subjectTab.Controls.Add(this.NumericUpDown7);
+            this.subjectTab.Controls.Add(this.guarantorInstituteComboBox);
+            this.subjectTab.Controls.Add(this.creditsNumericUpDown);
             this.subjectTab.Controls.Add(this.Label11);
             this.subjectTab.Controls.Add(this.Button2);
             this.subjectTab.Controls.Add(this.Label9);
-            this.subjectTab.Controls.Add(this.TextBox5);
+            this.subjectTab.Controls.Add(this.subjectNameTextBox);
             this.subjectTab.Controls.Add(this.Label8);
-            this.subjectTab.Controls.Add(this.ComboBox2);
-            this.subjectTab.Controls.Add(this.ComboBox1);
-            this.subjectTab.Controls.Add(this.NumericUpDown6);
-            this.subjectTab.Controls.Add(this.NumericUpDown5);
-            this.subjectTab.Controls.Add(this.NumericUpDown4);
-            this.subjectTab.Controls.Add(this.NumericUpDown3);
-            this.subjectTab.Controls.Add(this.NumericUpDown2);
-            this.subjectTab.Controls.Add(this.TextBox4);
+            this.subjectTab.Controls.Add(this.subjectLanguageComboBox);
+            this.subjectTab.Controls.Add(this.formOfCompletionComboBox);
+            this.subjectTab.Controls.Add(this.classSizeNumericUpDown);
+            this.subjectTab.Controls.Add(this.seminarHoursNumericUpDown);
+            this.subjectTab.Controls.Add(this.practiceHoursNumericUpDown);
+            this.subjectTab.Controls.Add(this.lectureHoursNumericUpDown);
+            this.subjectTab.Controls.Add(this.numberOfWeeksNumericUpDown);
+            this.subjectTab.Controls.Add(this.subjectNameShortTextBox);
             this.subjectTab.Controls.Add(this.Label7);
             this.subjectTab.Controls.Add(this.Label6);
             this.subjectTab.Controls.Add(this.Label5);
@@ -504,20 +507,20 @@ namespace AP8PO_Projekt
             this.label22.TabIndex = 25;
             this.label22.Text = "Ústav";
             // 
-            // comboBox7
+            // guarantorInstituteComboBox
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(471, 139);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(150, 36);
-            this.comboBox7.TabIndex = 24;
+            this.guarantorInstituteComboBox.FormattingEnabled = true;
+            this.guarantorInstituteComboBox.Location = new System.Drawing.Point(471, 139);
+            this.guarantorInstituteComboBox.Name = "guarantorInstituteComboBox";
+            this.guarantorInstituteComboBox.Size = new System.Drawing.Size(150, 36);
+            this.guarantorInstituteComboBox.TabIndex = 24;
             // 
-            // NumericUpDown7
+            // creditsNumericUpDown
             // 
-            this.NumericUpDown7.Location = new System.Drawing.Point(471, 98);
-            this.NumericUpDown7.Name = "NumericUpDown7";
-            this.NumericUpDown7.Size = new System.Drawing.Size(150, 34);
-            this.NumericUpDown7.TabIndex = 23;
+            this.creditsNumericUpDown.Location = new System.Drawing.Point(471, 97);
+            this.creditsNumericUpDown.Name = "creditsNumericUpDown";
+            this.creditsNumericUpDown.Size = new System.Drawing.Size(150, 34);
+            this.creditsNumericUpDown.TabIndex = 23;
             // 
             // Label11
             // 
@@ -545,12 +548,12 @@ namespace AP8PO_Projekt
             this.Label9.Size = new System.Drawing.Size(0, 28);
             this.Label9.TabIndex = 19;
             // 
-            // TextBox5
+            // subjectNameTextBox
             // 
-            this.TextBox5.Location = new System.Drawing.Point(520, 9);
-            this.TextBox5.Name = "TextBox5";
-            this.TextBox5.Size = new System.Drawing.Size(393, 34);
-            this.TextBox5.TabIndex = 17;
+            this.subjectNameTextBox.Location = new System.Drawing.Point(520, 9);
+            this.subjectNameTextBox.Name = "subjectNameTextBox";
+            this.subjectNameTextBox.Size = new System.Drawing.Size(393, 34);
+            this.subjectNameTextBox.TabIndex = 17;
             // 
             // Label8
             // 
@@ -561,72 +564,72 @@ namespace AP8PO_Projekt
             this.Label8.TabIndex = 16;
             this.Label8.Text = "Název předmětu";
             // 
-            // ComboBox2
+            // subjectLanguageComboBox
             // 
-            this.ComboBox2.FormattingEnabled = true;
-            this.ComboBox2.Location = new System.Drawing.Point(182, 336);
-            this.ComboBox2.Name = "ComboBox2";
-            this.ComboBox2.Size = new System.Drawing.Size(126, 36);
-            this.ComboBox2.TabIndex = 15;
+            this.subjectLanguageComboBox.FormattingEnabled = true;
+            this.subjectLanguageComboBox.Location = new System.Drawing.Point(182, 336);
+            this.subjectLanguageComboBox.Name = "subjectLanguageComboBox";
+            this.subjectLanguageComboBox.Size = new System.Drawing.Size(126, 36);
+            this.subjectLanguageComboBox.TabIndex = 15;
             // 
-            // ComboBox1
+            // formOfCompletionComboBox
             // 
-            this.ComboBox1.FormattingEnabled = true;
-            this.ComboBox1.Location = new System.Drawing.Point(182, 294);
-            this.ComboBox1.Name = "ComboBox1";
-            this.ComboBox1.Size = new System.Drawing.Size(126, 36);
-            this.ComboBox1.TabIndex = 14;
+            this.formOfCompletionComboBox.FormattingEnabled = true;
+            this.formOfCompletionComboBox.Location = new System.Drawing.Point(182, 294);
+            this.formOfCompletionComboBox.Name = "formOfCompletionComboBox";
+            this.formOfCompletionComboBox.Size = new System.Drawing.Size(126, 36);
+            this.formOfCompletionComboBox.TabIndex = 14;
             // 
-            // NumericUpDown6
+            // classSizeNumericUpDown
             // 
-            this.NumericUpDown6.Location = new System.Drawing.Point(182, 254);
-            this.NumericUpDown6.Name = "NumericUpDown6";
-            this.NumericUpDown6.Size = new System.Drawing.Size(126, 34);
-            this.NumericUpDown6.TabIndex = 13;
+            this.classSizeNumericUpDown.Location = new System.Drawing.Point(182, 254);
+            this.classSizeNumericUpDown.Name = "classSizeNumericUpDown";
+            this.classSizeNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.classSizeNumericUpDown.TabIndex = 13;
             // 
-            // NumericUpDown5
+            // seminarHoursNumericUpDown
             // 
-            this.NumericUpDown5.Location = new System.Drawing.Point(182, 214);
-            this.NumericUpDown5.Name = "NumericUpDown5";
-            this.NumericUpDown5.Size = new System.Drawing.Size(126, 34);
-            this.NumericUpDown5.TabIndex = 12;
+            this.seminarHoursNumericUpDown.Location = new System.Drawing.Point(182, 214);
+            this.seminarHoursNumericUpDown.Name = "seminarHoursNumericUpDown";
+            this.seminarHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.seminarHoursNumericUpDown.TabIndex = 12;
             // 
-            // NumericUpDown4
+            // practiceHoursNumericUpDown
             // 
-            this.NumericUpDown4.Location = new System.Drawing.Point(182, 174);
-            this.NumericUpDown4.Name = "NumericUpDown4";
-            this.NumericUpDown4.Size = new System.Drawing.Size(126, 34);
-            this.NumericUpDown4.TabIndex = 11;
+            this.practiceHoursNumericUpDown.Location = new System.Drawing.Point(182, 174);
+            this.practiceHoursNumericUpDown.Name = "practiceHoursNumericUpDown";
+            this.practiceHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.practiceHoursNumericUpDown.TabIndex = 11;
             // 
-            // NumericUpDown3
+            // lectureHoursNumericUpDown
             // 
-            this.NumericUpDown3.Location = new System.Drawing.Point(182, 134);
-            this.NumericUpDown3.Name = "NumericUpDown3";
-            this.NumericUpDown3.Size = new System.Drawing.Size(126, 34);
-            this.NumericUpDown3.TabIndex = 10;
+            this.lectureHoursNumericUpDown.Location = new System.Drawing.Point(182, 134);
+            this.lectureHoursNumericUpDown.Name = "lectureHoursNumericUpDown";
+            this.lectureHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.lectureHoursNumericUpDown.TabIndex = 10;
             // 
-            // NumericUpDown2
+            // numberOfWeeksNumericUpDown
             // 
-            this.NumericUpDown2.Location = new System.Drawing.Point(182, 94);
-            this.NumericUpDown2.Name = "NumericUpDown2";
-            this.NumericUpDown2.Size = new System.Drawing.Size(126, 34);
-            this.NumericUpDown2.TabIndex = 9;
+            this.numberOfWeeksNumericUpDown.Location = new System.Drawing.Point(182, 94);
+            this.numberOfWeeksNumericUpDown.Name = "numberOfWeeksNumericUpDown";
+            this.numberOfWeeksNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.numberOfWeeksNumericUpDown.TabIndex = 9;
             // 
-            // TextBox4
+            // subjectNameShortTextBox
             // 
-            this.TextBox4.Location = new System.Drawing.Point(182, 9);
-            this.TextBox4.Name = "TextBox4";
-            this.TextBox4.Size = new System.Drawing.Size(126, 34);
-            this.TextBox4.TabIndex = 8;
+            this.subjectNameShortTextBox.Location = new System.Drawing.Point(182, 9);
+            this.subjectNameShortTextBox.Name = "subjectNameShortTextBox";
+            this.subjectNameShortTextBox.Size = new System.Drawing.Size(126, 34);
+            this.subjectNameShortTextBox.TabIndex = 8;
             // 
             // Label7
             // 
             this.Label7.AutoSize = true;
             this.Label7.Location = new System.Drawing.Point(11, 259);
             this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(152, 28);
+            this.Label7.Size = new System.Drawing.Size(126, 28);
             this.Label7.TabIndex = 7;
-            this.Label7.Text = "Velikost skupiny";
+            this.Label7.Text = "Velikost třídy";
             // 
             // Label6
             // 
@@ -693,10 +696,8 @@ namespace AP8PO_Projekt
             // 
             // scheduleAction
             // 
-            this.scheduleAction.Controls.Add(this.Label10);
-            this.scheduleAction.Controls.Add(this.ListBox1);
-            this.scheduleAction.Controls.Add(this.label23);
-            this.scheduleAction.Controls.Add(this.listBox2);
+            this.scheduleAction.Controls.Add(this.groupBox1);
+            this.scheduleAction.Controls.Add(this.employeesGroupBox);
             this.scheduleAction.Location = new System.Drawing.Point(4, 32);
             this.scheduleAction.Name = "scheduleAction";
             this.scheduleAction.Padding = new System.Windows.Forms.Padding(3);
@@ -705,68 +706,71 @@ namespace AP8PO_Projekt
             this.scheduleAction.Text = "Přiřazení";
             this.scheduleAction.UseVisualStyleBackColor = true;
             // 
-            // label23
+            // employeesListBox
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(8, 12);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(130, 20);
-            this.label23.TabIndex = 23;
-            this.label23.Text = "Seznam předmětů";
+            this.employeesListBox.FormattingEnabled = true;
+            this.employeesListBox.ItemHeight = 20;
+            this.employeesListBox.Location = new System.Drawing.Point(7, 20);
+            this.employeesListBox.Name = "employeesListBox";
+            this.employeesListBox.Size = new System.Drawing.Size(445, 324);
+            this.employeesListBox.TabIndex = 24;
             // 
-            // listBox2
+            // employeesGroupBox
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 20;
-            this.listBox2.Location = new System.Drawing.Point(8, 43);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(278, 244);
-            this.listBox2.TabIndex = 22;
+            this.employeesGroupBox.Controls.Add(this.employeesListBox);
+            this.employeesGroupBox.Location = new System.Drawing.Point(455, 12);
+            this.employeesGroupBox.Name = "employeesGroupBox";
+            this.employeesGroupBox.Size = new System.Drawing.Size(458, 360);
+            this.employeesGroupBox.TabIndex = 26;
+            this.employeesGroupBox.TabStop = false;
+            this.employeesGroupBox.Text = "Zaměstnanci";
             // 
-            // Label10
+            // groupBox1
             // 
-            this.Label10.AutoSize = true;
-            this.Label10.Location = new System.Drawing.Point(295, 15);
-            this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(107, 20);
-            this.Label10.TabIndex = 25;
-            this.Label10.Text = "Seznam skupin";
+            this.groupBox1.Controls.Add(this.scheduleActionsListBox);
+            this.groupBox1.Location = new System.Drawing.Point(3, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(446, 360);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rozvrhové akce";
             // 
-            // ListBox1
+            // scheduleActionsListBox
             // 
-            this.ListBox1.FormattingEnabled = true;
-            this.ListBox1.ItemHeight = 20;
-            this.ListBox1.Location = new System.Drawing.Point(292, 43);
-            this.ListBox1.Name = "ListBox1";
-            this.ListBox1.Size = new System.Drawing.Size(273, 244);
-            this.ListBox1.TabIndex = 24;
+            this.scheduleActionsListBox.FormattingEnabled = true;
+            this.scheduleActionsListBox.ItemHeight = 20;
+            this.scheduleActionsListBox.Location = new System.Drawing.Point(5, 23);
+            this.scheduleActionsListBox.Name = "scheduleActionsListBox";
+            this.scheduleActionsListBox.Size = new System.Drawing.Size(435, 324);
+            this.scheduleActionsListBox.TabIndex = 0;
             // 
-            // Form1
+            // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 416);
             this.Controls.Add(this.tabs);
-            this.Name = "Form1";
+            this.Name = "Form";
             this.Text = "AP8PO_Project";
             this.tabs.ResumeLayout(false);
             this.employeeTab.ResumeLayout(false);
             this.employeeTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).EndInit();
             this.fieldTab.ResumeLayout(false);
             this.fieldTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfStudentsNumericUpDown)).EndInit();
             this.subjectTab.ResumeLayout(false);
             this.subjectTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seminarHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).EndInit();
             this.scheduleAction.ResumeLayout(false);
-            this.scheduleAction.PerformLayout();
+            this.employeesGroupBox.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -775,29 +779,29 @@ namespace AP8PO_Projekt
 
         internal System.Windows.Forms.TabControl tabs;
         internal System.Windows.Forms.TabPage employeeTab;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown1;
-        internal System.Windows.Forms.CheckBox IsDoctorand;
-        internal System.Windows.Forms.TextBox TextBox3;
-        internal System.Windows.Forms.TextBox TextBox2;
-        internal System.Windows.Forms.TextBox TextBox1;
-        internal System.Windows.Forms.Button Button1;
+        internal System.Windows.Forms.NumericUpDown loadNumericUpDown;
+        internal System.Windows.Forms.CheckBox IsDoctorandCheckbox;
+        internal System.Windows.Forms.TextBox privateEmailTextBox;
+        internal System.Windows.Forms.TextBox workEmailTextBox;
+        internal System.Windows.Forms.TextBox lastNameTextBox;
+        internal System.Windows.Forms.Button addEmployeeButton;
         internal System.Windows.Forms.Label harness;
         internal System.Windows.Forms.Label private_email;
         internal System.Windows.Forms.Label work_email;
         internal System.Windows.Forms.Label last_name;
         internal System.Windows.Forms.Label first_name;
-        internal System.Windows.Forms.TextBox first_name_form;
+        internal System.Windows.Forms.TextBox firstNameTextBox;
         internal System.Windows.Forms.TabPage fieldTab;
-        internal System.Windows.Forms.Button Button3;
-        internal System.Windows.Forms.TextBox TextBox7;
+        internal System.Windows.Forms.Button addGroupButton;
+        internal System.Windows.Forms.TextBox groupNameTextBox;
         internal System.Windows.Forms.Label Label19;
-        internal System.Windows.Forms.ComboBox ComboBox6;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown9;
-        internal System.Windows.Forms.ComboBox ComboBox5;
-        internal System.Windows.Forms.ComboBox ComboBox4;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown8;
-        internal System.Windows.Forms.ComboBox ComboBox3;
-        internal System.Windows.Forms.TextBox TextBox6;
+        internal System.Windows.Forms.ComboBox groupLanguageComboBox;
+        internal System.Windows.Forms.NumericUpDown gradeNumericUpDown;
+        internal System.Windows.Forms.ComboBox typeOfStudyComboBox;
+        internal System.Windows.Forms.ComboBox formOfStudyComboBox;
+        internal System.Windows.Forms.NumericUpDown numberOfStudentsNumericUpDown;
+        internal System.Windows.Forms.ComboBox semesterComboBox;
+        internal System.Windows.Forms.TextBox groupNameShortTextBox;
         internal System.Windows.Forms.Label Label18;
         internal System.Windows.Forms.Label Label17;
         internal System.Windows.Forms.Label Label16;
@@ -806,20 +810,20 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.Label Label13;
         internal System.Windows.Forms.Label Label12;
         internal System.Windows.Forms.TabPage subjectTab;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown7;
+        internal System.Windows.Forms.NumericUpDown creditsNumericUpDown;
         internal System.Windows.Forms.Label Label11;
         internal System.Windows.Forms.Button Button2;
         internal System.Windows.Forms.Label Label9;
-        internal System.Windows.Forms.TextBox TextBox5;
+        internal System.Windows.Forms.TextBox subjectNameTextBox;
         internal System.Windows.Forms.Label Label8;
-        internal System.Windows.Forms.ComboBox ComboBox2;
-        internal System.Windows.Forms.ComboBox ComboBox1;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown6;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown5;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown4;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown3;
-        internal System.Windows.Forms.NumericUpDown NumericUpDown2;
-        internal System.Windows.Forms.TextBox TextBox4;
+        internal System.Windows.Forms.ComboBox subjectLanguageComboBox;
+        internal System.Windows.Forms.ComboBox formOfCompletionComboBox;
+        internal System.Windows.Forms.NumericUpDown classSizeNumericUpDown;
+        internal System.Windows.Forms.NumericUpDown seminarHoursNumericUpDown;
+        internal System.Windows.Forms.NumericUpDown practiceHoursNumericUpDown;
+        internal System.Windows.Forms.NumericUpDown lectureHoursNumericUpDown;
+        internal System.Windows.Forms.NumericUpDown numberOfWeeksNumericUpDown;
+        internal System.Windows.Forms.TextBox subjectNameShortTextBox;
         internal System.Windows.Forms.Label Label7;
         internal System.Windows.Forms.Label Label6;
         internal System.Windows.Forms.Label Label5;
@@ -831,14 +835,17 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.TabPage scheduleAction;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox privatePhoneNumberTextBox;
+        private System.Windows.Forms.TextBox workPhoneNumberTextBox;
         private System.Windows.Forms.Label label22;
-        internal System.Windows.Forms.ComboBox comboBox7;
-        internal System.Windows.Forms.Label Label10;
-        internal System.Windows.Forms.ListBox ListBox1;
-        internal System.Windows.Forms.Label label23;
-        private System.Windows.Forms.ListBox listBox2;
+        internal System.Windows.Forms.ComboBox guarantorInstituteComboBox;
+        internal System.Windows.Forms.ListBox employeesListBox;
+        internal System.Windows.Forms.NumericUpDown NumericUpDown;
+        internal System.Windows.Forms.Button addGrou;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox scheduleActionsListBox;
+        private System.Windows.Forms.GroupBox employeesGroupBox;
+        internal System.Windows.Forms.ListBox emListBox;
     }
 }
 

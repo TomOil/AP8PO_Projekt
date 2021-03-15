@@ -17,6 +17,10 @@ namespace AP8PO_Projekt
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            //Initialize the connections
+            ClassLibrary.GlobalConfig.InitializeConnections(true);
+
             Application.Run(new Form());
         }
     }
