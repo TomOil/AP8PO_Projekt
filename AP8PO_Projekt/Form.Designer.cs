@@ -29,15 +29,16 @@ namespace AP8PO_Projekt
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabs = new System.Windows.Forms.TabControl();
             this.employeeTab = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.privatePhoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.personalPhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.workPhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.loadNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.IsDoctorandCheckbox = new System.Windows.Forms.CheckBox();
-            this.privateEmailTextBox = new System.Windows.Forms.TextBox();
+            this.personalEmailTextBox = new System.Windows.Forms.TextBox();
             this.workEmailTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.addEmployeeButton = new System.Windows.Forms.Button();
@@ -91,10 +92,11 @@ namespace AP8PO_Projekt
             this.Label2 = new System.Windows.Forms.Label();
             this.subject_shortcut = new System.Windows.Forms.Label();
             this.scheduleAction = new System.Windows.Forms.TabPage();
-            this.employeesListBox = new System.Windows.Forms.ListBox();
-            this.employeesGroupBox = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.scheduleActionsListBox = new System.Windows.Forms.ListBox();
+            this.employeesGroupBox = new System.Windows.Forms.GroupBox();
+            this.employeesListBox = new System.Windows.Forms.ListBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).BeginInit();
@@ -109,8 +111,9 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).BeginInit();
             this.scheduleAction.SuspendLayout();
-            this.employeesGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.employeesGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
@@ -127,17 +130,16 @@ namespace AP8PO_Projekt
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(929, 416);
             this.tabs.TabIndex = 1;
-            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             // 
             // employeeTab
             // 
             this.employeeTab.Controls.Add(this.label21);
             this.employeeTab.Controls.Add(this.label20);
-            this.employeeTab.Controls.Add(this.privatePhoneNumberTextBox);
+            this.employeeTab.Controls.Add(this.personalPhoneNumberTextBox);
             this.employeeTab.Controls.Add(this.workPhoneNumberTextBox);
             this.employeeTab.Controls.Add(this.loadNumericUpDown);
             this.employeeTab.Controls.Add(this.IsDoctorandCheckbox);
-            this.employeeTab.Controls.Add(this.privateEmailTextBox);
+            this.employeeTab.Controls.Add(this.personalEmailTextBox);
             this.employeeTab.Controls.Add(this.workEmailTextBox);
             this.employeeTab.Controls.Add(this.lastNameTextBox);
             this.employeeTab.Controls.Add(this.addEmployeeButton);
@@ -174,19 +176,22 @@ namespace AP8PO_Projekt
             this.label20.TabIndex = 15;
             this.label20.Text = "Pracovní tel. číslo";
             // 
-            // privatePhoneNumberTextBox
+            // personalPhoneNumberTextBox
             // 
-            this.privatePhoneNumberTextBox.Location = new System.Drawing.Point(202, 222);
-            this.privatePhoneNumberTextBox.Name = "privatePhoneNumberTextBox";
-            this.privatePhoneNumberTextBox.Size = new System.Drawing.Size(711, 34);
-            this.privatePhoneNumberTextBox.TabIndex = 14;
+            this.personalPhoneNumberTextBox.Location = new System.Drawing.Point(202, 222);
+            this.personalPhoneNumberTextBox.Name = "personalPhoneNumberTextBox";
+            this.personalPhoneNumberTextBox.Size = new System.Drawing.Size(692, 34);
+            this.personalPhoneNumberTextBox.TabIndex = 14;
+            this.personalPhoneNumberTextBox.TextChanged += new System.EventHandler(this.personalPhoneNumberTextBox_TextChanged);
             // 
             // workPhoneNumberTextBox
             // 
             this.workPhoneNumberTextBox.Location = new System.Drawing.Point(202, 182);
             this.workPhoneNumberTextBox.Name = "workPhoneNumberTextBox";
-            this.workPhoneNumberTextBox.Size = new System.Drawing.Size(711, 34);
+            this.workPhoneNumberTextBox.Size = new System.Drawing.Size(692, 34);
             this.workPhoneNumberTextBox.TabIndex = 13;
+            this.workPhoneNumberTextBox.TextChanged += new System.EventHandler(this.workPhoneNumberTextBox_TextChanged);
+            this.workPhoneNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workPhoneNumberTextBox_Validating);
             // 
             // loadNumericUpDown
             // 
@@ -211,26 +216,30 @@ namespace AP8PO_Projekt
             this.IsDoctorandCheckbox.Text = "Je doktorand?";
             this.IsDoctorandCheckbox.UseVisualStyleBackColor = true;
             // 
-            // privateEmailTextBox
+            // personalEmailTextBox
             // 
-            this.privateEmailTextBox.Location = new System.Drawing.Point(202, 141);
-            this.privateEmailTextBox.Name = "privateEmailTextBox";
-            this.privateEmailTextBox.Size = new System.Drawing.Size(711, 34);
-            this.privateEmailTextBox.TabIndex = 10;
+            this.personalEmailTextBox.Location = new System.Drawing.Point(202, 141);
+            this.personalEmailTextBox.Name = "personalEmailTextBox";
+            this.personalEmailTextBox.Size = new System.Drawing.Size(692, 34);
+            this.personalEmailTextBox.TabIndex = 10;
+            this.personalEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.personalEmailTextBox_Validating);
             // 
             // workEmailTextBox
             // 
             this.workEmailTextBox.Location = new System.Drawing.Point(202, 101);
             this.workEmailTextBox.Name = "workEmailTextBox";
-            this.workEmailTextBox.Size = new System.Drawing.Size(711, 34);
+            this.workEmailTextBox.Size = new System.Drawing.Size(692, 34);
             this.workEmailTextBox.TabIndex = 9;
+            this.workEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workEmailTextBox_Validating);
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(202, 61);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(711, 34);
+            this.lastNameTextBox.Size = new System.Drawing.Size(692, 34);
             this.lastNameTextBox.TabIndex = 8;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.lastNameTextBox_TextChanged);
+            this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.lastNameTextBox_Validating);
             // 
             // addEmployeeButton
             // 
@@ -289,10 +298,12 @@ namespace AP8PO_Projekt
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(202, 21);
+            this.firstNameTextBox.Location = new System.Drawing.Point(203, 21);
             this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(711, 34);
+            this.firstNameTextBox.Size = new System.Drawing.Size(691, 34);
             this.firstNameTextBox.TabIndex = 0;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.firstNameTextBox_TextChanged);
+            this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.firstNameTextBox_Validating);
             // 
             // fieldTab
             // 
@@ -706,25 +717,6 @@ namespace AP8PO_Projekt
             this.scheduleAction.Text = "Přiřazení";
             this.scheduleAction.UseVisualStyleBackColor = true;
             // 
-            // employeesListBox
-            // 
-            this.employeesListBox.FormattingEnabled = true;
-            this.employeesListBox.ItemHeight = 20;
-            this.employeesListBox.Location = new System.Drawing.Point(7, 20);
-            this.employeesListBox.Name = "employeesListBox";
-            this.employeesListBox.Size = new System.Drawing.Size(445, 324);
-            this.employeesListBox.TabIndex = 24;
-            // 
-            // employeesGroupBox
-            // 
-            this.employeesGroupBox.Controls.Add(this.employeesListBox);
-            this.employeesGroupBox.Location = new System.Drawing.Point(455, 12);
-            this.employeesGroupBox.Name = "employeesGroupBox";
-            this.employeesGroupBox.Size = new System.Drawing.Size(458, 360);
-            this.employeesGroupBox.TabIndex = 26;
-            this.employeesGroupBox.TabStop = false;
-            this.employeesGroupBox.Text = "Zaměstnanci";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.scheduleActionsListBox);
@@ -743,6 +735,30 @@ namespace AP8PO_Projekt
             this.scheduleActionsListBox.Name = "scheduleActionsListBox";
             this.scheduleActionsListBox.Size = new System.Drawing.Size(435, 324);
             this.scheduleActionsListBox.TabIndex = 0;
+            // 
+            // employeesGroupBox
+            // 
+            this.employeesGroupBox.Controls.Add(this.employeesListBox);
+            this.employeesGroupBox.Location = new System.Drawing.Point(455, 12);
+            this.employeesGroupBox.Name = "employeesGroupBox";
+            this.employeesGroupBox.Size = new System.Drawing.Size(458, 360);
+            this.employeesGroupBox.TabIndex = 26;
+            this.employeesGroupBox.TabStop = false;
+            this.employeesGroupBox.Text = "Zaměstnanci";
+            // 
+            // employeesListBox
+            // 
+            this.employeesListBox.FormattingEnabled = true;
+            this.employeesListBox.ItemHeight = 20;
+            this.employeesListBox.Location = new System.Drawing.Point(7, 20);
+            this.employeesListBox.Name = "employeesListBox";
+            this.employeesListBox.Size = new System.Drawing.Size(445, 324);
+            this.employeesListBox.TabIndex = 24;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeftChanged += new System.EventHandler(this.addEmployeeButton_Click);
             // 
             // Form
             // 
@@ -769,8 +785,9 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).EndInit();
             this.scheduleAction.ResumeLayout(false);
-            this.employeesGroupBox.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.employeesGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -781,7 +798,7 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.TabPage employeeTab;
         internal System.Windows.Forms.NumericUpDown loadNumericUpDown;
         internal System.Windows.Forms.CheckBox IsDoctorandCheckbox;
-        internal System.Windows.Forms.TextBox privateEmailTextBox;
+        internal System.Windows.Forms.TextBox personalEmailTextBox;
         internal System.Windows.Forms.TextBox workEmailTextBox;
         internal System.Windows.Forms.TextBox lastNameTextBox;
         internal System.Windows.Forms.Button addEmployeeButton;
@@ -835,7 +852,7 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.TabPage scheduleAction;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox privatePhoneNumberTextBox;
+        private System.Windows.Forms.TextBox personalPhoneNumberTextBox;
         private System.Windows.Forms.TextBox workPhoneNumberTextBox;
         private System.Windows.Forms.Label label22;
         internal System.Windows.Forms.ComboBox guarantorInstituteComboBox;
@@ -846,6 +863,7 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.ListBox scheduleActionsListBox;
         private System.Windows.Forms.GroupBox employeesGroupBox;
         internal System.Windows.Forms.ListBox emListBox;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 

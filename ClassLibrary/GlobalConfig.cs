@@ -12,6 +12,7 @@ namespace ClassLibrary
         {
             if (xmlFiles)
             {
+                //TODO - Set up the SQL connector properly
                 XmlConnector xml = new XmlConnector();
                 Connections.Add(xml);
             }

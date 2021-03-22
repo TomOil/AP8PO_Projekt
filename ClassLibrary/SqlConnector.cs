@@ -1,12 +1,14 @@
 ﻿using AP8PO_Projekt;
+using AP8PO_Projekt.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ClassLibrary
 {
-    class SqlConnector : IDataConnection
+    public class SqlConnector : IDataConnection
     {
+        //TODO - Save the employee to the db
         public Employee CreateEmployee(Employee employeeModel)
         {
             employeeModel.FirstName = "Pavel";

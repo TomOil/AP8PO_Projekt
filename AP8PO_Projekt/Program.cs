@@ -19,7 +19,7 @@ namespace AP8PO_Projekt
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Initialize the connections
-            ClassLibrary.GlobalConfig.InitializeConnections(true);
+            ClassLibrary.GlobalConfig.InitializeConnections(true, true);
 
             Application.Run(new Form());
         }
