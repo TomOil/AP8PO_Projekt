@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClassLibrary;
 
 namespace AP8PO_Projekt
 {
@@ -19,7 +20,7 @@ namespace AP8PO_Projekt
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Initialize the connections
-            ClassLibrary.GlobalConfig.InitializeConnections(true, true);
+            GlobalConfig.InitializeConnections(DatabaseType.Sql);
 
             Application.Run(new Form());
         }

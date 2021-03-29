@@ -41,7 +41,7 @@ namespace AP8PO_Projekt.Models
         /// <summary>
         /// Úvazek zaměstnance (hodnota mezi 0.0 a 1.0)
         /// </summary>
-        public double EmployeeLoad { get; set; }
+        public float EmployeeLoad { get; set; }
         /// <summary>
         /// List rozvrhových akci toho určitého zaměstnance
         /// </summary>

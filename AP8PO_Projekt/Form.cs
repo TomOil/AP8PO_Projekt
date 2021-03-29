@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using AP8PO_Projekt.Models;
 using ClassLibrary;
+using ClassLibrary.DataAccess;
 
 namespace AP8PO_Projekt
 {
@@ -24,7 +25,7 @@ namespace AP8PO_Projekt
         bool isLastNameValid = false;
         bool isWorkPhoneValid = false;
         bool isWorkEmailValid = false;
-        bool isPersonalEmailValid = false;
+        bool isPersonalEmailValid = true;
 
         public Form()
         {
@@ -58,8 +59,6 @@ namespace AP8PO_Projekt
         {
             if (isFirstNameValid && isLastNameValid && isWorkPhoneValid && isWorkEmailValid && isPersonalEmailValid)
             {
-                MessageBox.Show("Succesful", "Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 Employee model = new Employee();
                 model.FirstName = firstNameTextBox.Text;
                 model.LastName = lastNameTextBox.Text;
@@ -68,12 +67,20 @@ namespace AP8PO_Projekt
                 model.WorkPhoneNumber = workPhoneNumberTextBox.Text;
                 model.PersonalPhoneNumber = personalPhoneNumberTextBox.Text;
                 model.DoctoralStudent = IsDoctorandCheckbox.Checked;
-                model.EmployeeLoad = (double)loadNumericUpDown.Value;
+                model.EmployeeLoad = (float)loadNumericUpDown.Value;
 
-                foreach (IDataConnection db in GlobalConfig.Connections)
-                {
-                    db.CreateEmployee(model);
-                }
+                GlobalConfig.Connection.CreateEmployee(model);
+
+                MessageBox.Show("Succesful", "Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                firstNameTextBox.Text = "";
+                lastNameTextBox.Text = "";
+                workEmailTextBox.Text = "";
+                personalEmailTextBox.Text = "";
+                workPhoneNumberTextBox.Text = "";
+                personalPhoneNumberTextBox.Text = "";
+                IsDoctorandCheckbox.Checked = false;
+                loadNumericUpDown.Value = 0.00M;
             }
             else
             {
@@ -261,6 +268,11 @@ namespace AP8PO_Projekt
                 personalPhoneNumberTextBox.ForeColor = Color.Black;
             }
             personalPhoneNumberTextBox.SelectionStart = personalPhoneNumberTextBox.Text.Length;
+        }
+
+        private void workEmailTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

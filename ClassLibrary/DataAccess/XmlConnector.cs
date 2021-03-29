@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassLibrary
+namespace ClassLibrary.DataAccess
 {
-    public class SqlConnector : IDataConnection
+    public class XmlConnector : IDataConnection
     {
-        //TODO - Save the employee to the db
+        //TODO - Save employee to the xml file
         public Employee CreateEmployee(Employee employeeModel)
         {
-            employeeModel.Id = 1;
+            employeeModel.Id = 2;
 
             return employeeModel;
         }

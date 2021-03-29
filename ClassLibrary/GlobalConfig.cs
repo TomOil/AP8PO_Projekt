@@ -1,27 +1,39 @@
-﻿using System;
+﻿using ClassLibrary.DataAccess;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
 
 namespace ClassLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> Connections { get; set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(bool xmlFiles, bool database)
+
+
+        public static void InitializeConnections(DatabaseType db)
         {
-            if (xmlFiles)
+            switch(db)
             {
-                //TODO - Set up the SQL connector properly
-                XmlConnector xml = new XmlConnector();
-                Connections.Add(xml);
-            }
+                case DatabaseType.Sql:
+                    SqlConnector sql = new SqlConnector();
+                    Connection = sql;
+                    break;
 
-            if (database)
-            {
-                SqlConnector sql = new SqlConnector();
-                Connections.Add(sql);
+                case DatabaseType.XmlFile:
+                    XmlConnector xml = new XmlConnector();
+                    Connection = xml;
+                    break;
+
+                default:
+                    break;
             }
+        }
+
+        public static string ConnectionString(string name)
+        {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }

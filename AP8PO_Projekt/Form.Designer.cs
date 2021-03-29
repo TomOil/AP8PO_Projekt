@@ -230,6 +230,7 @@ namespace AP8PO_Projekt
             this.workEmailTextBox.Name = "workEmailTextBox";
             this.workEmailTextBox.Size = new System.Drawing.Size(692, 34);
             this.workEmailTextBox.TabIndex = 9;
+            this.workEmailTextBox.TextChanged += new System.EventHandler(this.workEmailTextBox_TextChanged);
             this.workEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workEmailTextBox_Validating);
             // 
             // lastNameTextBox
