@@ -11,7 +11,7 @@ namespace ClassLibrary
         //TODO - Save employee to the xml file
         public Employee CreateEmployee(Employee employeeModel)
         {
-            employeeModel.FirstName = "Petr";
+            employeeModel.Id = 2;
 
             return employeeModel;
         }

@@ -766,6 +766,8 @@ namespace AP8PO_Projekt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 416);
             this.Controls.Add(this.tabs);
+            this.MaximumSize = new System.Drawing.Size(947, 463);
+            this.MinimumSize = new System.Drawing.Size(947, 463);
             this.Name = "Form";
             this.Text = "AP8PO_Project";
             this.tabs.ResumeLayout(false);

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using AP8PO_Projekt.Models;
+using ClassLibrary;
 
 namespace AP8PO_Projekt
 {
@@ -18,7 +20,11 @@ namespace AP8PO_Projekt
         string oldLastName = string.Empty;
         string oldWorkPhone = string.Empty;
         string oldPersonalPhone = string.Empty;
-        bool isEverythingValid = false;
+        bool isFirstNameValid = false;
+        bool isLastNameValid = false;
+        bool isWorkPhoneValid = false;
+        bool isWorkEmailValid = false;
+        bool isPersonalEmailValid = false;
 
         public Form()
         {
@@ -50,9 +56,24 @@ namespace AP8PO_Projekt
 
         private void addEmployeeButton_Click(object sender, EventArgs e)
         {
-            if (isEverythingValid)
+            if (isFirstNameValid && isLastNameValid && isWorkPhoneValid && isWorkEmailValid && isPersonalEmailValid)
             {
                 MessageBox.Show("Succesful", "Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Employee model = new Employee();
+                model.FirstName = firstNameTextBox.Text;
+                model.LastName = lastNameTextBox.Text;
+                model.WorkEmail = workEmailTextBox.Text;
+                model.PersonalEmail = personalEmailTextBox.Text;
+                model.WorkPhoneNumber = workPhoneNumberTextBox.Text;
+                model.PersonalPhoneNumber = personalPhoneNumberTextBox.Text;
+                model.DoctoralStudent = IsDoctorandCheckbox.Checked;
+                model.EmployeeLoad = (double)loadNumericUpDown.Value;
+
+                foreach (IDataConnection db in GlobalConfig.Connections)
+                {
+                    db.CreateEmployee(model);
+                }
             }
             else
             {
@@ -63,8 +84,6 @@ namespace AP8PO_Projekt
                 if (string.IsNullOrEmpty(workPhoneNumberTextBox.Text)) { errorProvider.SetError(workPhoneNumberTextBox, "Work phone number cannot be empty!"); }
                 
                 if (string.IsNullOrEmpty(workEmailTextBox.Text)) { errorProvider.SetError(workEmailTextBox, "Work email cannot be empty!"); }
-                
-                isEverythingValid = false;
             }
         }
 
@@ -74,12 +93,12 @@ namespace AP8PO_Projekt
             {
                 e.Cancel = false;
                 errorProvider.SetError(firstNameTextBox, "First name cannot be empty!");
-                isEverythingValid = false;
+                isFirstNameValid = false;
             }
             else
             {
                 errorProvider.Clear();
-                isEverythingValid = true;
+                isFirstNameValid = true;
             }
         }
 
@@ -108,12 +127,12 @@ namespace AP8PO_Projekt
             {
                 e.Cancel = false;
                 errorProvider.SetError(lastNameTextBox, "Last name cannot be empty!");
-                isEverythingValid = false;
+                isLastNameValid = false;
             }
             else
             {
                 errorProvider.Clear();
-                isEverythingValid = true;
+                isLastNameValid = true;
             }
         }
 
@@ -147,19 +166,19 @@ namespace AP8PO_Projekt
                 {
                     e.Cancel = false;
                     errorProvider.SetError(workEmailTextBox, "You must enter valid email!");
-                    isEverythingValid = false;
+                    isWorkEmailValid = false;
                 }
                 else
                 {
                     errorProvider.Clear();
-                    isEverythingValid = true;
+                    isWorkEmailValid = true;
                 }
             }
             else
             {
                 e.Cancel = false;
                 errorProvider.SetError(workEmailTextBox, "Work email cannot be empty!");
-                isEverythingValid = false;
+                isWorkEmailValid = false;
             }
         }
 
@@ -176,14 +195,18 @@ namespace AP8PO_Projekt
                     {
                         e.Cancel = false;
                         errorProvider.SetError(personalEmailTextBox, "You must enter valid or no email!");
-                        isEverythingValid = false;
+                        isPersonalEmailValid = false;
                     }
                     else
                     {
                         errorProvider.Clear();
-                        isEverythingValid = true;
+                        isPersonalEmailValid = true;
                     }
                 }
+            }
+            else
+            {
+                isPersonalEmailValid = true;
             }
         }
 
@@ -212,12 +235,12 @@ namespace AP8PO_Projekt
             {
                 e.Cancel = false;
                 errorProvider.SetError(workPhoneNumberTextBox, "You must enter work phone number!");
-                isEverythingValid = false;
+                isWorkPhoneValid = false;
             }
             else
             {
                 errorProvider.Clear();
-                isEverythingValid = true;
+                isWorkPhoneValid = true;
             }
         }
 
