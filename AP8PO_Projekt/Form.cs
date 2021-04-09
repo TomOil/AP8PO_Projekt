@@ -27,13 +27,41 @@ namespace AP8PO_Projekt
         bool isWorkEmailValid = false;
         bool isPersonalEmailValid = true;
 
+        string oldGroupNameShort = string.Empty;
+        string oldGroupName = string.Empty;
+        bool isGroupNameShortValid = false;
+        bool isGroupNameValid = false;
+
+        string oldSubjectNameShort = string.Empty;
+        string oldSubjectName = string.Empty;
+        bool isSubjectNameShortValid = false;
+        bool isSubjectNameValid = false;
+
+        public enum SemesterEnum { LS, ZS }
+        public enum FormOfStudyEnum { P, K }
+        public enum TypeOfStudyEnum { Bc, Mgr, PhD }
+        public enum LanguageEnum { CZ, EN }
+        public enum FormOfCompletionEnum { Z, ZK, KL }
+        public enum GuarantorInstituteEnum { AUIUI, AUPKS, AUART, AUEM }
+
         public Form()
         {
             InitializeComponent();
             loadNumericUpDown.Increment = 0.05m;
             errorProvider.BlinkRate = 0;
+            semesterComboBox.DataSource = Enum.GetValues(typeof(SemesterEnum));
+            formOfStudyComboBox.DataSource = Enum.GetValues(typeof(FormOfStudyEnum));
+            typeOfStudyComboBox.DataSource = Enum.GetValues(typeof(TypeOfStudyEnum));
+            groupLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
+            formOfCompletionComboBox.DataSource = Enum.GetValues(typeof(FormOfCompletionEnum));
+            subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
+            guarantorInstituteComboBox.DataSource = Enum.GetValues(typeof(GuarantorInstituteEnum));
         }
 
+        /// <summary>
+        /// Uses timer for delay in milliseconds.
+        /// </summary>
+        /// <param name="milliseconds">Value of delay in milliseconds.</param>
         public void wait(int milliseconds)
         {
             var timer1 = new Timer();
@@ -55,23 +83,28 @@ namespace AP8PO_Projekt
             }
         }
 
+        /// <summary>
+        /// Button that adds new employee to the DB, it also checks if every input field is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addEmployeeButton_Click(object sender, EventArgs e)
         {
             if (isFirstNameValid && isLastNameValid && isWorkPhoneValid && isWorkEmailValid && isPersonalEmailValid)
             {
-                Employee model = new Employee();
-                model.FirstName = firstNameTextBox.Text;
-                model.LastName = lastNameTextBox.Text;
-                model.WorkEmail = workEmailTextBox.Text;
-                model.PersonalEmail = personalEmailTextBox.Text;
-                model.WorkPhoneNumber = workPhoneNumberTextBox.Text;
-                model.PersonalPhoneNumber = personalPhoneNumberTextBox.Text;
-                model.DoctoralStudent = IsDoctorandCheckbox.Checked;
-                model.EmployeeLoad = (float)loadNumericUpDown.Value;
+                Employee employeeModel = new Employee();
+                employeeModel.FirstName = firstNameTextBox.Text;
+                employeeModel.LastName = lastNameTextBox.Text;
+                employeeModel.WorkEmail = workEmailTextBox.Text;
+                employeeModel.PersonalEmail = personalEmailTextBox.Text;
+                employeeModel.WorkPhoneNumber = workPhoneNumberTextBox.Text;
+                employeeModel.PersonalPhoneNumber = personalPhoneNumberTextBox.Text;
+                employeeModel.DoctoralStudent = IsDoctorandCheckbox.Checked;
+                employeeModel.EmployeeLoad = (float)loadNumericUpDown.Value;
 
-                GlobalConfig.Connection.CreateEmployee(model);
+                GlobalConfig.Connection.CreateEmployee(employeeModel);
 
-                MessageBox.Show("Succesful", "Succesful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Zaměstnanec se jménem \"" + String.Join(" ", employeeModel.FirstName, employeeModel.LastName) + "\" byl úspěšně přidán do databáze.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 firstNameTextBox.Text = "";
                 lastNameTextBox.Text = "";
@@ -84,13 +117,13 @@ namespace AP8PO_Projekt
             }
             else
             {
-                if (string.IsNullOrEmpty(firstNameTextBox.Text)) { errorProvider.SetError(firstNameTextBox, "First name cannot be empty!"); }
+                if (string.IsNullOrEmpty(firstNameTextBox.Text)) { errorProvider.SetError(firstNameTextBox, "Jméno nesmí být prázdné!"); }
 
-                if (string.IsNullOrEmpty(lastNameTextBox.Text)) { errorProvider.SetError(lastNameTextBox, "Last name cannot be empty!"); }
+                if (string.IsNullOrEmpty(lastNameTextBox.Text)) { errorProvider.SetError(lastNameTextBox, "Příjmení nesmí být prázdné!"); }
 
-                if (string.IsNullOrEmpty(workPhoneNumberTextBox.Text)) { errorProvider.SetError(workPhoneNumberTextBox, "Work phone number cannot be empty!"); }
+                if (string.IsNullOrEmpty(workPhoneNumberTextBox.Text)) { errorProvider.SetError(workPhoneNumberTextBox, "Pracovní telefonní číslo nesmí být prázdné!"); }
                 
-                if (string.IsNullOrEmpty(workEmailTextBox.Text)) { errorProvider.SetError(workEmailTextBox, "Work email cannot be empty!"); }
+                if (string.IsNullOrEmpty(workEmailTextBox.Text)) { errorProvider.SetError(workEmailTextBox, "Pracovní email nemůže být prázdný!"); }
             }
         }
 
@@ -99,7 +132,7 @@ namespace AP8PO_Projekt
             if (string.IsNullOrEmpty(firstNameTextBox.Text))
             {
                 e.Cancel = false;
-                errorProvider.SetError(firstNameTextBox, "First name cannot be empty!");
+                errorProvider.SetError(firstNameTextBox, "Jméno nesmí být prázdné!");
                 isFirstNameValid = false;
             }
             else
@@ -133,7 +166,7 @@ namespace AP8PO_Projekt
             if (string.IsNullOrEmpty(lastNameTextBox.Text))
             {
                 e.Cancel = false;
-                errorProvider.SetError(lastNameTextBox, "Last name cannot be empty!");
+                errorProvider.SetError(lastNameTextBox, "Příjmení nesmí být prázdné!");
                 isLastNameValid = false;
             }
             else
@@ -172,7 +205,7 @@ namespace AP8PO_Projekt
                 if (!mRegxExpression.IsMatch(workEmailTextBox.Text.Trim()))
                 {
                     e.Cancel = false;
-                    errorProvider.SetError(workEmailTextBox, "You must enter valid email!");
+                    errorProvider.SetError(workEmailTextBox, "Pracovní email musí být ve správném tvaru!");
                     isWorkEmailValid = false;
                 }
                 else
@@ -184,7 +217,7 @@ namespace AP8PO_Projekt
             else
             {
                 e.Cancel = false;
-                errorProvider.SetError(workEmailTextBox, "Work email cannot be empty!");
+                errorProvider.SetError(workEmailTextBox, "Pracovní email nemůže být prázdný!");
                 isWorkEmailValid = false;
             }
         }
@@ -201,7 +234,7 @@ namespace AP8PO_Projekt
                     if (!mRegxExpression.IsMatch(personalEmailTextBox.Text.Trim()))
                     {
                         e.Cancel = false;
-                        errorProvider.SetError(personalEmailTextBox, "You must enter valid or no email!");
+                        errorProvider.SetError(personalEmailTextBox, "Osobní email musí být ve správném tvaru nebo prázdný!");
                         isPersonalEmailValid = false;
                     }
                     else
@@ -241,7 +274,7 @@ namespace AP8PO_Projekt
             if (string.IsNullOrEmpty(workPhoneNumberTextBox.Text))
             {
                 e.Cancel = false;
-                errorProvider.SetError(workPhoneNumberTextBox, "You must enter work phone number!");
+                errorProvider.SetError(workPhoneNumberTextBox, "Pracovní telefonní číslo nesmí být prázdné!");
                 isWorkPhoneValid = false;
             }
             else
@@ -270,9 +303,214 @@ namespace AP8PO_Projekt
             personalPhoneNumberTextBox.SelectionStart = personalPhoneNumberTextBox.Text.Length;
         }
 
-        private void workEmailTextBox_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Button that adds new group to the DB, it also checks if every input field is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addGroupButton_Click(object sender, EventArgs e)
         {
+            if (isGroupNameShortValid && isGroupNameValid)
+            {
+                Models.Group groupModel = new Models.Group();
+                groupModel.Name = groupNameTextBox.Text;
+                groupModel.NameShort = groupNameShortTextBox.Text;
+                groupModel.Grade = (int)gradeNumericUpDown.Value;
+                groupModel.Semester = semesterComboBox.SelectedValue.ToString();
+                groupModel.NumberOfStudents = (int)numberOfStudentsNumericUpDown.Value;
+                groupModel.FormOfStudy = formOfStudyComboBox.SelectedValue.ToString();
+                groupModel.TypeOfStudy = typeOfStudyComboBox.SelectedValue.ToString();
+                groupModel.Language = groupLanguageComboBox.SelectedValue.ToString();
 
+                GlobalConfig.Connection.CreateGroup(groupModel);
+
+                MessageBox.Show("Obor s názvem \"" + groupModel.Name.ToUpper() + "\" byl úspěšně přidán do databáze.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                groupNameTextBox.Text = "";
+                groupNameShortTextBox.Text = "";
+                gradeNumericUpDown.Value = 1;
+                numberOfStudentsNumericUpDown.Value = 1;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(groupNameShortTextBox.Text)) { errorProvider.SetError(groupNameShortTextBox, "Název oboru nesmí být prázdný!"); }
+
+                if (string.IsNullOrEmpty(groupNameTextBox.Text)) { errorProvider.SetError(groupNameTextBox, "Zkratka oboru nesmí být prázdná!"); }
+            }
+            
+        }
+
+        private void groupNameShortTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(groupNameShortTextBox.Text))
+            {
+                e.Cancel = false;
+                errorProvider.SetError(groupNameShortTextBox, "Zkratka oboru nesmí být prázdná!");
+                isGroupNameShortValid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                isGroupNameShortValid = true;
+            }
+        }
+
+        private void groupNameShortTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (groupNameShortTextBox.Text.All(chr => char.IsLetter(chr)))
+            {
+                oldGroupNameShort = groupNameShortTextBox.Text;
+                groupNameShortTextBox.Text = oldGroupNameShort;
+            }
+            else
+            {
+                groupNameShortTextBox.Text = oldGroupNameShort;
+                groupNameShortTextBox.BackColor = Color.Red;
+                groupNameShortTextBox.ForeColor = Color.White;
+                wait(1000);
+                groupNameShortTextBox.BackColor = Color.White;
+                groupNameShortTextBox.ForeColor = Color.Black;
+            }
+            groupNameShortTextBox.SelectionStart = groupNameShortTextBox.Text.Length;
+        }
+
+        private void groupNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(groupNameTextBox.Text))
+            {
+                e.Cancel = false;
+                errorProvider.SetError(groupNameTextBox, "Jméno oboru nesmí být prázdné!");
+                isGroupNameValid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                isGroupNameValid = true;
+            }
+        }
+
+        private void groupNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (groupNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            {
+                oldGroupName = groupNameTextBox.Text;
+                groupNameTextBox.Text = oldGroupName;
+            }
+            else
+            {
+                groupNameTextBox.Text = oldGroupName;
+                groupNameTextBox.BackColor = Color.Red;
+                groupNameTextBox.ForeColor = Color.White;
+                wait(1000);
+                groupNameTextBox.BackColor = Color.White;
+                groupNameTextBox.ForeColor = Color.Black;
+            }
+            groupNameTextBox.SelectionStart = groupNameTextBox.Text.Length;
+        }
+
+        /// <summary>
+        /// Button that adds new subject to the DB, it also checks if every input field is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addSubjectButton_Click(object sender, EventArgs e)
+        {
+            if (isSubjectNameShortValid && isSubjectNameValid)
+            {
+                Subject subjectModel = new Subject();
+                subjectModel.Name = subjectNameTextBox.Text;
+                subjectModel.NameShort = subjectNameShortTextBox.Text;
+                subjectModel.NumberOfWeeks = (int)numberOfWeeksNumericUpDown.Value;
+                subjectModel.LectureHours = (int)lectureHoursNumericUpDown.Value;
+                subjectModel.PracticeHours = (int)practiceHoursNumericUpDown.Value;
+                subjectModel.SeminarHours = (int)seminarHoursNumericUpDown.Value;
+                subjectModel.FormOfCompletion = formOfCompletionComboBox.SelectedValue.ToString();
+                subjectModel.Language = subjectLanguageComboBox.SelectedValue.ToString();
+                subjectModel.ClassSize = (int)classSizeNumericUpDown.Value;
+                subjectModel.Credits = (int)creditsNumericUpDown.Value;
+                subjectModel.GuarantorInstitute = guarantorInstituteComboBox.SelectedValue.ToString();
+
+                GlobalConfig.Connection.CreateSubject(subjectModel);
+
+                MessageBox.Show("Předmět s názvem \"" + subjectModel.Name + "\" byl úspěšně přidán do databáze.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                subjectNameTextBox.Text = "";
+                subjectNameShortTextBox.Text = "";
+                numberOfWeeksNumericUpDown.Value = 0;
+                lectureHoursNumericUpDown.Value = 0;
+                practiceHoursNumericUpDown.Value = 0;
+                seminarHoursNumericUpDown.Value = 0;
+                classSizeNumericUpDown.Value = 0;
+                creditsNumericUpDown.Value = 0;
+            }
+        }
+
+        private void subjectNameShortTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(subjectNameShortTextBox.Text))
+            {
+                e.Cancel = false;
+                errorProvider.SetError(subjectNameShortTextBox, "Zkratka oboru nesmí být prázdná!");
+                isSubjectNameShortValid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                isSubjectNameShortValid = true;
+            }
+        }
+
+        private void subjectNameShortTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (subjectNameShortTextBox.Text.All(chr => char.IsLetter(chr)))
+            {
+                oldSubjectNameShort = subjectNameShortTextBox.Text;
+                subjectNameShortTextBox.Text = oldSubjectNameShort;
+            }
+            else
+            {
+                subjectNameShortTextBox.Text = oldSubjectNameShort;
+                subjectNameShortTextBox.BackColor = Color.Red;
+                subjectNameShortTextBox.ForeColor = Color.White;
+                wait(1000);
+                subjectNameShortTextBox.BackColor = Color.White;
+                subjectNameShortTextBox.ForeColor = Color.Black;
+            }
+            subjectNameShortTextBox.SelectionStart = subjectNameShortTextBox.Text.Length;
+        }
+
+        private void subjectNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(subjectNameTextBox.Text))
+            {
+                e.Cancel = false;
+                errorProvider.SetError(subjectNameTextBox, "Název oboru nesmí být prázdná!");
+                isSubjectNameValid = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                isSubjectNameValid = true;
+            }
+        }
+
+        private void subjectNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (subjectNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            {
+                oldSubjectName = subjectNameTextBox.Text;
+                subjectNameTextBox.Text = oldSubjectName;
+            }
+            else
+            {
+                subjectNameTextBox.Text = oldSubjectName;
+                subjectNameTextBox.BackColor = Color.Red;
+                subjectNameTextBox.ForeColor = Color.White;
+                wait(1000);
+                subjectNameTextBox.BackColor = Color.White;
+                subjectNameTextBox.ForeColor = Color.Black;
+            }
+            subjectNameTextBox.SelectionStart = subjectNameTextBox.Text.Length;
         }
     }
 }

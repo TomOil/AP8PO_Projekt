@@ -15,5 +15,19 @@ namespace ClassLibrary.DataAccess
 
             return employeeModel;
         }
+
+        public Group CreateGroup(Group groupModel)
+        {
+            groupModel.Id = 2;
+
+            return groupModel;
+        }
+
+        public Subject CreateSubject(Subject subjectModel)
+        {
+            subjectModel.Id = 2;
+
+            return subjectModel;
+        }
     }
 }

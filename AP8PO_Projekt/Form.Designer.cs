@@ -71,7 +71,7 @@ namespace AP8PO_Projekt
             this.guarantorInstituteComboBox = new System.Windows.Forms.ComboBox();
             this.creditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Label11 = new System.Windows.Forms.Label();
-            this.Button2 = new System.Windows.Forms.Button();
+            this.addSubjectButton = new System.Windows.Forms.Button();
             this.Label9 = new System.Windows.Forms.Label();
             this.subjectNameTextBox = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
@@ -230,7 +230,6 @@ namespace AP8PO_Projekt
             this.workEmailTextBox.Name = "workEmailTextBox";
             this.workEmailTextBox.Size = new System.Drawing.Size(692, 34);
             this.workEmailTextBox.TabIndex = 9;
-            this.workEmailTextBox.TextChanged += new System.EventHandler(this.workEmailTextBox_TextChanged);
             this.workEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workEmailTextBox_Validating);
             // 
             // lastNameTextBox
@@ -342,6 +341,7 @@ namespace AP8PO_Projekt
             this.addGroupButton.TabIndex = 16;
             this.addGroupButton.Text = "Přidat skupinu";
             this.addGroupButton.UseVisualStyleBackColor = true;
+            this.addGroupButton.Click += new System.EventHandler(this.addGroupButton_Click);
             // 
             // groupNameTextBox
             // 
@@ -349,6 +349,8 @@ namespace AP8PO_Projekt
             this.groupNameTextBox.Name = "groupNameTextBox";
             this.groupNameTextBox.Size = new System.Drawing.Size(453, 34);
             this.groupNameTextBox.TabIndex = 15;
+            this.groupNameTextBox.TextChanged += new System.EventHandler(this.groupNameTextBox_TextChanged);
+            this.groupNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameTextBox_Validating);
             // 
             // Label19
             // 
@@ -362,47 +364,77 @@ namespace AP8PO_Projekt
             // groupLanguageComboBox
             // 
             this.groupLanguageComboBox.FormattingEnabled = true;
-            this.groupLanguageComboBox.Location = new System.Drawing.Point(182, 252);
+            this.groupLanguageComboBox.Location = new System.Drawing.Point(661, 197);
             this.groupLanguageComboBox.Name = "groupLanguageComboBox";
-            this.groupLanguageComboBox.Size = new System.Drawing.Size(106, 36);
+            this.groupLanguageComboBox.Size = new System.Drawing.Size(252, 36);
             this.groupLanguageComboBox.TabIndex = 13;
             // 
             // gradeNumericUpDown
             // 
-            this.gradeNumericUpDown.Location = new System.Drawing.Point(183, 212);
+            this.gradeNumericUpDown.Location = new System.Drawing.Point(662, 134);
+            this.gradeNumericUpDown.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.gradeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.gradeNumericUpDown.Name = "gradeNumericUpDown";
-            this.gradeNumericUpDown.Size = new System.Drawing.Size(105, 34);
+            this.gradeNumericUpDown.Size = new System.Drawing.Size(251, 34);
             this.gradeNumericUpDown.TabIndex = 12;
+            this.gradeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // typeOfStudyComboBox
             // 
             this.typeOfStudyComboBox.FormattingEnabled = true;
-            this.typeOfStudyComboBox.Location = new System.Drawing.Point(183, 170);
+            this.typeOfStudyComboBox.Location = new System.Drawing.Point(662, 65);
             this.typeOfStudyComboBox.Name = "typeOfStudyComboBox";
-            this.typeOfStudyComboBox.Size = new System.Drawing.Size(105, 36);
+            this.typeOfStudyComboBox.Size = new System.Drawing.Size(251, 36);
             this.typeOfStudyComboBox.TabIndex = 11;
             // 
             // formOfStudyComboBox
             // 
             this.formOfStudyComboBox.FormattingEnabled = true;
-            this.formOfStudyComboBox.Location = new System.Drawing.Point(184, 128);
+            this.formOfStudyComboBox.Location = new System.Drawing.Point(184, 199);
             this.formOfStudyComboBox.Name = "formOfStudyComboBox";
-            this.formOfStudyComboBox.Size = new System.Drawing.Size(104, 36);
+            this.formOfStudyComboBox.Size = new System.Drawing.Size(259, 36);
             this.formOfStudyComboBox.TabIndex = 10;
             // 
             // numberOfStudentsNumericUpDown
             // 
-            this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(184, 88);
+            this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(184, 135);
+            this.numberOfStudentsNumericUpDown.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numberOfStudentsNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numberOfStudentsNumericUpDown.Name = "numberOfStudentsNumericUpDown";
-            this.numberOfStudentsNumericUpDown.Size = new System.Drawing.Size(104, 34);
+            this.numberOfStudentsNumericUpDown.Size = new System.Drawing.Size(259, 34);
             this.numberOfStudentsNumericUpDown.TabIndex = 9;
+            this.numberOfStudentsNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // semesterComboBox
             // 
             this.semesterComboBox.FormattingEnabled = true;
-            this.semesterComboBox.Location = new System.Drawing.Point(184, 46);
+            this.semesterComboBox.Location = new System.Drawing.Point(184, 67);
             this.semesterComboBox.Name = "semesterComboBox";
-            this.semesterComboBox.Size = new System.Drawing.Size(104, 36);
+            this.semesterComboBox.Size = new System.Drawing.Size(259, 36);
             this.semesterComboBox.TabIndex = 8;
             // 
             // groupNameShortTextBox
@@ -411,11 +443,13 @@ namespace AP8PO_Projekt
             this.groupNameShortTextBox.Name = "groupNameShortTextBox";
             this.groupNameShortTextBox.Size = new System.Drawing.Size(104, 34);
             this.groupNameShortTextBox.TabIndex = 7;
+            this.groupNameShortTextBox.TextChanged += new System.EventHandler(this.groupNameShortTextBox_TextChanged);
+            this.groupNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameShortTextBox_Validating);
             // 
             // Label18
             // 
             this.Label18.AutoSize = true;
-            this.Label18.Location = new System.Drawing.Point(11, 258);
+            this.Label18.Location = new System.Drawing.Point(490, 203);
             this.Label18.Name = "Label18";
             this.Label18.Size = new System.Drawing.Size(58, 28);
             this.Label18.TabIndex = 6;
@@ -424,7 +458,7 @@ namespace AP8PO_Projekt
             // Label17
             // 
             this.Label17.AutoSize = true;
-            this.Label17.Location = new System.Drawing.Point(11, 176);
+            this.Label17.Location = new System.Drawing.Point(490, 71);
             this.Label17.Name = "Label17";
             this.Label17.Size = new System.Drawing.Size(101, 28);
             this.Label17.TabIndex = 5;
@@ -433,7 +467,7 @@ namespace AP8PO_Projekt
             // Label16
             // 
             this.Label16.AutoSize = true;
-            this.Label16.Location = new System.Drawing.Point(11, 134);
+            this.Label16.Location = new System.Drawing.Point(11, 205);
             this.Label16.Name = "Label16";
             this.Label16.Size = new System.Drawing.Size(126, 28);
             this.Label16.TabIndex = 4;
@@ -442,7 +476,7 @@ namespace AP8PO_Projekt
             // Label15
             // 
             this.Label15.AutoSize = true;
-            this.Label15.Location = new System.Drawing.Point(11, 93);
+            this.Label15.Location = new System.Drawing.Point(11, 140);
             this.Label15.Name = "Label15";
             this.Label15.Size = new System.Drawing.Size(142, 28);
             this.Label15.TabIndex = 3;
@@ -451,7 +485,7 @@ namespace AP8PO_Projekt
             // Label14
             // 
             this.Label14.AutoSize = true;
-            this.Label14.Location = new System.Drawing.Point(11, 52);
+            this.Label14.Location = new System.Drawing.Point(11, 73);
             this.Label14.Name = "Label14";
             this.Label14.Size = new System.Drawing.Size(82, 28);
             this.Label14.TabIndex = 2;
@@ -460,7 +494,7 @@ namespace AP8PO_Projekt
             // Label13
             // 
             this.Label13.AutoSize = true;
-            this.Label13.Location = new System.Drawing.Point(11, 217);
+            this.Label13.Location = new System.Drawing.Point(490, 139);
             this.Label13.Name = "Label13";
             this.Label13.Size = new System.Drawing.Size(70, 28);
             this.Label13.TabIndex = 1;
@@ -481,7 +515,7 @@ namespace AP8PO_Projekt
             this.subjectTab.Controls.Add(this.guarantorInstituteComboBox);
             this.subjectTab.Controls.Add(this.creditsNumericUpDown);
             this.subjectTab.Controls.Add(this.Label11);
-            this.subjectTab.Controls.Add(this.Button2);
+            this.subjectTab.Controls.Add(this.addSubjectButton);
             this.subjectTab.Controls.Add(this.Label9);
             this.subjectTab.Controls.Add(this.subjectNameTextBox);
             this.subjectTab.Controls.Add(this.Label8);
@@ -513,7 +547,7 @@ namespace AP8PO_Projekt
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(330, 142);
+            this.label22.Location = new System.Drawing.Point(448, 236);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(61, 28);
             this.label22.TabIndex = 25;
@@ -522,35 +556,51 @@ namespace AP8PO_Projekt
             // guarantorInstituteComboBox
             // 
             this.guarantorInstituteComboBox.FormattingEnabled = true;
-            this.guarantorInstituteComboBox.Location = new System.Drawing.Point(471, 139);
+            this.guarantorInstituteComboBox.Location = new System.Drawing.Point(619, 233);
             this.guarantorInstituteComboBox.Name = "guarantorInstituteComboBox";
-            this.guarantorInstituteComboBox.Size = new System.Drawing.Size(150, 36);
+            this.guarantorInstituteComboBox.Size = new System.Drawing.Size(294, 36);
             this.guarantorInstituteComboBox.TabIndex = 24;
             // 
             // creditsNumericUpDown
             // 
-            this.creditsNumericUpDown.Location = new System.Drawing.Point(471, 97);
+            this.creditsNumericUpDown.Location = new System.Drawing.Point(619, 191);
+            this.creditsNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.creditsNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.creditsNumericUpDown.Name = "creditsNumericUpDown";
-            this.creditsNumericUpDown.Size = new System.Drawing.Size(150, 34);
+            this.creditsNumericUpDown.Size = new System.Drawing.Size(294, 34);
             this.creditsNumericUpDown.TabIndex = 23;
+            this.creditsNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Label11
             // 
             this.Label11.AutoSize = true;
-            this.Label11.Location = new System.Drawing.Point(330, 103);
+            this.Label11.Location = new System.Drawing.Point(448, 197);
             this.Label11.Name = "Label11";
             this.Label11.Size = new System.Drawing.Size(127, 28);
             this.Label11.TabIndex = 22;
             this.Label11.Text = "Počet kreditů";
             // 
-            // Button2
+            // addSubjectButton
             // 
-            this.Button2.Location = new System.Drawing.Point(619, 300);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(294, 72);
-            this.Button2.TabIndex = 21;
-            this.Button2.Text = "Přidat předmět";
-            this.Button2.UseVisualStyleBackColor = true;
+            this.addSubjectButton.Location = new System.Drawing.Point(619, 300);
+            this.addSubjectButton.Name = "addSubjectButton";
+            this.addSubjectButton.Size = new System.Drawing.Size(294, 72);
+            this.addSubjectButton.TabIndex = 21;
+            this.addSubjectButton.Text = "Přidat předmět";
+            this.addSubjectButton.UseVisualStyleBackColor = true;
+            this.addSubjectButton.Click += new System.EventHandler(this.addSubjectButton_Click);
             // 
             // Label9
             // 
@@ -566,6 +616,8 @@ namespace AP8PO_Projekt
             this.subjectNameTextBox.Name = "subjectNameTextBox";
             this.subjectNameTextBox.Size = new System.Drawing.Size(393, 34);
             this.subjectNameTextBox.TabIndex = 17;
+            this.subjectNameTextBox.TextChanged += new System.EventHandler(this.subjectNameTextBox_TextChanged);
+            this.subjectNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameTextBox_Validating);
             // 
             // Label8
             // 
@@ -579,53 +631,128 @@ namespace AP8PO_Projekt
             // subjectLanguageComboBox
             // 
             this.subjectLanguageComboBox.FormattingEnabled = true;
-            this.subjectLanguageComboBox.Location = new System.Drawing.Point(182, 336);
+            this.subjectLanguageComboBox.Location = new System.Drawing.Point(619, 141);
             this.subjectLanguageComboBox.Name = "subjectLanguageComboBox";
-            this.subjectLanguageComboBox.Size = new System.Drawing.Size(126, 36);
+            this.subjectLanguageComboBox.Size = new System.Drawing.Size(294, 36);
             this.subjectLanguageComboBox.TabIndex = 15;
             // 
             // formOfCompletionComboBox
             // 
             this.formOfCompletionComboBox.FormattingEnabled = true;
-            this.formOfCompletionComboBox.Location = new System.Drawing.Point(182, 294);
+            this.formOfCompletionComboBox.Location = new System.Drawing.Point(619, 99);
             this.formOfCompletionComboBox.Name = "formOfCompletionComboBox";
-            this.formOfCompletionComboBox.Size = new System.Drawing.Size(126, 36);
+            this.formOfCompletionComboBox.Size = new System.Drawing.Size(294, 36);
             this.formOfCompletionComboBox.TabIndex = 14;
             // 
             // classSizeNumericUpDown
             // 
             this.classSizeNumericUpDown.Location = new System.Drawing.Point(182, 254);
+            this.classSizeNumericUpDown.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.classSizeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.classSizeNumericUpDown.Name = "classSizeNumericUpDown";
-            this.classSizeNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.classSizeNumericUpDown.Size = new System.Drawing.Size(242, 34);
             this.classSizeNumericUpDown.TabIndex = 13;
+            this.classSizeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // seminarHoursNumericUpDown
             // 
             this.seminarHoursNumericUpDown.Location = new System.Drawing.Point(182, 214);
+            this.seminarHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.seminarHoursNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.seminarHoursNumericUpDown.Name = "seminarHoursNumericUpDown";
-            this.seminarHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.seminarHoursNumericUpDown.Size = new System.Drawing.Size(242, 34);
             this.seminarHoursNumericUpDown.TabIndex = 12;
+            this.seminarHoursNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // practiceHoursNumericUpDown
             // 
             this.practiceHoursNumericUpDown.Location = new System.Drawing.Point(182, 174);
+            this.practiceHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.practiceHoursNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.practiceHoursNumericUpDown.Name = "practiceHoursNumericUpDown";
-            this.practiceHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.practiceHoursNumericUpDown.Size = new System.Drawing.Size(242, 34);
             this.practiceHoursNumericUpDown.TabIndex = 11;
+            this.practiceHoursNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lectureHoursNumericUpDown
             // 
             this.lectureHoursNumericUpDown.Location = new System.Drawing.Point(182, 134);
+            this.lectureHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.lectureHoursNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.lectureHoursNumericUpDown.Name = "lectureHoursNumericUpDown";
-            this.lectureHoursNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.lectureHoursNumericUpDown.Size = new System.Drawing.Size(242, 34);
             this.lectureHoursNumericUpDown.TabIndex = 10;
+            this.lectureHoursNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numberOfWeeksNumericUpDown
             // 
             this.numberOfWeeksNumericUpDown.Location = new System.Drawing.Point(182, 94);
+            this.numberOfWeeksNumericUpDown.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numberOfWeeksNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numberOfWeeksNumericUpDown.Name = "numberOfWeeksNumericUpDown";
-            this.numberOfWeeksNumericUpDown.Size = new System.Drawing.Size(126, 34);
+            this.numberOfWeeksNumericUpDown.Size = new System.Drawing.Size(242, 34);
             this.numberOfWeeksNumericUpDown.TabIndex = 9;
+            this.numberOfWeeksNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // subjectNameShortTextBox
             // 
@@ -633,6 +760,8 @@ namespace AP8PO_Projekt
             this.subjectNameShortTextBox.Name = "subjectNameShortTextBox";
             this.subjectNameShortTextBox.Size = new System.Drawing.Size(126, 34);
             this.subjectNameShortTextBox.TabIndex = 8;
+            this.subjectNameShortTextBox.TextChanged += new System.EventHandler(this.subjectNameShortTextBox_TextChanged);
+            this.subjectNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameShortTextBox_Validating);
             // 
             // Label7
             // 
@@ -646,7 +775,7 @@ namespace AP8PO_Projekt
             // Label6
             // 
             this.Label6.AutoSize = true;
-            this.Label6.Location = new System.Drawing.Point(11, 342);
+            this.Label6.Location = new System.Drawing.Point(448, 147);
             this.Label6.Name = "Label6";
             this.Label6.Size = new System.Drawing.Size(58, 28);
             this.Label6.TabIndex = 6;
@@ -655,7 +784,7 @@ namespace AP8PO_Projekt
             // Label5
             // 
             this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(9, 300);
+            this.Label5.Location = new System.Drawing.Point(446, 105);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(170, 28);
             this.Label5.TabIndex = 5;
@@ -832,7 +961,7 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.TabPage subjectTab;
         internal System.Windows.Forms.NumericUpDown creditsNumericUpDown;
         internal System.Windows.Forms.Label Label11;
-        internal System.Windows.Forms.Button Button2;
+        internal System.Windows.Forms.Button addSubjectButton;
         internal System.Windows.Forms.Label Label9;
         internal System.Windows.Forms.TextBox subjectNameTextBox;
         internal System.Windows.Forms.Label Label8;

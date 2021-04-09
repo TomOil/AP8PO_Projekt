@@ -10,74 +10,72 @@ namespace AP8PO_Projekt.Models
         /// Unikátní identifikátor předmětu
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Název předmětu
         /// </summary>
         public string Name { get; set; } 
+
         /// <summary>
         /// Zkratka názvu předmětu
         /// </summary>
         public string NameShort { get; set; }
+
         /// <summary>
         /// Počet týdnů které bude předmět trvat
         /// </summary>
         public int NumberOfWeeks { get; set; } 
+
         /// <summary>
         /// Počet hodin přednášek v jednom týdnu
         /// </summary>
         public int LectureHours { get; set; }
+
         /// <summary>
         /// Počet hodin cvičení v jednom týdnu
         /// </summary>
         public int PracticeHours { get; set; }
+
         /// <summary>
         /// Počet hodin seminářů v jednom týdnu
         /// </summary>
         public int SeminarHours { get; set; }
+
         /// <summary>
         /// Forma ukončení předmětu
         /// </summary>
-        public enum FormOfCompletion 
-        {
-            Z,
-            ZK,
-            KL
-        }
+        public string FormOfCompletion { get; set; }
+
         /// <summary>
         /// Jazyk ve kterém se předmět vyučuje
         /// </summary>
-        public enum Language
-        {
-            CZ,
-            EN
-        }
+        public string Language { get; set; }
+
         /// <summary>
         /// Velikost třídy, ve které se předmět vyučuje
         /// </summary>
         public int ClassSize { get; set; } 
+
         /// <summary>
         /// Seznam skupin, které mají tento předmět
         /// </summary>
         public List<Group> GroupList { get; set; }
+
         /// <summary>
         /// Počet kreditů přiřazených studentovi po úspěšném ukončení předmětu
         /// </summary>
         public int Credits { get; set; }
+
         /// <summary>
         /// Útvar garantující tento předmět
         /// </summary>
-        public enum GuarantorInstitute
-        {
-            AUIUI,
-            AUPKS,
-            AUART,
-            AUEM
-            //atd...
-        } 
+        public string GuarantorInstitute { get; set; }
+
         /// <summary>
         /// Křestní jméno garanta předmětu
         /// </summary>
         public string GuarantorFirstName { get; set; }
+
         /// <summary>
         /// Příjmení garanta předmětu
         /// </summary>

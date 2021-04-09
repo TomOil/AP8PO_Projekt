@@ -10,7 +10,6 @@ namespace ClassLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
-        //TODO - Save the employee to the db
         public Employee CreateEmployee(Employee employeeModel)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
@@ -32,6 +31,57 @@ namespace ClassLibrary.DataAccess
                 employeeModel.Id = parameter.Get<int>("@id");
 
                 return employeeModel;
+            }
+        }
+
+        public Group CreateGroup(Group groupModel)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@name", groupModel.Name);
+                parameter.Add("@nameShort", groupModel.NameShort);
+                parameter.Add("@grade", groupModel.Grade);
+                parameter.Add("@semester", groupModel.Semester);
+                parameter.Add("@numberOfStudents", groupModel.NumberOfStudents);
+                parameter.Add("@formOfStudy", groupModel.FormOfStudy);
+                parameter.Add("@typeOfStudy", groupModel.TypeOfStudy);
+                parameter.Add("@language", groupModel.Language);
+                parameter.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spGroupTable_Insert", parameter, commandType: CommandType.StoredProcedure);
+
+                groupModel.Id = parameter.Get<int>("@id");
+
+                return groupModel;
+            }
+        }
+
+        public Subject CreateSubject(Subject subjectModel)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@name", subjectModel.Name);
+                parameter.Add(@"nameShort", subjectModel.NameShort);
+                parameter.Add(@"numberOfWeeks", subjectModel.NumberOfWeeks);
+                parameter.Add("@lectureHours", subjectModel.LectureHours);
+                parameter.Add("@practiceHours", subjectModel.PracticeHours);
+                parameter.Add("@seminarHours", subjectModel.SeminarHours);
+                parameter.Add("@formOfCompletion", subjectModel.FormOfCompletion);
+                parameter.Add("@language", subjectModel.Language);
+                parameter.Add("@classSize", subjectModel.ClassSize);
+                parameter.Add("@credits", subjectModel.Credits);
+                parameter.Add("@guarantorInstitute", subjectModel.GuarantorInstitute);
+                parameter.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spSubjectTable_Insert", parameter, commandType: CommandType.StoredProcedure);
+
+                subjectModel.Id = parameter.Get<int>("@id");
+
+                return subjectModel;
             }
         }
     }

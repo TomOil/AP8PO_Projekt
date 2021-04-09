@@ -10,55 +10,47 @@ namespace AP8PO_Projekt.Models
         /// Unikátní identifikátor skupiny
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Název skupiny
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Zkratka názvu skupiny
         /// </summary>
         public string NameShort { get; set; }
+
         /// <summary>
         /// Ročník, ve kterém je skupina
         /// </summary>
         public int Grade { get; set; }
+
         /// <summary>
         /// Semestr, ve kterém je skupina
         /// </summary>
-        public enum Semester 
-        {
-            LS,
-            ZS
-        }
+        public string Semester { get; set; }
+    
         /// <summary>
         /// Počet studentů ve skupině
         /// </summary>
         public int NumberOfStudents { get; set; }
+
         /// <summary>
         /// Forma studia skupiny
         /// </summary>
-        public enum FormOfStudy 
-        {
-            P,
-            K
-        }
+        public string FormOfStudy { get; set; }
+
         /// <summary>
         /// Typ studia skupiny
         /// </summary>
-        public enum TypeOfStudy
-        {
-            Bc,
-            Mgr,
-            PhD
-        }
+        public string TypeOfStudy { get; set; }
+        
         /// <summary>
         /// Jazyk, ve kterém se předměty skupiny vyučují
         /// </summary>
-        public enum Language 
-        {
-            CZ,
-            EN
-        }
+        public string Language { get; set; }
+
         /// <summary>
         /// List předmětů skupinky
         /// </summary>

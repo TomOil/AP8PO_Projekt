@@ -9,5 +9,7 @@ namespace ClassLibrary.DataAccess
     public interface IDataConnection
     {
         Employee CreateEmployee(Employee employeeModel);
+        Group CreateGroup(Group groupModel);
+        Subject CreateSubject(Subject subjectModel);
     }
 }
