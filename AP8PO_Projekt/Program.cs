@@ -20,7 +20,7 @@ namespace AP8PO_Projekt
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Initialize the connections
-            GlobalConfig.InitializeConnections(DatabaseType.Sql);
+            GlobalConfig.InitializeConnections(DatabaseType.XmlFile);
 
             Application.Run(new Form());
         }

@@ -436,12 +436,12 @@ namespace AP8PO_Projekt
 
                 subjectNameTextBox.Text = "";
                 subjectNameShortTextBox.Text = "";
-                numberOfWeeksNumericUpDown.Value = 0;
-                lectureHoursNumericUpDown.Value = 0;
-                practiceHoursNumericUpDown.Value = 0;
-                seminarHoursNumericUpDown.Value = 0;
-                classSizeNumericUpDown.Value = 0;
-                creditsNumericUpDown.Value = 0;
+                numberOfWeeksNumericUpDown.Value = 1;
+                lectureHoursNumericUpDown.Value = 1;
+                practiceHoursNumericUpDown.Value = 1;
+                seminarHoursNumericUpDown.Value = 1;
+                classSizeNumericUpDown.Value = 1;
+                creditsNumericUpDown.Value = 1;
             }
         }
 
