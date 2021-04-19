@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace ClassLibrary.DataAccess
 {
@@ -12,7 +13,7 @@ namespace ClassLibrary.DataAccess
     {
         public Employee CreateEmployee(Employee employeeModel)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
                 var parameter = new DynamicParameters();
 
@@ -28,7 +29,9 @@ namespace ClassLibrary.DataAccess
 
                 connection.Execute("dbo.spEmployeeTable_Insert", parameter, commandType: CommandType.StoredProcedure);
 
-                employeeModel.Id = parameter.Get<int>("@id");
+                //employeeModel.Id = parameter.Get<int>("@id");
+
+
 
                 return employeeModel;
             }

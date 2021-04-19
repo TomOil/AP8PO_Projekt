@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AP8PO_Projekt.Models;
+using ClassLibrary;
+using System;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using AP8PO_Projekt.Models;
-using ClassLibrary;
-using ClassLibrary.DataAccess;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace AP8PO_Projekt
 {
@@ -114,6 +110,16 @@ namespace AP8PO_Projekt
                 personalPhoneNumberTextBox.Text = "";
                 IsDoctorandCheckbox.Checked = false;
                 loadNumericUpDown.Value = 0.00M;
+
+                using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    getData.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM dbo.EmployeeTable", getData);
+                    DataTable employeeDataTable = new DataTable();
+                    sqlDA.Fill(employeeDataTable);
+
+                    employeeDataGridView.DataSource = employeeDataTable;
+                }
             }
             else
             {
@@ -122,7 +128,7 @@ namespace AP8PO_Projekt
                 if (string.IsNullOrEmpty(lastNameTextBox.Text)) { errorProvider.SetError(lastNameTextBox, "Příjmení nesmí být prázdné!"); }
 
                 if (string.IsNullOrEmpty(workPhoneNumberTextBox.Text)) { errorProvider.SetError(workPhoneNumberTextBox, "Pracovní telefonní číslo nesmí být prázdné!"); }
-                
+
                 if (string.IsNullOrEmpty(workEmailTextBox.Text)) { errorProvider.SetError(workEmailTextBox, "Pracovní email nemůže být prázdný!"); }
             }
         }
@@ -337,7 +343,7 @@ namespace AP8PO_Projekt
 
                 if (string.IsNullOrEmpty(groupNameTextBox.Text)) { errorProvider.SetError(groupNameTextBox, "Zkratka oboru nesmí být prázdná!"); }
             }
-            
+
         }
 
         private void groupNameShortTextBox_Validating(object sender, CancelEventArgs e)

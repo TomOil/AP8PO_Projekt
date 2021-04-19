@@ -32,6 +32,8 @@ namespace AP8PO_Projekt
             this.components = new System.ComponentModel.Container();
             this.tabs = new System.Windows.Forms.TabControl();
             this.employeeTab = new System.Windows.Forms.TabPage();
+            this.refreshEmployeeDGV = new System.Windows.Forms.Button();
+            this.employeeDataGridView = new System.Windows.Forms.DataGridView();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.personalPhoneNumberTextBox = new System.Windows.Forms.TextBox();
@@ -99,6 +101,7 @@ namespace AP8PO_Projekt
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabs.SuspendLayout();
             this.employeeTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).BeginInit();
             this.fieldTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).BeginInit();
@@ -128,11 +131,13 @@ namespace AP8PO_Projekt
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(929, 416);
+            this.tabs.Size = new System.Drawing.Size(1232, 463);
             this.tabs.TabIndex = 1;
             // 
             // employeeTab
             // 
+            this.employeeTab.Controls.Add(this.refreshEmployeeDGV);
+            this.employeeTab.Controls.Add(this.employeeDataGridView);
             this.employeeTab.Controls.Add(this.label21);
             this.employeeTab.Controls.Add(this.label20);
             this.employeeTab.Controls.Add(this.personalPhoneNumberTextBox);
@@ -153,10 +158,30 @@ namespace AP8PO_Projekt
             this.employeeTab.Location = new System.Drawing.Point(4, 32);
             this.employeeTab.Name = "employeeTab";
             this.employeeTab.Padding = new System.Windows.Forms.Padding(3);
-            this.employeeTab.Size = new System.Drawing.Size(921, 380);
+            this.employeeTab.Size = new System.Drawing.Size(1224, 427);
             this.employeeTab.TabIndex = 0;
             this.employeeTab.Text = "Přidat zaměstnance";
             this.employeeTab.UseVisualStyleBackColor = true;
+            // 
+            // refreshEmployeeDGV
+            // 
+            this.refreshEmployeeDGV.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.refreshEmployeeDGV.Location = new System.Drawing.Point(432, 343);
+            this.refreshEmployeeDGV.Name = "refreshEmployeeDGV";
+            this.refreshEmployeeDGV.Size = new System.Drawing.Size(101, 72);
+            this.refreshEmployeeDGV.TabIndex = 18;
+            this.refreshEmployeeDGV.Text = "Obnovit tabulku";
+            this.refreshEmployeeDGV.UseVisualStyleBackColor = true;
+            // 
+            // employeeDataGridView
+            // 
+            this.employeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.employeeDataGridView.Location = new System.Drawing.Point(540, 21);
+            this.employeeDataGridView.Name = "employeeDataGridView";
+            this.employeeDataGridView.RowHeadersWidth = 51;
+            this.employeeDataGridView.RowTemplate.Height = 29;
+            this.employeeDataGridView.Size = new System.Drawing.Size(676, 394);
+            this.employeeDataGridView.TabIndex = 17;
             // 
             // label21
             // 
@@ -180,7 +205,7 @@ namespace AP8PO_Projekt
             // 
             this.personalPhoneNumberTextBox.Location = new System.Drawing.Point(202, 222);
             this.personalPhoneNumberTextBox.Name = "personalPhoneNumberTextBox";
-            this.personalPhoneNumberTextBox.Size = new System.Drawing.Size(692, 34);
+            this.personalPhoneNumberTextBox.Size = new System.Drawing.Size(331, 34);
             this.personalPhoneNumberTextBox.TabIndex = 14;
             this.personalPhoneNumberTextBox.TextChanged += new System.EventHandler(this.personalPhoneNumberTextBox_TextChanged);
             // 
@@ -188,7 +213,7 @@ namespace AP8PO_Projekt
             // 
             this.workPhoneNumberTextBox.Location = new System.Drawing.Point(202, 182);
             this.workPhoneNumberTextBox.Name = "workPhoneNumberTextBox";
-            this.workPhoneNumberTextBox.Size = new System.Drawing.Size(692, 34);
+            this.workPhoneNumberTextBox.Size = new System.Drawing.Size(331, 34);
             this.workPhoneNumberTextBox.TabIndex = 13;
             this.workPhoneNumberTextBox.TextChanged += new System.EventHandler(this.workPhoneNumberTextBox_TextChanged);
             this.workPhoneNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workPhoneNumberTextBox_Validating);
@@ -220,7 +245,7 @@ namespace AP8PO_Projekt
             // 
             this.personalEmailTextBox.Location = new System.Drawing.Point(202, 141);
             this.personalEmailTextBox.Name = "personalEmailTextBox";
-            this.personalEmailTextBox.Size = new System.Drawing.Size(692, 34);
+            this.personalEmailTextBox.Size = new System.Drawing.Size(331, 34);
             this.personalEmailTextBox.TabIndex = 10;
             this.personalEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.personalEmailTextBox_Validating);
             // 
@@ -228,7 +253,7 @@ namespace AP8PO_Projekt
             // 
             this.workEmailTextBox.Location = new System.Drawing.Point(202, 101);
             this.workEmailTextBox.Name = "workEmailTextBox";
-            this.workEmailTextBox.Size = new System.Drawing.Size(692, 34);
+            this.workEmailTextBox.Size = new System.Drawing.Size(331, 34);
             this.workEmailTextBox.TabIndex = 9;
             this.workEmailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.workEmailTextBox_Validating);
             // 
@@ -236,16 +261,16 @@ namespace AP8PO_Projekt
             // 
             this.lastNameTextBox.Location = new System.Drawing.Point(202, 61);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(692, 34);
+            this.lastNameTextBox.Size = new System.Drawing.Size(331, 34);
             this.lastNameTextBox.TabIndex = 8;
             this.lastNameTextBox.TextChanged += new System.EventHandler(this.lastNameTextBox_TextChanged);
             this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.lastNameTextBox_Validating);
             // 
             // addEmployeeButton
             // 
-            this.addEmployeeButton.Location = new System.Drawing.Point(619, 300);
+            this.addEmployeeButton.Location = new System.Drawing.Point(8, 347);
             this.addEmployeeButton.Name = "addEmployeeButton";
-            this.addEmployeeButton.Size = new System.Drawing.Size(294, 72);
+            this.addEmployeeButton.Size = new System.Drawing.Size(331, 72);
             this.addEmployeeButton.TabIndex = 7;
             this.addEmployeeButton.Text = "Přidat zaměstnance";
             this.addEmployeeButton.UseVisualStyleBackColor = true;
@@ -300,7 +325,7 @@ namespace AP8PO_Projekt
             // 
             this.firstNameTextBox.Location = new System.Drawing.Point(203, 21);
             this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(691, 34);
+            this.firstNameTextBox.Size = new System.Drawing.Size(330, 34);
             this.firstNameTextBox.TabIndex = 0;
             this.firstNameTextBox.TextChanged += new System.EventHandler(this.firstNameTextBox_TextChanged);
             this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.firstNameTextBox_Validating);
@@ -328,7 +353,7 @@ namespace AP8PO_Projekt
             this.fieldTab.Location = new System.Drawing.Point(4, 32);
             this.fieldTab.Name = "fieldTab";
             this.fieldTab.Padding = new System.Windows.Forms.Padding(3);
-            this.fieldTab.Size = new System.Drawing.Size(921, 380);
+            this.fieldTab.Size = new System.Drawing.Size(1224, 427);
             this.fieldTab.TabIndex = 1;
             this.fieldTab.Text = "Přidat skupinu";
             this.fieldTab.UseVisualStyleBackColor = true;
@@ -539,7 +564,7 @@ namespace AP8PO_Projekt
             this.subjectTab.Location = new System.Drawing.Point(4, 32);
             this.subjectTab.Name = "subjectTab";
             this.subjectTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subjectTab.Size = new System.Drawing.Size(921, 380);
+            this.subjectTab.Size = new System.Drawing.Size(1224, 427);
             this.subjectTab.TabIndex = 2;
             this.subjectTab.Text = "Přidat předmět";
             this.subjectTab.UseVisualStyleBackColor = true;
@@ -842,9 +867,9 @@ namespace AP8PO_Projekt
             this.scheduleAction.Location = new System.Drawing.Point(4, 32);
             this.scheduleAction.Name = "scheduleAction";
             this.scheduleAction.Padding = new System.Windows.Forms.Padding(3);
-            this.scheduleAction.Size = new System.Drawing.Size(921, 380);
+            this.scheduleAction.Size = new System.Drawing.Size(1224, 427);
             this.scheduleAction.TabIndex = 3;
-            this.scheduleAction.Text = "Přiřazení";
+            this.scheduleAction.Text = "Předmět -> Skupina";
             this.scheduleAction.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -894,15 +919,15 @@ namespace AP8PO_Projekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 416);
+            this.ClientSize = new System.Drawing.Size(1232, 463);
             this.Controls.Add(this.tabs);
-            this.MaximumSize = new System.Drawing.Size(947, 463);
-            this.MinimumSize = new System.Drawing.Size(947, 463);
+            this.MaximumSize = new System.Drawing.Size(5000, 5000);
             this.Name = "Form";
             this.Text = "AP8PO_Project";
             this.tabs.ResumeLayout(false);
             this.employeeTab.ResumeLayout(false);
             this.employeeTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).EndInit();
             this.fieldTab.ResumeLayout(false);
             this.fieldTab.PerformLayout();
@@ -996,6 +1021,8 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.GroupBox employeesGroupBox;
         internal System.Windows.Forms.ListBox emListBox;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.DataGridView employeeDataGridView;
+        private System.Windows.Forms.Button refreshEmployeeDGV;
     }
 }
 
