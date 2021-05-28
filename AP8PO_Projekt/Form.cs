@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
 
 namespace AP8PO_Projekt
 {
@@ -43,6 +44,7 @@ namespace AP8PO_Projekt
         public Form()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             loadNumericUpDown.Increment = 0.05m;
             errorProvider.BlinkRate = 0;
             semesterComboBox.DataSource = Enum.GetValues(typeof(SemesterEnum));
@@ -51,7 +53,10 @@ namespace AP8PO_Projekt
             groupLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
             formOfCompletionComboBox.DataSource = Enum.GetValues(typeof(FormOfCompletionEnum));
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
-            guarantorInstituteComboBox.DataSource = Enum.GetValues(typeof(GuarantorInstituteEnum));
+
+            getEmployeesData();
+            getGroupsData();
+            getSubjectsData();
         }
 
         /// <summary>
@@ -111,15 +116,7 @@ namespace AP8PO_Projekt
                 IsDoctorandCheckbox.Checked = false;
                 loadNumericUpDown.Value = 0.00M;
 
-                using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
-                {
-                    getData.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("SELECT * FROM dbo.EmployeeTable", getData);
-                    DataTable employeeDataTable = new DataTable();
-                    sqlDA.Fill(employeeDataTable);
-
-                    employeeDataGridView.DataSource = employeeDataTable;
-                }
+                getEmployeesData();
             }
             else
             {
@@ -336,6 +333,12 @@ namespace AP8PO_Projekt
                 groupNameShortTextBox.Text = "";
                 gradeNumericUpDown.Value = 1;
                 numberOfStudentsNumericUpDown.Value = 1;
+                formOfStudyComboBox.SelectedIndex = 0;
+                typeOfStudyComboBox.SelectedIndex = 0;
+                groupLanguageComboBox.SelectedIndex = 0;
+                semesterComboBox.SelectedIndex = 0;
+
+                getGroupsData();
             }
             else
             {
@@ -434,7 +437,6 @@ namespace AP8PO_Projekt
                 subjectModel.Language = subjectLanguageComboBox.SelectedValue.ToString();
                 subjectModel.ClassSize = (int)classSizeNumericUpDown.Value;
                 subjectModel.Credits = (int)creditsNumericUpDown.Value;
-                subjectModel.GuarantorInstitute = guarantorInstituteComboBox.SelectedValue.ToString();
 
                 GlobalConfig.Connection.CreateSubject(subjectModel);
 
@@ -443,11 +445,15 @@ namespace AP8PO_Projekt
                 subjectNameTextBox.Text = "";
                 subjectNameShortTextBox.Text = "";
                 numberOfWeeksNumericUpDown.Value = 1;
-                lectureHoursNumericUpDown.Value = 1;
-                practiceHoursNumericUpDown.Value = 1;
-                seminarHoursNumericUpDown.Value = 1;
+                lectureHoursNumericUpDown.Value = 0;
+                practiceHoursNumericUpDown.Value = 0;
+                seminarHoursNumericUpDown.Value = 0;
                 classSizeNumericUpDown.Value = 1;
                 creditsNumericUpDown.Value = 1;
+                subjectLanguageComboBox.SelectedIndex = 0;
+                formOfCompletionComboBox.SelectedIndex = 0;
+
+                getSubjectsData();
             }
         }
 
@@ -490,7 +496,7 @@ namespace AP8PO_Projekt
             if (string.IsNullOrEmpty(subjectNameTextBox.Text))
             {
                 e.Cancel = false;
-                errorProvider.SetError(subjectNameTextBox, "Název oboru nesmí být prázdná!");
+                errorProvider.SetError(subjectNameTextBox, "Název oboru nesmí být prázdný!");
                 isSubjectNameValid = false;
             }
             else
@@ -517,6 +523,115 @@ namespace AP8PO_Projekt
                 subjectNameTextBox.ForeColor = Color.Black;
             }
             subjectNameTextBox.SelectionStart = subjectNameTextBox.Text.Length;
+        }
+
+        private void getEmployeesData()
+        {
+            List<string> employeesColsNames = new List<string>
+            {
+                "Id", "Jméno", "Příjmení", "Pracovní email", "Osobní email",
+                "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek"
+            };
+
+            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                getData.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.EmployeeTable", getData);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                getData.Close();
+
+                employeeDataGridView.DataSource = dataTable;
+                employeeDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                employeeDataGridView.ReadOnly = true;
+
+                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+                employeeDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+
+                employeeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+                employeeDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                var numberOfColumns = employeeDataGridView.Columns.Count;
+                for (int i = 0; i < numberOfColumns; i++)
+                {
+                    employeeDataGridView.Columns[i].HeaderText = employeesColsNames[i];
+                }
+
+                employeeDataGridView.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+                employeeDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        private void getGroupsData()
+        {
+            List<string> groupsColsNames = new List<string>
+            {
+                "Id", "Název", "Zkratka", "Ročník", "Semestr",
+                "Počet studentů", "Forma studia", "Typ studia", "Jazyk"
+            };
+
+            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                getData.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.GroupTable", getData);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                getData.Close();
+
+                groupDataGridView.DataSource = dataTable;
+                groupDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                groupDataGridView.ReadOnly = true;
+
+                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+                groupDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+
+                groupDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+                groupDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                var numberOfColumns = groupDataGridView.Columns.Count;
+                for (int i = 0; i < numberOfColumns; i++)
+                {
+                    groupDataGridView.Columns[i].HeaderText = groupsColsNames[i];
+                }
+
+                groupDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        private void getSubjectsData()
+        {
+            List<string> subjectsColsNames = new List<string>
+            {
+                "Id", "Název", "Zkratka", "Počet týdnů", "Přednášky", "Cvičení", "Semináře", "Zakončení", 
+                "Jazyk", "Velikost třídy", "Kredity", "Garantující ústav", "Jméno garanta", "Příjmení garanta"
+            };
+
+            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                getData.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.SubjectTable", getData);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                getData.Close();
+
+                subjectDataGridView.DataSource = dataTable;
+                subjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                subjectDataGridView.ReadOnly = true;
+
+                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+                subjectDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+
+                subjectDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+                subjectDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                var numberOfColumns = subjectDataGridView.Columns.Count;
+                for (int i = 0; i < numberOfColumns; i++)
+                {
+                    subjectDataGridView.Columns[i].HeaderText = subjectsColsNames[i];
+                }
+
+                subjectDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
         }
     }
 }
