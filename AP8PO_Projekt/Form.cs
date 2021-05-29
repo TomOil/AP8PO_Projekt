@@ -589,11 +589,11 @@ namespace AP8PO_Projekt
             if (e.ColumnIndex == employeeDataGridView.ColumnCount - 1)
             {
                 DataGridViewRow row = employeeDataGridView.Rows[e.RowIndex];
-                var employeeFirstname = row.Cells[1].Value;
+                var employeeFirstName = row.Cells[1].Value;
                 var employeeSurname = row.Cells[2].Value;
                 var employeeId = row.Cells[0].Value;
 
-                bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit zaměstnance \"{0} {1}\" ?", employeeFirstname, employeeSurname), "Potvrdit odstranění", MessageBoxButtons.YesNo) == DialogResult.Yes;
+                bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit zaměstnance \"{0} {1}\" ?", employeeFirstName, employeeSurname), "Potvrdit odstranění", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
                 if (confirmed)
                 {
                     using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
@@ -609,13 +609,18 @@ namespace AP8PO_Projekt
                     }
                     getEmployeesData();
 
-                    MessageBox.Show(string.Format("Zaměstnanec \"{0} {1}\", byl úspěšně odstraněn!", employeeFirstname, employeeSurname), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format("Zaměstnanec \"{0} {1}\", byl úspěšně odstraněn!", employeeFirstName, employeeSurname), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
         private void getGroupsData()
         {
+            if (groupDataGridView.ColumnCount > 0)
+            {
+                groupDataGridView.Columns.RemoveAt(groupDataGridView.ColumnCount - 1);
+            }
+
             List<string> groupsColsNames = new List<string>
             {
                 "Id", "Název", "Zkratka", "Ročník", "Semestr",
@@ -630,28 +635,71 @@ namespace AP8PO_Projekt
                 sqlDataAdapter.Fill(dataTable);
                 getData.Close();
 
+                groupDataGridView.AutoGenerateColumns = true;
                 groupDataGridView.DataSource = dataTable;
-                groupDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                groupDataGridView.ReadOnly = true;
+                groupDataGridView.AutoGenerateColumns = false;
+            }
+            groupDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            groupDataGridView.ReadOnly = true;
+            groupDataGridView.AllowUserToAddRows = false;
 
-                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-                groupDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+            Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+            groupDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
 
-                groupDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-                groupDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            groupDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            groupDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-                var numberOfColumns = groupDataGridView.Columns.Count;
-                for (int i = 0; i < numberOfColumns; i++)
+            var numberOfColumns = groupDataGridView.Columns.Count;
+            for (int i = 0; i < numberOfColumns; i++)
+            {
+                groupDataGridView.Columns[i].HeaderText = groupsColsNames[i];
+            }
+
+            groupDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            var delButton = new DataGridViewButtonColumn();
+            delButton.Text = "Odstranit";
+            delButton.UseColumnTextForButtonValue = true;
+            delButton.ReadOnly = false;
+            groupDataGridView.Columns.Add(delButton);
+        }
+
+        private void groupDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == groupDataGridView.ColumnCount - 1)
+            {
+                DataGridViewRow row = groupDataGridView.Rows[e.RowIndex];
+                var groupName = row.Cells[1].Value;
+                var groupId = row.Cells[0].Value;
+
+                bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit skupinu \"{0}\" ?", groupName), "Potvrdit odstranění", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+                if (confirmed)
                 {
-                    groupDataGridView.Columns[i].HeaderText = groupsColsNames[i];
-                }
+                    using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                    {
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.GroupTable WHERE id = @GroupId", connection))
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.AddWithValue("@GroupId", groupId);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
+                    getGroupsData();
 
-                groupDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    MessageBox.Show(string.Format("Skupina \"{0}\", byla úspěšně odstraněna!", groupName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
         private void getSubjectsData()
         {
+            if (subjectDataGridView.ColumnCount > 0)
+            {
+                subjectDataGridView.Columns.RemoveAt(subjectDataGridView.ColumnCount - 1);
+            }
+
             List<string> subjectsColsNames = new List<string>
             {
                 "Id", "Název", "Zkratka", "Počet týdnů", "Přednášky", "Cvičení", "Semináře", "Zakončení", 
@@ -666,23 +714,62 @@ namespace AP8PO_Projekt
                 sqlDataAdapter.Fill(dataTable);
                 getData.Close();
 
+                subjectDataGridView.AutoGenerateColumns = true;
                 subjectDataGridView.DataSource = dataTable;
-                subjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                subjectDataGridView.ReadOnly = true;
+                subjectDataGridView.AutoGenerateColumns = false;
+            }
 
-                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-                subjectDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+            subjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            subjectDataGridView.ReadOnly = true;
+            subjectDataGridView.AllowUserToAddRows = false;
 
-                subjectDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-                subjectDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+            subjectDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
 
-                var numberOfColumns = subjectDataGridView.Columns.Count;
-                for (int i = 0; i < numberOfColumns; i++)
+            subjectDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            subjectDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+            var numberOfColumns = subjectDataGridView.Columns.Count;
+            for (int i = 0; i < numberOfColumns; i++)
+            {
+                subjectDataGridView.Columns[i].HeaderText = subjectsColsNames[i];
+            }
+
+            subjectDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            var delButton = new DataGridViewButtonColumn();
+            delButton.Text = "Odstranit";
+            delButton.UseColumnTextForButtonValue = true;
+            delButton.ReadOnly = false;
+            subjectDataGridView.Columns.Add(delButton);
+        }
+
+        private void subjectDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == subjectDataGridView.ColumnCount - 1)
+            {
+                DataGridViewRow row = subjectDataGridView.Rows[e.RowIndex];
+                var subjectName = row.Cells[1].Value;
+                var subjectId = row.Cells[0].Value;
+
+                bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit předmět \"{0}\" ?", subjectName), "Potvrdit odstranění", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+                if (confirmed)
                 {
-                    subjectDataGridView.Columns[i].HeaderText = subjectsColsNames[i];
-                }
+                    using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                    {
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.SubjectTable WHERE id = @SubjectId", connection))
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.AddWithValue("@SubjectId", subjectId);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
+                    getSubjectsData();
 
-                subjectDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    MessageBox.Show(string.Format("Předmět \"{0}\", byl úspěšně odstraněn!", subjectName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }

@@ -97,6 +97,7 @@ namespace AP8PO_Projekt
             this.numberOfWeeksNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.subjectsGroupsTab = new System.Windows.Forms.TabPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabs.SuspendLayout();
             this.employeesTab.SuspendLayout();
             this.employeeGroupBox.SuspendLayout();
@@ -123,10 +124,11 @@ namespace AP8PO_Projekt
             // 
             this.tabs.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.tabs.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabs.Controls.Add(this.employeesTab);
-            this.tabs.Controls.Add(this.groupsTab);
             this.tabs.Controls.Add(this.subjectsTab);
+            this.tabs.Controls.Add(this.groupsTab);
             this.tabs.Controls.Add(this.subjectsGroupsTab);
+            this.tabs.Controls.Add(this.employeesTab);
+            this.tabs.Controls.Add(this.tabPage1);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
@@ -353,6 +355,7 @@ namespace AP8PO_Projekt
             this.groupDataGridView.RowTemplate.Height = 29;
             this.groupDataGridView.Size = new System.Drawing.Size(652, 397);
             this.groupDataGridView.TabIndex = 17;
+            this.groupDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.groupDataGridView_CellClick);
             // 
             // groupBox1
             // 
@@ -579,6 +582,7 @@ namespace AP8PO_Projekt
             this.subjectDataGridView.RowTemplate.Height = 29;
             this.subjectDataGridView.Size = new System.Drawing.Size(652, 400);
             this.subjectDataGridView.TabIndex = 24;
+            this.subjectDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectDataGridView_CellClick);
             // 
             // Label9
             // 
@@ -869,6 +873,16 @@ namespace AP8PO_Projekt
             this.errorProvider.ContainerControl = this;
             this.errorProvider.RightToLeftChanged += new System.EventHandler(this.addEmployeeButton_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1224, 427);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Přiřadit štítky zaměstnancům";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -978,6 +992,7 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.GroupBox employeeGroupBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 
