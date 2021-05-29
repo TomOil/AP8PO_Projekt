@@ -525,12 +525,20 @@ namespace AP8PO_Projekt
             subjectNameTextBox.SelectionStart = subjectNameTextBox.Text.Length;
         }
 
+        /// <summary>
+        /// Get employees data from db and display them in dataGridView
+        /// </summary>
         private void getEmployeesData()
         {
+            if (employeeDataGridView.ColumnCount > 0)
+            {
+                employeeDataGridView.Columns.RemoveAt(employeeDataGridView.ColumnCount - 1);
+            }
+
             List<string> employeesColsNames = new List<string>
             {
                 "Id", "Jméno", "Příjmení", "Pracovní email", "Osobní email",
-                "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek"
+                "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek", ""
             };
 
             using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
@@ -541,24 +549,68 @@ namespace AP8PO_Projekt
                 sqlDataAdapter.Fill(dataTable);
                 getData.Close();
 
+                employeeDataGridView.AutoGenerateColumns = true;
                 employeeDataGridView.DataSource = dataTable;
-                employeeDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                employeeDataGridView.ReadOnly = true;
+                employeeDataGridView.AutoGenerateColumns = false;
+            }
+            employeeDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            employeeDataGridView.ReadOnly = true;
+            employeeDataGridView.AllowUserToAddRows = false;
 
-                Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-                employeeDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+            Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
+            employeeDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
 
-                employeeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-                employeeDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            employeeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            employeeDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-                var numberOfColumns = employeeDataGridView.Columns.Count;
-                for (int i = 0; i < numberOfColumns; i++)
+            var numberOfColumns = employeeDataGridView.ColumnCount;
+            for (int i = 0; i < numberOfColumns; i++)
+            {
+                employeeDataGridView.Columns[i].HeaderText = employeesColsNames[i];
+            }
+
+            employeeDataGridView.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+            employeeDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            var delButton = new DataGridViewButtonColumn();
+            delButton.Text = "Odstranit";
+            delButton.UseColumnTextForButtonValue = true;
+            delButton.ReadOnly = false;
+            employeeDataGridView.Columns.Add(delButton);
+        }
+
+        /// <summary>
+        /// Delete employee and refresh dataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void employeeDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == employeeDataGridView.ColumnCount - 1)
+            {
+                DataGridViewRow row = employeeDataGridView.Rows[e.RowIndex];
+                var employeeFirstname = row.Cells[1].Value;
+                var employeeSurname = row.Cells[2].Value;
+                var employeeId = row.Cells[0].Value;
+
+                bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit zaměstnance \"{0} {1}\" ?", employeeFirstname, employeeSurname), "Potvrdit odstranění", MessageBoxButtons.YesNo) == DialogResult.Yes;
+                if (confirmed)
                 {
-                    employeeDataGridView.Columns[i].HeaderText = employeesColsNames[i];
-                }
+                    using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                    {
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.EmployeeTable WHERE id = @EmployeeId", connection))
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.AddWithValue("@EmployeeId", employeeId);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
+                    getEmployeesData();
 
-                employeeDataGridView.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
-                employeeDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    MessageBox.Show(string.Format("Zaměstnanec \"{0} {1}\", byl úspěšně odstraněn!", employeeFirstname, employeeSurname), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

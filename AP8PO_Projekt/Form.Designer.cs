@@ -52,51 +52,51 @@ namespace AP8PO_Projekt
             this.employeeDataGridView = new System.Windows.Forms.DataGridView();
             this.groupsTab = new System.Windows.Forms.TabPage();
             this.groupDataGridView = new System.Windows.Forms.DataGridView();
-            this.addGroupButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.formOfStudyComboBox = new System.Windows.Forms.ComboBox();
+            this.groupNameShortTextBox = new System.Windows.Forms.TextBox();
+            this.Label12 = new System.Windows.Forms.Label();
             this.groupNameTextBox = new System.Windows.Forms.TextBox();
             this.Label19 = new System.Windows.Forms.Label();
-            this.groupLanguageComboBox = new System.Windows.Forms.ComboBox();
-            this.gradeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.typeOfStudyComboBox = new System.Windows.Forms.ComboBox();
-            this.formOfStudyComboBox = new System.Windows.Forms.ComboBox();
-            this.numberOfStudentsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.semesterComboBox = new System.Windows.Forms.ComboBox();
-            this.groupNameShortTextBox = new System.Windows.Forms.TextBox();
-            this.Label18 = new System.Windows.Forms.Label();
-            this.Label17 = new System.Windows.Forms.Label();
+            this.addGroupButton = new System.Windows.Forms.Button();
             this.Label16 = new System.Windows.Forms.Label();
-            this.Label15 = new System.Windows.Forms.Label();
+            this.groupLanguageComboBox = new System.Windows.Forms.ComboBox();
+            this.Label18 = new System.Windows.Forms.Label();
+            this.semesterComboBox = new System.Windows.Forms.ComboBox();
+            this.typeOfStudyComboBox = new System.Windows.Forms.ComboBox();
             this.Label14 = new System.Windows.Forms.Label();
+            this.gradeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numberOfStudentsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Label17 = new System.Windows.Forms.Label();
+            this.Label15 = new System.Windows.Forms.Label();
             this.Label13 = new System.Windows.Forms.Label();
-            this.Label12 = new System.Windows.Forms.Label();
             this.subjectsTab = new System.Windows.Forms.TabPage();
             this.subjectDataGridView = new System.Windows.Forms.DataGridView();
-            this.creditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.Label11 = new System.Windows.Forms.Label();
-            this.addSubjectButton = new System.Windows.Forms.Button();
             this.Label9 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.addSubjectButton = new System.Windows.Forms.Button();
+            this.creditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.subjectNameShortTextBox = new System.Windows.Forms.TextBox();
+            this.subject_shortcut = new System.Windows.Forms.Label();
             this.subjectNameTextBox = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
+            this.Label11 = new System.Windows.Forms.Label();
             this.subjectLanguageComboBox = new System.Windows.Forms.ComboBox();
-            this.formOfCompletionComboBox = new System.Windows.Forms.ComboBox();
-            this.classSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.seminarHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.practiceHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.lectureHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.numberOfWeeksNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.subjectNameShortTextBox = new System.Windows.Forms.TextBox();
-            this.Label7 = new System.Windows.Forms.Label();
             this.Label6 = new System.Windows.Forms.Label();
+            this.formOfCompletionComboBox = new System.Windows.Forms.ComboBox();
             this.Label5 = new System.Windows.Forms.Label();
-            this.Label1 = new System.Windows.Forms.Label();
-            this.Label4 = new System.Windows.Forms.Label();
-            this.Label3 = new System.Windows.Forms.Label();
+            this.classSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lectureHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Label2 = new System.Windows.Forms.Label();
-            this.subject_shortcut = new System.Windows.Forms.Label();
+            this.Label7 = new System.Windows.Forms.Label();
+            this.seminarHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.practiceHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.numberOfWeeksNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.subjectsGroupsTab = new System.Windows.Forms.TabPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabs.SuspendLayout();
             this.employeesTab.SuspendLayout();
             this.employeeGroupBox.SuspendLayout();
@@ -104,19 +104,19 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.employeeDataGridView)).BeginInit();
             this.groupsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfStudentsNumericUpDown)).BeginInit();
             this.subjectsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seminarHoursNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.practiceHoursNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
@@ -193,7 +193,7 @@ namespace AP8PO_Projekt
             0,
             0});
             this.loadNumericUpDown.Name = "loadNumericUpDown";
-            this.loadNumericUpDown.Size = new System.Drawing.Size(222, 34);
+            this.loadNumericUpDown.Size = new System.Drawing.Size(331, 34);
             this.loadNumericUpDown.TabIndex = 12;
             // 
             // IsDoctorandCheckbox
@@ -329,6 +329,7 @@ namespace AP8PO_Projekt
             this.employeeDataGridView.RowTemplate.Height = 29;
             this.employeeDataGridView.Size = new System.Drawing.Size(652, 394);
             this.employeeDataGridView.TabIndex = 17;
+            this.employeeDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeeDataGridView_CellClick);
             // 
             // groupsTab
             // 
@@ -352,465 +353,6 @@ namespace AP8PO_Projekt
             this.groupDataGridView.RowTemplate.Height = 29;
             this.groupDataGridView.Size = new System.Drawing.Size(652, 397);
             this.groupDataGridView.TabIndex = 17;
-            // 
-            // addGroupButton
-            // 
-            this.addGroupButton.Location = new System.Drawing.Point(198, 358);
-            this.addGroupButton.Name = "addGroupButton";
-            this.addGroupButton.Size = new System.Drawing.Size(331, 48);
-            this.addGroupButton.TabIndex = 16;
-            this.addGroupButton.Text = "Přidat skupinu";
-            this.addGroupButton.UseVisualStyleBackColor = true;
-            this.addGroupButton.Click += new System.EventHandler(this.addGroupButton_Click);
-            // 
-            // groupNameTextBox
-            // 
-            this.groupNameTextBox.Location = new System.Drawing.Point(198, 70);
-            this.groupNameTextBox.Name = "groupNameTextBox";
-            this.groupNameTextBox.Size = new System.Drawing.Size(331, 34);
-            this.groupNameTextBox.TabIndex = 15;
-            this.groupNameTextBox.TextChanged += new System.EventHandler(this.groupNameTextBox_TextChanged);
-            this.groupNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameTextBox_Validating);
-            // 
-            // Label19
-            // 
-            this.Label19.AutoSize = true;
-            this.Label19.Location = new System.Drawing.Point(10, 73);
-            this.Label19.Name = "Label19";
-            this.Label19.Size = new System.Drawing.Size(125, 28);
-            this.Label19.TabIndex = 14;
-            this.Label19.Text = "Název oboru";
-            // 
-            // groupLanguageComboBox
-            // 
-            this.groupLanguageComboBox.FormattingEnabled = true;
-            this.groupLanguageComboBox.Location = new System.Drawing.Point(198, 274);
-            this.groupLanguageComboBox.Name = "groupLanguageComboBox";
-            this.groupLanguageComboBox.Size = new System.Drawing.Size(331, 36);
-            this.groupLanguageComboBox.TabIndex = 13;
-            // 
-            // gradeNumericUpDown
-            // 
-            this.gradeNumericUpDown.Location = new System.Drawing.Point(198, 194);
-            this.gradeNumericUpDown.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.gradeNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.gradeNumericUpDown.Name = "gradeNumericUpDown";
-            this.gradeNumericUpDown.Size = new System.Drawing.Size(331, 34);
-            this.gradeNumericUpDown.TabIndex = 12;
-            this.gradeNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // typeOfStudyComboBox
-            // 
-            this.typeOfStudyComboBox.FormattingEnabled = true;
-            this.typeOfStudyComboBox.Location = new System.Drawing.Point(198, 152);
-            this.typeOfStudyComboBox.Name = "typeOfStudyComboBox";
-            this.typeOfStudyComboBox.Size = new System.Drawing.Size(331, 36);
-            this.typeOfStudyComboBox.TabIndex = 11;
-            // 
-            // formOfStudyComboBox
-            // 
-            this.formOfStudyComboBox.FormattingEnabled = true;
-            this.formOfStudyComboBox.Location = new System.Drawing.Point(198, 316);
-            this.formOfStudyComboBox.Name = "formOfStudyComboBox";
-            this.formOfStudyComboBox.Size = new System.Drawing.Size(331, 36);
-            this.formOfStudyComboBox.TabIndex = 10;
-            // 
-            // numberOfStudentsNumericUpDown
-            // 
-            this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(198, 234);
-            this.numberOfStudentsNumericUpDown.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.numberOfStudentsNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numberOfStudentsNumericUpDown.Name = "numberOfStudentsNumericUpDown";
-            this.numberOfStudentsNumericUpDown.Size = new System.Drawing.Size(331, 34);
-            this.numberOfStudentsNumericUpDown.TabIndex = 9;
-            this.numberOfStudentsNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // semesterComboBox
-            // 
-            this.semesterComboBox.FormattingEnabled = true;
-            this.semesterComboBox.Location = new System.Drawing.Point(198, 110);
-            this.semesterComboBox.Name = "semesterComboBox";
-            this.semesterComboBox.Size = new System.Drawing.Size(331, 36);
-            this.semesterComboBox.TabIndex = 8;
-            // 
-            // groupNameShortTextBox
-            // 
-            this.groupNameShortTextBox.Location = new System.Drawing.Point(198, 30);
-            this.groupNameShortTextBox.Name = "groupNameShortTextBox";
-            this.groupNameShortTextBox.Size = new System.Drawing.Size(331, 34);
-            this.groupNameShortTextBox.TabIndex = 7;
-            this.groupNameShortTextBox.TextChanged += new System.EventHandler(this.groupNameShortTextBox_TextChanged);
-            this.groupNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameShortTextBox_Validating);
-            // 
-            // Label18
-            // 
-            this.Label18.AutoSize = true;
-            this.Label18.Location = new System.Drawing.Point(10, 280);
-            this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(58, 28);
-            this.Label18.TabIndex = 6;
-            this.Label18.Text = "Jazyk";
-            // 
-            // Label17
-            // 
-            this.Label17.AutoSize = true;
-            this.Label17.Location = new System.Drawing.Point(9, 158);
-            this.Label17.Name = "Label17";
-            this.Label17.Size = new System.Drawing.Size(101, 28);
-            this.Label17.TabIndex = 5;
-            this.Label17.Text = "Typ studia";
-            // 
-            // Label16
-            // 
-            this.Label16.AutoSize = true;
-            this.Label16.Location = new System.Drawing.Point(8, 322);
-            this.Label16.Name = "Label16";
-            this.Label16.Size = new System.Drawing.Size(126, 28);
-            this.Label16.TabIndex = 4;
-            this.Label16.Text = "Forma studia";
-            // 
-            // Label15
-            // 
-            this.Label15.AutoSize = true;
-            this.Label15.Location = new System.Drawing.Point(8, 239);
-            this.Label15.Name = "Label15";
-            this.Label15.Size = new System.Drawing.Size(142, 28);
-            this.Label15.TabIndex = 3;
-            this.Label15.Text = "Počet studentů";
-            // 
-            // Label14
-            // 
-            this.Label14.AutoSize = true;
-            this.Label14.Location = new System.Drawing.Point(8, 116);
-            this.Label14.Name = "Label14";
-            this.Label14.Size = new System.Drawing.Size(82, 28);
-            this.Label14.TabIndex = 2;
-            this.Label14.Text = "Semestr";
-            // 
-            // Label13
-            // 
-            this.Label13.AutoSize = true;
-            this.Label13.Location = new System.Drawing.Point(9, 199);
-            this.Label13.Name = "Label13";
-            this.Label13.Size = new System.Drawing.Size(70, 28);
-            this.Label13.TabIndex = 1;
-            this.Label13.Text = "Ročník";
-            // 
-            // Label12
-            // 
-            this.Label12.AutoSize = true;
-            this.Label12.Location = new System.Drawing.Point(8, 36);
-            this.Label12.Name = "Label12";
-            this.Label12.Size = new System.Drawing.Size(136, 28);
-            this.Label12.TabIndex = 0;
-            this.Label12.Text = "Zkratka oboru";
-            // 
-            // subjectsTab
-            // 
-            this.subjectsTab.Controls.Add(this.subjectDataGridView);
-            this.subjectsTab.Controls.Add(this.Label9);
-            this.subjectsTab.Controls.Add(this.groupBox2);
-            this.subjectsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.subjectsTab.Location = new System.Drawing.Point(4, 32);
-            this.subjectsTab.Name = "subjectsTab";
-            this.subjectsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subjectsTab.Size = new System.Drawing.Size(1224, 427);
-            this.subjectsTab.TabIndex = 2;
-            this.subjectsTab.Text = "Předměty";
-            this.subjectsTab.UseVisualStyleBackColor = true;
-            // 
-            // subjectDataGridView
-            // 
-            this.subjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.subjectDataGridView.Location = new System.Drawing.Point(564, 19);
-            this.subjectDataGridView.Name = "subjectDataGridView";
-            this.subjectDataGridView.RowHeadersWidth = 51;
-            this.subjectDataGridView.RowTemplate.Height = 29;
-            this.subjectDataGridView.Size = new System.Drawing.Size(652, 400);
-            this.subjectDataGridView.TabIndex = 24;
-            // 
-            // creditsNumericUpDown
-            // 
-            this.creditsNumericUpDown.Location = new System.Drawing.Point(456, 209);
-            this.creditsNumericUpDown.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.creditsNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.creditsNumericUpDown.Name = "creditsNumericUpDown";
-            this.creditsNumericUpDown.Size = new System.Drawing.Size(75, 34);
-            this.creditsNumericUpDown.TabIndex = 23;
-            this.creditsNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // Label11
-            // 
-            this.Label11.AutoSize = true;
-            this.Label11.Location = new System.Drawing.Point(310, 215);
-            this.Label11.Name = "Label11";
-            this.Label11.Size = new System.Drawing.Size(127, 28);
-            this.Label11.TabIndex = 22;
-            this.Label11.Text = "Počet kreditů";
-            // 
-            // addSubjectButton
-            // 
-            this.addSubjectButton.Location = new System.Drawing.Point(200, 358);
-            this.addSubjectButton.Name = "addSubjectButton";
-            this.addSubjectButton.Size = new System.Drawing.Size(331, 48);
-            this.addSubjectButton.TabIndex = 21;
-            this.addSubjectButton.Text = "Přidat předmět";
-            this.addSubjectButton.UseVisualStyleBackColor = true;
-            this.addSubjectButton.Click += new System.EventHandler(this.addSubjectButton_Click);
-            // 
-            // Label9
-            // 
-            this.Label9.AutoSize = true;
-            this.Label9.Location = new System.Drawing.Point(343, 100);
-            this.Label9.Name = "Label9";
-            this.Label9.Size = new System.Drawing.Size(0, 28);
-            this.Label9.TabIndex = 19;
-            // 
-            // subjectNameTextBox
-            // 
-            this.subjectNameTextBox.Location = new System.Drawing.Point(200, 73);
-            this.subjectNameTextBox.Name = "subjectNameTextBox";
-            this.subjectNameTextBox.Size = new System.Drawing.Size(331, 34);
-            this.subjectNameTextBox.TabIndex = 17;
-            this.subjectNameTextBox.TextChanged += new System.EventHandler(this.subjectNameTextBox_TextChanged);
-            this.subjectNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameTextBox_Validating);
-            // 
-            // Label8
-            // 
-            this.Label8.AutoSize = true;
-            this.Label8.Location = new System.Drawing.Point(8, 76);
-            this.Label8.Name = "Label8";
-            this.Label8.Size = new System.Drawing.Size(66, 28);
-            this.Label8.TabIndex = 16;
-            this.Label8.Text = "Název";
-            // 
-            // subjectLanguageComboBox
-            // 
-            this.subjectLanguageComboBox.FormattingEnabled = true;
-            this.subjectLanguageComboBox.Location = new System.Drawing.Point(200, 316);
-            this.subjectLanguageComboBox.Name = "subjectLanguageComboBox";
-            this.subjectLanguageComboBox.Size = new System.Drawing.Size(331, 36);
-            this.subjectLanguageComboBox.TabIndex = 15;
-            // 
-            // formOfCompletionComboBox
-            // 
-            this.formOfCompletionComboBox.FormattingEnabled = true;
-            this.formOfCompletionComboBox.Location = new System.Drawing.Point(200, 274);
-            this.formOfCompletionComboBox.Name = "formOfCompletionComboBox";
-            this.formOfCompletionComboBox.Size = new System.Drawing.Size(331, 36);
-            this.formOfCompletionComboBox.TabIndex = 14;
-            // 
-            // classSizeNumericUpDown
-            // 
-            this.classSizeNumericUpDown.Location = new System.Drawing.Point(456, 133);
-            this.classSizeNumericUpDown.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.classSizeNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.classSizeNumericUpDown.Name = "classSizeNumericUpDown";
-            this.classSizeNumericUpDown.Size = new System.Drawing.Size(75, 34);
-            this.classSizeNumericUpDown.TabIndex = 13;
-            this.classSizeNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // seminarHoursNumericUpDown
-            // 
-            this.seminarHoursNumericUpDown.Location = new System.Drawing.Point(200, 233);
-            this.seminarHoursNumericUpDown.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.seminarHoursNumericUpDown.Name = "seminarHoursNumericUpDown";
-            this.seminarHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
-            this.seminarHoursNumericUpDown.TabIndex = 12;
-            // 
-            // practiceHoursNumericUpDown
-            // 
-            this.practiceHoursNumericUpDown.Location = new System.Drawing.Point(200, 193);
-            this.practiceHoursNumericUpDown.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.practiceHoursNumericUpDown.Name = "practiceHoursNumericUpDown";
-            this.practiceHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
-            this.practiceHoursNumericUpDown.TabIndex = 11;
-            // 
-            // lectureHoursNumericUpDown
-            // 
-            this.lectureHoursNumericUpDown.Location = new System.Drawing.Point(200, 153);
-            this.lectureHoursNumericUpDown.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.lectureHoursNumericUpDown.Name = "lectureHoursNumericUpDown";
-            this.lectureHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
-            this.lectureHoursNumericUpDown.TabIndex = 10;
-            // 
-            // numberOfWeeksNumericUpDown
-            // 
-            this.numberOfWeeksNumericUpDown.Location = new System.Drawing.Point(200, 113);
-            this.numberOfWeeksNumericUpDown.Maximum = new decimal(new int[] {
-            14,
-            0,
-            0,
-            0});
-            this.numberOfWeeksNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numberOfWeeksNumericUpDown.Name = "numberOfWeeksNumericUpDown";
-            this.numberOfWeeksNumericUpDown.Size = new System.Drawing.Size(76, 34);
-            this.numberOfWeeksNumericUpDown.TabIndex = 9;
-            this.numberOfWeeksNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // subjectNameShortTextBox
-            // 
-            this.subjectNameShortTextBox.Location = new System.Drawing.Point(200, 33);
-            this.subjectNameShortTextBox.Name = "subjectNameShortTextBox";
-            this.subjectNameShortTextBox.Size = new System.Drawing.Size(331, 34);
-            this.subjectNameShortTextBox.TabIndex = 8;
-            this.subjectNameShortTextBox.TextChanged += new System.EventHandler(this.subjectNameShortTextBox_TextChanged);
-            this.subjectNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameShortTextBox_Validating);
-            // 
-            // Label7
-            // 
-            this.Label7.AutoSize = true;
-            this.Label7.Location = new System.Drawing.Point(310, 139);
-            this.Label7.Name = "Label7";
-            this.Label7.Size = new System.Drawing.Size(126, 28);
-            this.Label7.TabIndex = 7;
-            this.Label7.Text = "Velikost třídy";
-            // 
-            // Label6
-            // 
-            this.Label6.AutoSize = true;
-            this.Label6.Location = new System.Drawing.Point(8, 322);
-            this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(58, 28);
-            this.Label6.TabIndex = 6;
-            this.Label6.Text = "Jazyk";
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(6, 280);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(101, 28);
-            this.Label5.TabIndex = 5;
-            this.Label5.Text = "Zakončení";
-            // 
-            // Label1
-            // 
-            this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(8, 239);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(93, 28);
-            this.Label1.TabIndex = 4;
-            this.Label1.Text = "Semináře";
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(8, 198);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(74, 28);
-            this.Label4.TabIndex = 3;
-            this.Label4.Text = "Cvičení";
-            // 
-            // Label3
-            // 
-            this.Label3.AutoSize = true;
-            this.Label3.Location = new System.Drawing.Point(8, 158);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(101, 28);
-            this.Label3.TabIndex = 2;
-            this.Label3.Text = "Přednášky";
-            // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(8, 118);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(116, 28);
-            this.Label2.TabIndex = 1;
-            this.Label2.Text = "Počet týdnů";
-            // 
-            // subject_shortcut
-            // 
-            this.subject_shortcut.AutoSize = true;
-            this.subject_shortcut.Location = new System.Drawing.Point(8, 39);
-            this.subject_shortcut.Name = "subject_shortcut";
-            this.subject_shortcut.Size = new System.Drawing.Size(77, 28);
-            this.subject_shortcut.TabIndex = 0;
-            this.subject_shortcut.Text = "Zkratka";
-            // 
-            // subjectsGroupsTab
-            // 
-            this.subjectsGroupsTab.Location = new System.Drawing.Point(4, 32);
-            this.subjectsGroupsTab.Name = "subjectsGroupsTab";
-            this.subjectsGroupsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subjectsGroupsTab.Size = new System.Drawing.Size(1224, 427);
-            this.subjectsGroupsTab.TabIndex = 3;
-            this.subjectsGroupsTab.Text = "Propojit předměty a skupiny";
-            this.subjectsGroupsTab.UseVisualStyleBackColor = true;
-            // 
-            // errorProvider
-            // 
-            this.errorProvider.ContainerControl = this;
-            this.errorProvider.RightToLeftChanged += new System.EventHandler(this.addEmployeeButton_Click);
             // 
             // groupBox1
             // 
@@ -837,6 +379,214 @@ namespace AP8PO_Projekt
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Přidat skupinu";
+            // 
+            // formOfStudyComboBox
+            // 
+            this.formOfStudyComboBox.FormattingEnabled = true;
+            this.formOfStudyComboBox.Location = new System.Drawing.Point(198, 316);
+            this.formOfStudyComboBox.Name = "formOfStudyComboBox";
+            this.formOfStudyComboBox.Size = new System.Drawing.Size(331, 36);
+            this.formOfStudyComboBox.TabIndex = 10;
+            // 
+            // groupNameShortTextBox
+            // 
+            this.groupNameShortTextBox.Location = new System.Drawing.Point(198, 30);
+            this.groupNameShortTextBox.Name = "groupNameShortTextBox";
+            this.groupNameShortTextBox.Size = new System.Drawing.Size(331, 34);
+            this.groupNameShortTextBox.TabIndex = 7;
+            this.groupNameShortTextBox.TextChanged += new System.EventHandler(this.groupNameShortTextBox_TextChanged);
+            this.groupNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameShortTextBox_Validating);
+            // 
+            // Label12
+            // 
+            this.Label12.AutoSize = true;
+            this.Label12.Location = new System.Drawing.Point(8, 36);
+            this.Label12.Name = "Label12";
+            this.Label12.Size = new System.Drawing.Size(77, 28);
+            this.Label12.TabIndex = 0;
+            this.Label12.Text = "Zkratka";
+            // 
+            // groupNameTextBox
+            // 
+            this.groupNameTextBox.Location = new System.Drawing.Point(198, 70);
+            this.groupNameTextBox.Name = "groupNameTextBox";
+            this.groupNameTextBox.Size = new System.Drawing.Size(331, 34);
+            this.groupNameTextBox.TabIndex = 15;
+            this.groupNameTextBox.TextChanged += new System.EventHandler(this.groupNameTextBox_TextChanged);
+            this.groupNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.groupNameTextBox_Validating);
+            // 
+            // Label19
+            // 
+            this.Label19.AutoSize = true;
+            this.Label19.Location = new System.Drawing.Point(10, 73);
+            this.Label19.Name = "Label19";
+            this.Label19.Size = new System.Drawing.Size(66, 28);
+            this.Label19.TabIndex = 14;
+            this.Label19.Text = "Název";
+            // 
+            // addGroupButton
+            // 
+            this.addGroupButton.Location = new System.Drawing.Point(198, 358);
+            this.addGroupButton.Name = "addGroupButton";
+            this.addGroupButton.Size = new System.Drawing.Size(331, 48);
+            this.addGroupButton.TabIndex = 16;
+            this.addGroupButton.Text = "Přidat skupinu";
+            this.addGroupButton.UseVisualStyleBackColor = true;
+            this.addGroupButton.Click += new System.EventHandler(this.addGroupButton_Click);
+            // 
+            // Label16
+            // 
+            this.Label16.AutoSize = true;
+            this.Label16.Location = new System.Drawing.Point(8, 322);
+            this.Label16.Name = "Label16";
+            this.Label16.Size = new System.Drawing.Size(126, 28);
+            this.Label16.TabIndex = 4;
+            this.Label16.Text = "Forma studia";
+            // 
+            // groupLanguageComboBox
+            // 
+            this.groupLanguageComboBox.FormattingEnabled = true;
+            this.groupLanguageComboBox.Location = new System.Drawing.Point(198, 274);
+            this.groupLanguageComboBox.Name = "groupLanguageComboBox";
+            this.groupLanguageComboBox.Size = new System.Drawing.Size(331, 36);
+            this.groupLanguageComboBox.TabIndex = 13;
+            // 
+            // Label18
+            // 
+            this.Label18.AutoSize = true;
+            this.Label18.Location = new System.Drawing.Point(10, 280);
+            this.Label18.Name = "Label18";
+            this.Label18.Size = new System.Drawing.Size(58, 28);
+            this.Label18.TabIndex = 6;
+            this.Label18.Text = "Jazyk";
+            // 
+            // semesterComboBox
+            // 
+            this.semesterComboBox.FormattingEnabled = true;
+            this.semesterComboBox.Location = new System.Drawing.Point(198, 110);
+            this.semesterComboBox.Name = "semesterComboBox";
+            this.semesterComboBox.Size = new System.Drawing.Size(331, 36);
+            this.semesterComboBox.TabIndex = 8;
+            // 
+            // typeOfStudyComboBox
+            // 
+            this.typeOfStudyComboBox.FormattingEnabled = true;
+            this.typeOfStudyComboBox.Location = new System.Drawing.Point(198, 152);
+            this.typeOfStudyComboBox.Name = "typeOfStudyComboBox";
+            this.typeOfStudyComboBox.Size = new System.Drawing.Size(331, 36);
+            this.typeOfStudyComboBox.TabIndex = 11;
+            // 
+            // Label14
+            // 
+            this.Label14.AutoSize = true;
+            this.Label14.Location = new System.Drawing.Point(8, 116);
+            this.Label14.Name = "Label14";
+            this.Label14.Size = new System.Drawing.Size(82, 28);
+            this.Label14.TabIndex = 2;
+            this.Label14.Text = "Semestr";
+            // 
+            // gradeNumericUpDown
+            // 
+            this.gradeNumericUpDown.Location = new System.Drawing.Point(198, 194);
+            this.gradeNumericUpDown.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.gradeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.gradeNumericUpDown.Name = "gradeNumericUpDown";
+            this.gradeNumericUpDown.Size = new System.Drawing.Size(331, 34);
+            this.gradeNumericUpDown.TabIndex = 12;
+            this.gradeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numberOfStudentsNumericUpDown
+            // 
+            this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(198, 234);
+            this.numberOfStudentsNumericUpDown.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numberOfStudentsNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberOfStudentsNumericUpDown.Name = "numberOfStudentsNumericUpDown";
+            this.numberOfStudentsNumericUpDown.Size = new System.Drawing.Size(331, 34);
+            this.numberOfStudentsNumericUpDown.TabIndex = 9;
+            this.numberOfStudentsNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // Label17
+            // 
+            this.Label17.AutoSize = true;
+            this.Label17.Location = new System.Drawing.Point(9, 158);
+            this.Label17.Name = "Label17";
+            this.Label17.Size = new System.Drawing.Size(101, 28);
+            this.Label17.TabIndex = 5;
+            this.Label17.Text = "Typ studia";
+            // 
+            // Label15
+            // 
+            this.Label15.AutoSize = true;
+            this.Label15.Location = new System.Drawing.Point(8, 239);
+            this.Label15.Name = "Label15";
+            this.Label15.Size = new System.Drawing.Size(142, 28);
+            this.Label15.TabIndex = 3;
+            this.Label15.Text = "Počet studentů";
+            // 
+            // Label13
+            // 
+            this.Label13.AutoSize = true;
+            this.Label13.Location = new System.Drawing.Point(9, 199);
+            this.Label13.Name = "Label13";
+            this.Label13.Size = new System.Drawing.Size(70, 28);
+            this.Label13.TabIndex = 1;
+            this.Label13.Text = "Ročník";
+            // 
+            // subjectsTab
+            // 
+            this.subjectsTab.Controls.Add(this.subjectDataGridView);
+            this.subjectsTab.Controls.Add(this.Label9);
+            this.subjectsTab.Controls.Add(this.groupBox2);
+            this.subjectsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.subjectsTab.Location = new System.Drawing.Point(4, 32);
+            this.subjectsTab.Name = "subjectsTab";
+            this.subjectsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.subjectsTab.Size = new System.Drawing.Size(1224, 427);
+            this.subjectsTab.TabIndex = 2;
+            this.subjectsTab.Text = "Předměty";
+            this.subjectsTab.UseVisualStyleBackColor = true;
+            // 
+            // subjectDataGridView
+            // 
+            this.subjectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.subjectDataGridView.Location = new System.Drawing.Point(564, 19);
+            this.subjectDataGridView.Name = "subjectDataGridView";
+            this.subjectDataGridView.RowHeadersWidth = 51;
+            this.subjectDataGridView.RowTemplate.Height = 29;
+            this.subjectDataGridView.Size = new System.Drawing.Size(652, 400);
+            this.subjectDataGridView.TabIndex = 24;
+            // 
+            // Label9
+            // 
+            this.Label9.AutoSize = true;
+            this.Label9.Location = new System.Drawing.Point(343, 100);
+            this.Label9.Name = "Label9";
+            this.Label9.Size = new System.Drawing.Size(0, 28);
+            this.Label9.TabIndex = 19;
             // 
             // groupBox2
             // 
@@ -868,6 +618,257 @@ namespace AP8PO_Projekt
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Přidat předmět";
             // 
+            // addSubjectButton
+            // 
+            this.addSubjectButton.Location = new System.Drawing.Point(200, 358);
+            this.addSubjectButton.Name = "addSubjectButton";
+            this.addSubjectButton.Size = new System.Drawing.Size(331, 48);
+            this.addSubjectButton.TabIndex = 21;
+            this.addSubjectButton.Text = "Přidat předmět";
+            this.addSubjectButton.UseVisualStyleBackColor = true;
+            this.addSubjectButton.Click += new System.EventHandler(this.addSubjectButton_Click);
+            // 
+            // creditsNumericUpDown
+            // 
+            this.creditsNumericUpDown.Location = new System.Drawing.Point(456, 209);
+            this.creditsNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.creditsNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.creditsNumericUpDown.Name = "creditsNumericUpDown";
+            this.creditsNumericUpDown.Size = new System.Drawing.Size(75, 34);
+            this.creditsNumericUpDown.TabIndex = 23;
+            this.creditsNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // subjectNameShortTextBox
+            // 
+            this.subjectNameShortTextBox.Location = new System.Drawing.Point(200, 33);
+            this.subjectNameShortTextBox.Name = "subjectNameShortTextBox";
+            this.subjectNameShortTextBox.Size = new System.Drawing.Size(331, 34);
+            this.subjectNameShortTextBox.TabIndex = 8;
+            this.subjectNameShortTextBox.TextChanged += new System.EventHandler(this.subjectNameShortTextBox_TextChanged);
+            this.subjectNameShortTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameShortTextBox_Validating);
+            // 
+            // subject_shortcut
+            // 
+            this.subject_shortcut.AutoSize = true;
+            this.subject_shortcut.Location = new System.Drawing.Point(8, 39);
+            this.subject_shortcut.Name = "subject_shortcut";
+            this.subject_shortcut.Size = new System.Drawing.Size(77, 28);
+            this.subject_shortcut.TabIndex = 0;
+            this.subject_shortcut.Text = "Zkratka";
+            // 
+            // subjectNameTextBox
+            // 
+            this.subjectNameTextBox.Location = new System.Drawing.Point(200, 73);
+            this.subjectNameTextBox.Name = "subjectNameTextBox";
+            this.subjectNameTextBox.Size = new System.Drawing.Size(331, 34);
+            this.subjectNameTextBox.TabIndex = 17;
+            this.subjectNameTextBox.TextChanged += new System.EventHandler(this.subjectNameTextBox_TextChanged);
+            this.subjectNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.subjectNameTextBox_Validating);
+            // 
+            // Label8
+            // 
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(8, 76);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(66, 28);
+            this.Label8.TabIndex = 16;
+            this.Label8.Text = "Název";
+            // 
+            // Label11
+            // 
+            this.Label11.AutoSize = true;
+            this.Label11.Location = new System.Drawing.Point(310, 215);
+            this.Label11.Name = "Label11";
+            this.Label11.Size = new System.Drawing.Size(127, 28);
+            this.Label11.TabIndex = 22;
+            this.Label11.Text = "Počet kreditů";
+            // 
+            // subjectLanguageComboBox
+            // 
+            this.subjectLanguageComboBox.FormattingEnabled = true;
+            this.subjectLanguageComboBox.Location = new System.Drawing.Point(200, 316);
+            this.subjectLanguageComboBox.Name = "subjectLanguageComboBox";
+            this.subjectLanguageComboBox.Size = new System.Drawing.Size(331, 36);
+            this.subjectLanguageComboBox.TabIndex = 15;
+            // 
+            // Label6
+            // 
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(8, 322);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(58, 28);
+            this.Label6.TabIndex = 6;
+            this.Label6.Text = "Jazyk";
+            // 
+            // formOfCompletionComboBox
+            // 
+            this.formOfCompletionComboBox.FormattingEnabled = true;
+            this.formOfCompletionComboBox.Location = new System.Drawing.Point(200, 274);
+            this.formOfCompletionComboBox.Name = "formOfCompletionComboBox";
+            this.formOfCompletionComboBox.Size = new System.Drawing.Size(331, 36);
+            this.formOfCompletionComboBox.TabIndex = 14;
+            // 
+            // Label5
+            // 
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(6, 280);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(101, 28);
+            this.Label5.TabIndex = 5;
+            this.Label5.Text = "Zakončení";
+            // 
+            // classSizeNumericUpDown
+            // 
+            this.classSizeNumericUpDown.Location = new System.Drawing.Point(456, 133);
+            this.classSizeNumericUpDown.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.classSizeNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.classSizeNumericUpDown.Name = "classSizeNumericUpDown";
+            this.classSizeNumericUpDown.Size = new System.Drawing.Size(75, 34);
+            this.classSizeNumericUpDown.TabIndex = 13;
+            this.classSizeNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lectureHoursNumericUpDown
+            // 
+            this.lectureHoursNumericUpDown.Location = new System.Drawing.Point(200, 153);
+            this.lectureHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.lectureHoursNumericUpDown.Name = "lectureHoursNumericUpDown";
+            this.lectureHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
+            this.lectureHoursNumericUpDown.TabIndex = 10;
+            // 
+            // Label2
+            // 
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(8, 118);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(116, 28);
+            this.Label2.TabIndex = 1;
+            this.Label2.Text = "Počet týdnů";
+            // 
+            // Label7
+            // 
+            this.Label7.AutoSize = true;
+            this.Label7.Location = new System.Drawing.Point(310, 139);
+            this.Label7.Name = "Label7";
+            this.Label7.Size = new System.Drawing.Size(126, 28);
+            this.Label7.TabIndex = 7;
+            this.Label7.Text = "Velikost třídy";
+            // 
+            // seminarHoursNumericUpDown
+            // 
+            this.seminarHoursNumericUpDown.Location = new System.Drawing.Point(200, 233);
+            this.seminarHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.seminarHoursNumericUpDown.Name = "seminarHoursNumericUpDown";
+            this.seminarHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
+            this.seminarHoursNumericUpDown.TabIndex = 12;
+            // 
+            // Label3
+            // 
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(8, 158);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(101, 28);
+            this.Label3.TabIndex = 2;
+            this.Label3.Text = "Přednášky";
+            // 
+            // practiceHoursNumericUpDown
+            // 
+            this.practiceHoursNumericUpDown.Location = new System.Drawing.Point(200, 193);
+            this.practiceHoursNumericUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.practiceHoursNumericUpDown.Name = "practiceHoursNumericUpDown";
+            this.practiceHoursNumericUpDown.Size = new System.Drawing.Size(76, 34);
+            this.practiceHoursNumericUpDown.TabIndex = 11;
+            // 
+            // Label4
+            // 
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(8, 198);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(74, 28);
+            this.Label4.TabIndex = 3;
+            this.Label4.Text = "Cvičení";
+            // 
+            // Label1
+            // 
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(8, 239);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(93, 28);
+            this.Label1.TabIndex = 4;
+            this.Label1.Text = "Semináře";
+            // 
+            // numberOfWeeksNumericUpDown
+            // 
+            this.numberOfWeeksNumericUpDown.Location = new System.Drawing.Point(200, 113);
+            this.numberOfWeeksNumericUpDown.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numberOfWeeksNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberOfWeeksNumericUpDown.Name = "numberOfWeeksNumericUpDown";
+            this.numberOfWeeksNumericUpDown.Size = new System.Drawing.Size(76, 34);
+            this.numberOfWeeksNumericUpDown.TabIndex = 9;
+            this.numberOfWeeksNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // subjectsGroupsTab
+            // 
+            this.subjectsGroupsTab.Location = new System.Drawing.Point(4, 32);
+            this.subjectsGroupsTab.Name = "subjectsGroupsTab";
+            this.subjectsGroupsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.subjectsGroupsTab.Size = new System.Drawing.Size(1224, 427);
+            this.subjectsGroupsTab.TabIndex = 3;
+            this.subjectsGroupsTab.Text = "Propojit předměty a skupiny";
+            this.subjectsGroupsTab.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeftChanged += new System.EventHandler(this.addEmployeeButton_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -885,22 +886,22 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.employeeDataGridView)).EndInit();
             this.groupsTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfStudentsNumericUpDown)).EndInit();
             this.subjectsTab.ResumeLayout(false);
             this.subjectsTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seminarHoursNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.practiceHoursNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lectureHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seminarHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceHoursNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfWeeksNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
