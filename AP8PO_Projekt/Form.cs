@@ -14,6 +14,7 @@ namespace AP8PO_Projekt
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        #region Variables
         string oldFirstName = string.Empty;
         string oldLastName = string.Empty;
         string oldWorkPhone = string.Empty;
@@ -33,20 +34,42 @@ namespace AP8PO_Projekt
         string oldSubjectName = string.Empty;
         bool isSubjectNameShortValid = false;
         bool isSubjectNameValid = false;
+        #endregion
 
-        public enum SemesterEnum { LS, ZS }
-        public enum FormOfStudyEnum { P, K }
-        public enum TypeOfStudyEnum { Bc, Mgr, PhD }
-        public enum LanguageEnum { CZ, EN }
-        public enum FormOfCompletionEnum { Z, ZK, KL }
-        public enum GuarantorInstituteEnum { AUIUI, AUPKS, AUART, AUEM }
+        #region Lists
+        private List<string> groupsColsNames = new List<string>
+        {
+            "Id", "Název", "Zkratka", "Ročník", "Semestr",
+            "Počet studentů", "Forma studia", "Typ studia", "Jazyk"
+        };
+
+        private List<string> employeesColsNames = new List<string>
+        {
+            "Id", "Jméno", "Příjmení", "Pracovní email", "Osobní email",
+            "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek", ""
+        };
+
+        private List<string> subjectsColsNames = new List<string>
+        {
+            "Id", "Název", "Zkratka", "Počet týdnů", "Přednášky", "Cvičení", "Semináře", "Zakončení",
+            "Jazyk", "Velikost třídy", "Kredity", "Garantující ústav", "Jméno garanta", "Příjmení garanta"
+        };
+        #endregion
+
+        #region Database tables
+        private readonly string employeeTable = "EmployeeTable";
+        private readonly string groupTable = "GroupTable";
+        private readonly string subjectTable = "SubjectTable";
+        #endregion
 
         public Form()
         {
             InitializeComponent();
+
             FormBorderStyle = FormBorderStyle.FixedSingle;
             loadNumericUpDown.Increment = 0.05m;
             errorProvider.BlinkRate = 0;
+
             semesterComboBox.DataSource = Enum.GetValues(typeof(SemesterEnum));
             formOfStudyComboBox.DataSource = Enum.GetValues(typeof(FormOfStudyEnum));
             typeOfStudyComboBox.DataSource = Enum.GetValues(typeof(TypeOfStudyEnum));
@@ -54,9 +77,16 @@ namespace AP8PO_Projekt
             formOfCompletionComboBox.DataSource = Enum.GetValues(typeof(FormOfCompletionEnum));
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
 
-            getEmployeesData();
-            getGroupsData();
-            getSubjectsData();
+            populateDataGridView(true, employeeDataGridView, employeesColsNames, employeeTable);
+
+            populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
+
+            populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
+
+            populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
+            populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+            populateComboBox(groupTable, groupsComboBox);
+            populateCheckableListBox(subjectTable, subjectsCheckedListBox);
         }
 
         /// <summary>
@@ -116,7 +146,7 @@ namespace AP8PO_Projekt
                 IsDoctorandCheckbox.Checked = false;
                 loadNumericUpDown.Value = 0.00M;
 
-                getEmployeesData();
+                populateDataGridView(true, employeeDataGridView, employeesColsNames, "EmployeeTable");
             }
             else
             {
@@ -338,7 +368,7 @@ namespace AP8PO_Projekt
                 groupLanguageComboBox.SelectedIndex = 0;
                 semesterComboBox.SelectedIndex = 0;
 
-                getGroupsData();
+                populateDataGridView(true, groupDataGridView, groupsColsNames, "GroupTable");
             }
             else
             {
@@ -453,7 +483,7 @@ namespace AP8PO_Projekt
                 subjectLanguageComboBox.SelectedIndex = 0;
                 formOfCompletionComboBox.SelectedIndex = 0;
 
-                getSubjectsData();
+                populateDataGridView(true, subjectDataGridView, subjectsColsNames, "SubjectTable");
             }
         }
 
@@ -526,64 +556,78 @@ namespace AP8PO_Projekt
         }
 
         /// <summary>
-        /// Get employees data from db and display them in dataGridView
+        /// Fills dataGridView with relevant data from db
         /// </summary>
-        private void getEmployeesData()
+        /// <param name="showDeleteButton">True if you want to have option to delete data from db, otherwise false</param>
+        /// <param name="dataGrid">dataGridView to fill with data</param>
+        /// <param name="columnsNames">List with names of columns in dataGridView</param>
+        /// <param name="dbTableName">Name of relevant table in db (without dbo. !)</param>
+        private void populateDataGridView(bool showDeleteButton, DataGridView dataGrid, List<string> columnsNames, string dbTableName)
         {
-            if (employeeDataGridView.ColumnCount > 0)
+            if (dataGrid.ColumnCount > 0)
             {
-                employeeDataGridView.Columns.RemoveAt(employeeDataGridView.ColumnCount - 1);
+                dataGrid.Columns.RemoveAt(dataGrid.ColumnCount - 1);
             }
 
-            List<string> employeesColsNames = new List<string>
+            using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
-                "Id", "Jméno", "Příjmení", "Pracovní email", "Osobní email",
-                "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek", ""
-            };
+                SqlDataAdapter sqlDataAdapter;
+                DataTable dataTable;
 
-            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
-            {
-                getData.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.EmployeeTable", getData);
-                DataTable dataTable = new DataTable();
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo." + dbTableName, connection);
+                    dataTable = new DataTable();
+                    
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return;
+                }
+                connection.Close();
+
                 sqlDataAdapter.Fill(dataTable);
-                getData.Close();
 
-                employeeDataGridView.AutoGenerateColumns = true;
-                employeeDataGridView.DataSource = dataTable;
-                employeeDataGridView.AutoGenerateColumns = false;
+                dataGrid.AutoGenerateColumns = true;
+                dataGrid.DataSource = dataTable;
+                dataGrid.AutoGenerateColumns = false;
             }
-            employeeDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            employeeDataGridView.ReadOnly = true;
-            employeeDataGridView.AllowUserToAddRows = false;
+
+            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGrid.ReadOnly = true;
+            dataGrid.AllowUserToAddRows = false;
 
             Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-            employeeDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
+            dataGrid.RowsDefaultCellStyle.BackColor = lighterGray;
 
-            employeeDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-            employeeDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dataGrid.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-            var numberOfColumns = employeeDataGridView.ColumnCount;
+            var numberOfColumns = dataGrid.Columns.Count;
             for (int i = 0; i < numberOfColumns; i++)
             {
-                employeeDataGridView.Columns[i].HeaderText = employeesColsNames[i];
+                dataGrid.Columns[i].HeaderText = columnsNames[i];
             }
 
-            employeeDataGridView.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
-            employeeDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            var delButton = new DataGridViewButtonColumn();
-            delButton.Text = "Odstranit";
-            delButton.UseColumnTextForButtonValue = true;
-            delButton.ReadOnly = false;
-            employeeDataGridView.Columns.Add(delButton);
+            if (dbTableName == "EmployeeTable")
+            {
+                dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+            }
+
+            if (showDeleteButton)
+            {
+                var delButton = new DataGridViewButtonColumn();
+                delButton.Text = "Odstranit";
+                delButton.UseColumnTextForButtonValue = true;
+                delButton.ReadOnly = false;
+                dataGrid.Columns.Add(delButton);
+            }
         }
 
-        /// <summary>
-        /// Delete employee and refresh dataGridView
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void employeeDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == employeeDataGridView.ColumnCount - 1)
@@ -607,61 +651,11 @@ namespace AP8PO_Projekt
                             connection.Close();
                         }
                     }
-                    getEmployeesData();
+                    populateDataGridView(true, employeeDataGridView, employeesColsNames, "EmployeeTable");
 
                     MessageBox.Show(string.Format("Zaměstnanec \"{0} {1}\", byl úspěšně odstraněn!", employeeFirstName, employeeSurname), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private void getGroupsData()
-        {
-            if (groupDataGridView.ColumnCount > 0)
-            {
-                groupDataGridView.Columns.RemoveAt(groupDataGridView.ColumnCount - 1);
-            }
-
-            List<string> groupsColsNames = new List<string>
-            {
-                "Id", "Název", "Zkratka", "Ročník", "Semestr",
-                "Počet studentů", "Forma studia", "Typ studia", "Jazyk"
-            };
-
-            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
-            {
-                getData.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.GroupTable", getData);
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                getData.Close();
-
-                groupDataGridView.AutoGenerateColumns = true;
-                groupDataGridView.DataSource = dataTable;
-                groupDataGridView.AutoGenerateColumns = false;
-            }
-            groupDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            groupDataGridView.ReadOnly = true;
-            groupDataGridView.AllowUserToAddRows = false;
-
-            Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-            groupDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
-
-            groupDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-            groupDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-            var numberOfColumns = groupDataGridView.Columns.Count;
-            for (int i = 0; i < numberOfColumns; i++)
-            {
-                groupDataGridView.Columns[i].HeaderText = groupsColsNames[i];
-            }
-
-            groupDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            var delButton = new DataGridViewButtonColumn();
-            delButton.Text = "Odstranit";
-            delButton.UseColumnTextForButtonValue = true;
-            delButton.ReadOnly = false;
-            groupDataGridView.Columns.Add(delButton);
         }
 
         private void groupDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -686,62 +680,11 @@ namespace AP8PO_Projekt
                             connection.Close();
                         }
                     }
-                    getGroupsData();
+                    populateDataGridView(true, groupDataGridView, groupsColsNames, "GroupTable");
 
                     MessageBox.Show(string.Format("Skupina \"{0}\", byla úspěšně odstraněna!", groupName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private void getSubjectsData()
-        {
-            if (subjectDataGridView.ColumnCount > 0)
-            {
-                subjectDataGridView.Columns.RemoveAt(subjectDataGridView.ColumnCount - 1);
-            }
-
-            List<string> subjectsColsNames = new List<string>
-            {
-                "Id", "Název", "Zkratka", "Počet týdnů", "Přednášky", "Cvičení", "Semináře", "Zakončení", 
-                "Jazyk", "Velikost třídy", "Kredity", "Garantující ústav", "Jméno garanta", "Příjmení garanta"
-            };
-
-            using (SqlConnection getData = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
-            {
-                getData.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.SubjectTable", getData);
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                getData.Close();
-
-                subjectDataGridView.AutoGenerateColumns = true;
-                subjectDataGridView.DataSource = dataTable;
-                subjectDataGridView.AutoGenerateColumns = false;
-            }
-
-            subjectDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            subjectDataGridView.ReadOnly = true;
-            subjectDataGridView.AllowUserToAddRows = false;
-
-            Color lighterGray = ControlPaint.Light(Color.LightGray, (float)0.5);
-            subjectDataGridView.RowsDefaultCellStyle.BackColor = lighterGray;
-
-            subjectDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
-            subjectDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-            var numberOfColumns = subjectDataGridView.Columns.Count;
-            for (int i = 0; i < numberOfColumns; i++)
-            {
-                subjectDataGridView.Columns[i].HeaderText = subjectsColsNames[i];
-            }
-
-            subjectDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            var delButton = new DataGridViewButtonColumn();
-            delButton.Text = "Odstranit";
-            delButton.UseColumnTextForButtonValue = true;
-            delButton.ReadOnly = false;
-            subjectDataGridView.Columns.Add(delButton);
         }
 
         private void subjectDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -766,10 +709,70 @@ namespace AP8PO_Projekt
                             connection.Close();
                         }
                     }
-                    getSubjectsData();
+                    populateDataGridView(true, subjectDataGridView, subjectsColsNames, "SubjectTable");
 
                     MessageBox.Show(string.Format("Předmět \"{0}\", byl úspěšně odstraněn!", subjectName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void populateComboBox(string dbTableName, ComboBox comboBox)
+        {
+            DataTable dataTable;
+
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlDataAdapter sqlDataAdapter;
+
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo." + dbTableName, connection);
+                    dataTable = new DataTable();
+
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return;
+                }
+                connection.Close();
+
+                sqlDataAdapter.Fill(dataTable);
+            }
+
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = dataTable.Columns[0].ColumnName;
+            comboBox.DisplayMember = dataTable.Columns[1].ColumnName;
+        }
+
+        private void populateCheckableListBox(string dbTableName, CheckedListBox checkedListBox)
+        {
+            DataTable dataTable;
+
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlDataAdapter sqlDataAdapter;
+
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo." + dbTableName, connection);
+                    dataTable = new DataTable();
+
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    return;
+                }
+                connection.Close();
+
+                sqlDataAdapter.Fill(dataTable);
+
+                ((ListBox)checkedListBox).DataSource = dataTable;
+                ((ListBox)checkedListBox).ValueMember = dataTable.Columns[0].ColumnName;
+                ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[1].ColumnName;
             }
         }
     }
