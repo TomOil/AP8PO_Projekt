@@ -31,15 +31,13 @@ namespace ClassLibrary.DataAccess
 
                 //employeeModel.Id = parameter.Get<int>("@id");
 
-
-
                 return employeeModel;
             }
         }
 
         public Group CreateGroup(Group groupModel)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
                 var parameter = new DynamicParameters();
 
@@ -63,7 +61,7 @@ namespace ClassLibrary.DataAccess
 
         public Subject CreateSubject(Subject subjectModel)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
                 var parameter = new DynamicParameters();
 

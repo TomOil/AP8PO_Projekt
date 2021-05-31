@@ -54,12 +54,18 @@ namespace AP8PO_Projekt
             "Id", "Název", "Zkratka", "Počet týdnů", "Přednášky", "Cvičení", "Semináře", "Zakončení",
             "Jazyk", "Velikost třídy", "Kredity", "Garantující ústav", "Jméno garanta", "Příjmení garanta"
         };
+
+        private List<string> groupSubjectsColsNames = new List<string>
+        {
+            "Id skupiny", "Id předmětu"
+        };
         #endregion
 
         #region Database tables
         private readonly string employeeTable = "EmployeeTable";
         private readonly string groupTable = "GroupTable";
         private readonly string subjectTable = "SubjectTable";
+        private readonly string groupSubjectTable = "GroupSubject";
         #endregion
 
         public Form()
@@ -87,6 +93,7 @@ namespace AP8PO_Projekt
             populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
             populateComboBox(groupTable, groupsComboBox);
             populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+            populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
         }
 
         /// <summary>
@@ -135,7 +142,7 @@ namespace AP8PO_Projekt
 
                 GlobalConfig.Connection.CreateEmployee(employeeModel);
 
-                MessageBox.Show("Zaměstnanec se jménem \"" + String.Join(" ", employeeModel.FirstName, employeeModel.LastName) + "\" byl úspěšně přidán do databáze.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Zaměstnanec se jménem \"" + string.Join(" ", employeeModel.FirstName, employeeModel.LastName) + "\" byl úspěšně přidán do databáze.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 firstNameTextBox.Text = "";
                 lastNameTextBox.Text = "";
@@ -773,6 +780,46 @@ namespace AP8PO_Projekt
                 ((ListBox)checkedListBox).DataSource = dataTable;
                 ((ListBox)checkedListBox).ValueMember = dataTable.Columns[0].ColumnName;
                 ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[1].ColumnName;
+            }
+        }
+
+        private void groupSubjectsButton_Click(object sender, EventArgs e)
+        {
+            string selectedGroupId = groupsComboBox.SelectedValue.ToString();
+            int succesful = 0;
+
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                foreach (object checkedItem in subjectsCheckedListBox.CheckedItems)
+                {
+                    DataRowView dataRowView = (DataRowView)checkedItem;
+                    string checkedItemValue = dataRowView[0].ToString();
+
+                    using (var command = new SqlCommand())
+                    {
+                        try
+                        {
+                            connection.Open();
+
+                            command.Connection = connection;
+                            command.CommandText = @"INSERT INTO dbo.GroupSubject (groupId, subjectId) VALUES (@groupId, @subjectId)";
+                            command.Parameters.AddWithValue("@groupId", Convert.ToInt32(selectedGroupId));
+                            command.Parameters.AddWithValue("@subjectId", Convert.ToInt32(checkedItemValue));
+
+                            succesful = command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                        catch (SqlException exception)
+                        {
+                            Console.WriteLine(exception.ToString());
+                        }
+                    }
+                }
+            }
+
+            if (succesful > 0)
+            {
+                MessageBox.Show(string.Format("Předmět(y) byly úspěšně přiřazeny ke skupině s ID: {0}.", selectedGroupId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
