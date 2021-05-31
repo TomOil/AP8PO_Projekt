@@ -84,16 +84,30 @@ namespace AP8PO_Projekt
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
 
             populateDataGridView(true, employeeDataGridView, employeesColsNames, employeeTable);
+        }
 
-            populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
-
-            populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
-
-            populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
-            populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
-            populateComboBox(groupTable, groupsComboBox);
-            populateCheckableListBox(subjectTable, subjectsCheckedListBox);
-            populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabs.SelectedTab == subjectsTab)
+            {
+                populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
+            }
+            else if (tabs.SelectedTab == groupsTab)
+            {
+                populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
+            }
+            else if (tabs.SelectedTab == employeesTab)
+            {
+                populateDataGridView(true, employeeDataGridView, employeesColsNames, employeeTable);
+            }
+            else if (tabs.SelectedTab == subjectsGroupsTab)
+            {
+                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+                populateComboBox(groupTable, groupsComboBox);
+                populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+            }
         }
 
         /// <summary>
@@ -678,16 +692,25 @@ namespace AP8PO_Projekt
                 {
                     using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
                     {
-                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.GroupTable WHERE id = @GroupId", connection))
+                        connection.Open();
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.GroupSubject WHERE groupId = @groupId", connection))
                         {
                             command.CommandType = CommandType.Text;
-                            command.Parameters.AddWithValue("@GroupId", groupId);
-                            connection.Open();
+                            command.Parameters.AddWithValue("@groupId", groupId);
+
                             command.ExecuteNonQuery();
-                            connection.Close();
                         }
+
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.GroupTable WHERE id = @groupId", connection))
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.AddWithValue("@groupId", groupId);
+                            
+                            command.ExecuteNonQuery();
+                        }
+                        connection.Close();
                     }
-                    populateDataGridView(true, groupDataGridView, groupsColsNames, "GroupTable");
+                    populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
 
                     MessageBox.Show(string.Format("Skupina \"{0}\", byla úspěšně odstraněna!", groupName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -707,16 +730,25 @@ namespace AP8PO_Projekt
                 {
                     using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
                     {
+                        connection.Open();
+                        using (SqlCommand command = new SqlCommand("DELETE FROM dbo.GroupSubject WHERE subjectId = @subjectId", connection))
+                        {
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.AddWithValue("@subjectId", subjectId);
+
+                            command.ExecuteNonQuery();
+                        }
+
                         using (SqlCommand command = new SqlCommand("DELETE FROM dbo.SubjectTable WHERE id = @SubjectId", connection))
                         {
                             command.CommandType = CommandType.Text;
                             command.Parameters.AddWithValue("@SubjectId", subjectId);
-                            connection.Open();
+                            
                             command.ExecuteNonQuery();
-                            connection.Close();
                         }
+                        connection.Close();
                     }
-                    populateDataGridView(true, subjectDataGridView, subjectsColsNames, "SubjectTable");
+                    populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
 
                     MessageBox.Show(string.Format("Předmět \"{0}\", byl úspěšně odstraněn!", subjectName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -819,6 +851,12 @@ namespace AP8PO_Projekt
 
             if (succesful > 0)
             {
+                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+                populateComboBox(groupTable, groupsComboBox);
+                populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+
                 MessageBox.Show(string.Format("Předmět(y) byly úspěšně přiřazeny ke skupině s ID: {0}.", selectedGroupId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

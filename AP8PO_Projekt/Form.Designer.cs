@@ -161,6 +161,7 @@ namespace AP8PO_Projekt
             this.tabs.SelectedIndex = 0;
             this.tabs.Size = new System.Drawing.Size(1232, 753);
             this.tabs.TabIndex = 1;
+            this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             // 
             // subjectsTab
             // 
