@@ -25,6 +25,8 @@ namespace ClassLibrary.DataAccess
                 parameter.Add("@personalPhoneNumber", employeeModel.PersonalPhoneNumber);
                 parameter.Add("@isDoctoralStudent", employeeModel.DoctoralStudent);
                 parameter.Add("@employeeLoad", employeeModel.EmployeeLoad);
+                parameter.Add("@pointsAll", employeeModel.pointsAll);
+                parameter.Add("@pointsCZ", employeeModel.pointsCZ);
                 parameter.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spEmployeeTable_Insert", parameter, commandType: CommandType.StoredProcedure);

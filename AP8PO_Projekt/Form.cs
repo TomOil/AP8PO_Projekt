@@ -46,7 +46,8 @@ namespace AP8PO_Projekt
         private List<string> employeesColsNames = new List<string>
         {
             "Id", "Jméno", "Příjmení", "Pracovní email", "Osobní email",
-            "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek", ""
+            "Pracovní tel. číslo", "Osobní tel. číslo", "Je doktorand?", "Úvazek", 
+            "Body (celkem)", "Body (jen CZ)", ""
         };
 
         private List<string> subjectsColsNames = new List<string>
@@ -55,9 +56,20 @@ namespace AP8PO_Projekt
             "Jazyk", "Velikost třídy", "Kredity", "Garantující ústav", "Jméno garanta", "Příjmení garanta"
         };
 
+        private List<string> scheduleActionsColsNames = new List<string>
+        {
+            "Id", "Název", "Id zaměstnance", "Id předmětu", "Typ", "Počet studentů", "Počet hodin", "Počet týdnů",
+            "Jazyk", "Body"
+        };
+
         private List<string> groupSubjectsColsNames = new List<string>
         {
             "Id skupiny", "Id předmětu"
+        };
+
+        private List<string> employeesScheduleActionsColsNames = new List<string>
+        {
+            "Id zaměstnance", "Id štítku"
         };
         #endregion
 
@@ -66,6 +78,8 @@ namespace AP8PO_Projekt
         private readonly string groupTable = "GroupTable";
         private readonly string subjectTable = "SubjectTable";
         private readonly string groupSubjectTable = "GroupSubject";
+        private readonly string scheduleActionsTable = "ScheduleActionTable";
+        private readonly string employeeScheduleActionTable = "EmployeeScheduleAction";
         #endregion
 
         public Form()
@@ -83,7 +97,7 @@ namespace AP8PO_Projekt
             formOfCompletionComboBox.DataSource = Enum.GetValues(typeof(FormOfCompletionEnum));
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
 
-            populateDataGridView(true, employeeDataGridView, employeesColsNames, employeeTable);
+            populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
         }
 
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,8 +119,16 @@ namespace AP8PO_Projekt
                 populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
                 populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
                 populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
-                populateComboBox(groupTable, groupsComboBox);
+                populateComboBox(groupTable, groupsComboBox, false);
                 populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+            }
+            else if (tabs.SelectedTab == scheduleActionsTab)
+            {
+                populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
+                populateComboBox(employeeTable, employeeComboBox, true);
+                populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+                populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+                populateDataGridView(false, employeesDetailDataGridView, employeesColsNames, employeeTable);
             }
         }
 
@@ -616,7 +638,8 @@ namespace AP8PO_Projekt
                 dataGrid.AutoGenerateColumns = false;
             }
 
-            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dataGrid.ReadOnly = true;
             dataGrid.AllowUserToAddRows = false;
 
@@ -636,7 +659,7 @@ namespace AP8PO_Projekt
 
             if (dbTableName == "EmployeeTable")
             {
-                dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+                dataGrid.Columns[numberOfColumns - 3].DefaultCellStyle.Format = "N2";
             }
 
             if (showDeleteButton)
@@ -755,7 +778,7 @@ namespace AP8PO_Projekt
             }
         }
 
-        private void populateComboBox(string dbTableName, ComboBox comboBox)
+        private void populateComboBox(string dbTableName, ComboBox comboBox, bool isScheduleAction)
         {
             DataTable dataTable;
 
@@ -782,7 +805,22 @@ namespace AP8PO_Projekt
 
             comboBox.DataSource = dataTable;
             comboBox.ValueMember = dataTable.Columns[0].ColumnName;
-            comboBox.DisplayMember = dataTable.Columns[1].ColumnName;
+
+            if (isScheduleAction)
+            {
+                dataTable.Columns.Add("FullName", typeof(string));
+
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    dataRow["FullName"] = dataRow[1].ToString() + " " + dataRow[2].ToString();
+                }
+
+                comboBox.DisplayMember = dataTable.Columns["FullName"].ColumnName;
+            }
+            else
+            {
+                comboBox.DisplayMember = dataTable.Columns[1].ColumnName;
+            }
         }
 
         private void populateCheckableListBox(string dbTableName, CheckedListBox checkedListBox)
@@ -854,10 +892,23 @@ namespace AP8PO_Projekt
                 populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
                 populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
                 populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
-                populateComboBox(groupTable, groupsComboBox);
+                populateComboBox(groupTable, groupsComboBox, false);
                 populateCheckableListBox(subjectTable, subjectsCheckedListBox);
 
                 MessageBox.Show(string.Format("Předmět(y) byly úspěšně přiřazeny ke skupině s ID: {0}.", selectedGroupId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void IsDoctorandCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IsDoctorandCheckbox.Checked)
+            {
+                loadNumericUpDown.Enabled = false;
+                loadNumericUpDown.Value = 0.00M;
+            }
+            else
+            {
+                loadNumericUpDown.Enabled = true;
             }
         }
     }

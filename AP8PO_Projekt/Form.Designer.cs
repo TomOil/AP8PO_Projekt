@@ -99,7 +99,7 @@ namespace AP8PO_Projekt
             this.IsDoctorandCheckbox = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.harness = new System.Windows.Forms.Label();
+            this.loadLabel = new System.Windows.Forms.Label();
             this.personalPhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.first_name = new System.Windows.Forms.Label();
@@ -110,7 +110,20 @@ namespace AP8PO_Projekt
             this.work_email = new System.Windows.Forms.Label();
             this.personalEmailTextBox = new System.Windows.Forms.TextBox();
             this.private_email = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.scheduleActionsTab = new System.Windows.Forms.TabPage();
+            this.deleteAllScheduleActionsButton = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.generatedScheduleActionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.employeeComboBox = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.employeesDetailDataGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.assignedScheduleActionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.asignButton = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.scheduleActionsCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.generateScheduleActionsButton = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabs.SuspendLayout();
             this.subjectsTab.SuspendLayout();
@@ -143,6 +156,15 @@ namespace AP8PO_Projekt
             ((System.ComponentModel.ISupportInitialize)(this.employeeDataGridView)).BeginInit();
             this.employeeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).BeginInit();
+            this.scheduleActionsTab.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generatedScheduleActionsDataGridView)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesDetailDataGridView)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assignedScheduleActionsDataGridView)).BeginInit();
+            this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,7 +176,7 @@ namespace AP8PO_Projekt
             this.tabs.Controls.Add(this.groupsTab);
             this.tabs.Controls.Add(this.subjectsGroupsTab);
             this.tabs.Controls.Add(this.employeesTab);
-            this.tabs.Controls.Add(this.tabPage1);
+            this.tabs.Controls.Add(this.scheduleActionsTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
@@ -721,7 +743,7 @@ namespace AP8PO_Projekt
             this.subjectsGroupsTab.Padding = new System.Windows.Forms.Padding(3);
             this.subjectsGroupsTab.Size = new System.Drawing.Size(1224, 717);
             this.subjectsGroupsTab.TabIndex = 3;
-            this.subjectsGroupsTab.Text = "Přiřadit předměty";
+            this.subjectsGroupsTab.Text = "Předměty/Skupiny";
             this.subjectsGroupsTab.UseVisualStyleBackColor = true;
             // 
             // subjectsGroupsGroupBox
@@ -733,7 +755,7 @@ namespace AP8PO_Projekt
             this.subjectsGroupsGroupBox.Size = new System.Drawing.Size(349, 284);
             this.subjectsGroupsGroupBox.TabIndex = 5;
             this.subjectsGroupsGroupBox.TabStop = false;
-            this.subjectsGroupsGroupBox.Text = "Přiřazené předměty ke skupinám";
+            this.subjectsGroupsGroupBox.Text = "Předměty přiřazené ke skupinám";
             // 
             // subjectsGroupsDataGridView
             // 
@@ -877,7 +899,7 @@ namespace AP8PO_Projekt
             this.employeeGroupBox.Controls.Add(this.IsDoctorandCheckbox);
             this.employeeGroupBox.Controls.Add(this.label21);
             this.employeeGroupBox.Controls.Add(this.firstNameTextBox);
-            this.employeeGroupBox.Controls.Add(this.harness);
+            this.employeeGroupBox.Controls.Add(this.loadLabel);
             this.employeeGroupBox.Controls.Add(this.personalPhoneNumberTextBox);
             this.employeeGroupBox.Controls.Add(this.label20);
             this.employeeGroupBox.Controls.Add(this.first_name);
@@ -909,7 +931,7 @@ namespace AP8PO_Projekt
             // loadNumericUpDown
             // 
             this.loadNumericUpDown.DecimalPlaces = 2;
-            this.loadNumericUpDown.Location = new System.Drawing.Point(190, 153);
+            this.loadNumericUpDown.Location = new System.Drawing.Point(190, 191);
             this.loadNumericUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -922,12 +944,14 @@ namespace AP8PO_Projekt
             // IsDoctorandCheckbox
             // 
             this.IsDoctorandCheckbox.AutoSize = true;
-            this.IsDoctorandCheckbox.Location = new System.Drawing.Point(15, 197);
+            this.IsDoctorandCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.IsDoctorandCheckbox.Location = new System.Drawing.Point(10, 153);
             this.IsDoctorandCheckbox.Name = "IsDoctorandCheckbox";
-            this.IsDoctorandCheckbox.Size = new System.Drawing.Size(158, 32);
+            this.IsDoctorandCheckbox.Size = new System.Drawing.Size(198, 32);
             this.IsDoctorandCheckbox.TabIndex = 11;
-            this.IsDoctorandCheckbox.Text = "Je doktorand?";
+            this.IsDoctorandCheckbox.Text = "Je doktorand?        ";
             this.IsDoctorandCheckbox.UseVisualStyleBackColor = true;
+            this.IsDoctorandCheckbox.CheckedChanged += new System.EventHandler(this.IsDoctorandCheckbox_CheckedChanged);
             // 
             // label21
             // 
@@ -947,14 +971,14 @@ namespace AP8PO_Projekt
             this.firstNameTextBox.TextChanged += new System.EventHandler(this.firstNameTextBox_TextChanged);
             this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.firstNameTextBox_Validating);
             // 
-            // harness
+            // loadLabel
             // 
-            this.harness.AutoSize = true;
-            this.harness.Location = new System.Drawing.Point(11, 156);
-            this.harness.Name = "harness";
-            this.harness.Size = new System.Drawing.Size(75, 28);
-            this.harness.TabIndex = 6;
-            this.harness.Text = "Úvazek";
+            this.loadLabel.AutoSize = true;
+            this.loadLabel.Location = new System.Drawing.Point(11, 194);
+            this.loadLabel.Name = "loadLabel";
+            this.loadLabel.Size = new System.Drawing.Size(75, 28);
+            this.loadLabel.TabIndex = 6;
+            this.loadLabel.Text = "Úvazek";
             // 
             // personalPhoneNumberTextBox
             // 
@@ -967,7 +991,7 @@ namespace AP8PO_Projekt
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(11, 113);
+            this.label20.Location = new System.Drawing.Point(10, 104);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(162, 28);
             this.label20.TabIndex = 15;
@@ -1043,15 +1067,154 @@ namespace AP8PO_Projekt
             this.private_email.TabIndex = 4;
             this.private_email.Text = "Soukromý email";
             // 
-            // tabPage1
+            // scheduleActionsTab
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 32);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1224, 717);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Přiřadit štítky";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.scheduleActionsTab.Controls.Add(this.deleteAllScheduleActionsButton);
+            this.scheduleActionsTab.Controls.Add(this.groupBox10);
+            this.scheduleActionsTab.Controls.Add(this.groupBox6);
+            this.scheduleActionsTab.Controls.Add(this.groupBox8);
+            this.scheduleActionsTab.Controls.Add(this.groupBox9);
+            this.scheduleActionsTab.Controls.Add(this.asignButton);
+            this.scheduleActionsTab.Controls.Add(this.groupBox7);
+            this.scheduleActionsTab.Controls.Add(this.generateScheduleActionsButton);
+            this.scheduleActionsTab.Location = new System.Drawing.Point(4, 32);
+            this.scheduleActionsTab.Name = "scheduleActionsTab";
+            this.scheduleActionsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.scheduleActionsTab.Size = new System.Drawing.Size(1224, 717);
+            this.scheduleActionsTab.TabIndex = 4;
+            this.scheduleActionsTab.Text = "Štítky";
+            this.scheduleActionsTab.UseVisualStyleBackColor = true;
+            // 
+            // deleteAllScheduleActionsButton
+            // 
+            this.deleteAllScheduleActionsButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.deleteAllScheduleActionsButton.Location = new System.Drawing.Point(888, 3);
+            this.deleteAllScheduleActionsButton.Name = "deleteAllScheduleActionsButton";
+            this.deleteAllScheduleActionsButton.Size = new System.Drawing.Size(321, 44);
+            this.deleteAllScheduleActionsButton.TabIndex = 9;
+            this.deleteAllScheduleActionsButton.Text = "Odstranit všechny štítky";
+            this.deleteAllScheduleActionsButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.generatedScheduleActionsDataGridView);
+            this.groupBox10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox10.Location = new System.Drawing.Point(336, 53);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(874, 364);
+            this.groupBox10.TabIndex = 8;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Vygenerované štítky";
+            // 
+            // generatedScheduleActionsDataGridView
+            // 
+            this.generatedScheduleActionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.generatedScheduleActionsDataGridView.Location = new System.Drawing.Point(6, 33);
+            this.generatedScheduleActionsDataGridView.Name = "generatedScheduleActionsDataGridView";
+            this.generatedScheduleActionsDataGridView.RowHeadersWidth = 51;
+            this.generatedScheduleActionsDataGridView.RowTemplate.Height = 29;
+            this.generatedScheduleActionsDataGridView.Size = new System.Drawing.Size(862, 323);
+            this.generatedScheduleActionsDataGridView.TabIndex = 0;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.employeeComboBox);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox6.Location = new System.Drawing.Point(9, 287);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(321, 80);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Vyberte zaměstnance";
+            // 
+            // employeeComboBox
+            // 
+            this.employeeComboBox.FormattingEnabled = true;
+            this.employeeComboBox.Location = new System.Drawing.Point(7, 33);
+            this.employeeComboBox.Name = "employeeComboBox";
+            this.employeeComboBox.Size = new System.Drawing.Size(308, 36);
+            this.employeeComboBox.TabIndex = 0;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.employeesDetailDataGridView);
+            this.groupBox8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox8.Location = new System.Drawing.Point(336, 423);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(874, 286);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Detail zaměstnanců";
+            // 
+            // employeesDetailDataGridView
+            // 
+            this.employeesDetailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.employeesDetailDataGridView.Location = new System.Drawing.Point(6, 33);
+            this.employeesDetailDataGridView.Name = "employeesDetailDataGridView";
+            this.employeesDetailDataGridView.RowHeadersWidth = 51;
+            this.employeesDetailDataGridView.RowTemplate.Height = 29;
+            this.employeesDetailDataGridView.Size = new System.Drawing.Size(862, 247);
+            this.employeesDetailDataGridView.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.assignedScheduleActionsDataGridView);
+            this.groupBox9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox9.Location = new System.Drawing.Point(9, 423);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(321, 286);
+            this.groupBox9.TabIndex = 6;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Přiřazené štítky";
+            // 
+            // assignedScheduleActionsDataGridView
+            // 
+            this.assignedScheduleActionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.assignedScheduleActionsDataGridView.Location = new System.Drawing.Point(7, 33);
+            this.assignedScheduleActionsDataGridView.Name = "assignedScheduleActionsDataGridView";
+            this.assignedScheduleActionsDataGridView.RowHeadersWidth = 51;
+            this.assignedScheduleActionsDataGridView.RowTemplate.Height = 29;
+            this.assignedScheduleActionsDataGridView.Size = new System.Drawing.Size(308, 247);
+            this.assignedScheduleActionsDataGridView.TabIndex = 4;
+            // 
+            // asignButton
+            // 
+            this.asignButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.asignButton.Location = new System.Drawing.Point(8, 372);
+            this.asignButton.Name = "asignButton";
+            this.asignButton.Size = new System.Drawing.Size(322, 45);
+            this.asignButton.TabIndex = 3;
+            this.asignButton.Text = "Přiřadit";
+            this.asignButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.scheduleActionsCheckedListBox);
+            this.groupBox7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox7.Location = new System.Drawing.Point(9, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(321, 278);
+            this.groupBox7.TabIndex = 2;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Vyberte štítek(y)";
+            // 
+            // scheduleActionsCheckedListBox
+            // 
+            this.scheduleActionsCheckedListBox.FormattingEnabled = true;
+            this.scheduleActionsCheckedListBox.Location = new System.Drawing.Point(7, 34);
+            this.scheduleActionsCheckedListBox.Name = "scheduleActionsCheckedListBox";
+            this.scheduleActionsCheckedListBox.Size = new System.Drawing.Size(308, 236);
+            this.scheduleActionsCheckedListBox.TabIndex = 0;
+            // 
+            // generateScheduleActionsButton
+            // 
+            this.generateScheduleActionsButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.generateScheduleActionsButton.Location = new System.Drawing.Point(336, 3);
+            this.generateScheduleActionsButton.Name = "generateScheduleActionsButton";
+            this.generateScheduleActionsButton.Size = new System.Drawing.Size(546, 44);
+            this.generateScheduleActionsButton.TabIndex = 0;
+            this.generateScheduleActionsButton.Text = "Generovat štítky";
+            this.generateScheduleActionsButton.UseVisualStyleBackColor = true;
             // 
             // errorProvider
             // 
@@ -1066,7 +1229,7 @@ namespace AP8PO_Projekt
             this.Controls.Add(this.tabs);
             this.MaximumSize = new System.Drawing.Size(5000, 5000);
             this.Name = "Form";
-            this.Text = "AP8PO_Project";
+            this.Text = "Je doktorand?        ";
             this.tabs.ResumeLayout(false);
             this.subjectsTab.ResumeLayout(false);
             this.subjectsTab.PerformLayout();
@@ -1102,6 +1265,15 @@ namespace AP8PO_Projekt
             this.employeeGroupBox.ResumeLayout(false);
             this.employeeGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadNumericUpDown)).EndInit();
+            this.scheduleActionsTab.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.generatedScheduleActionsDataGridView)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.employeesDetailDataGridView)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.assignedScheduleActionsDataGridView)).EndInit();
+            this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -1117,7 +1289,7 @@ namespace AP8PO_Projekt
         internal System.Windows.Forms.TextBox workEmailTextBox;
         internal System.Windows.Forms.TextBox lastNameTextBox;
         internal System.Windows.Forms.Button addEmployeeButton;
-        internal System.Windows.Forms.Label harness;
+        internal System.Windows.Forms.Label loadLabel;
         internal System.Windows.Forms.Label private_email;
         internal System.Windows.Forms.Label work_email;
         internal System.Windows.Forms.Label last_name;
@@ -1179,7 +1351,7 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.GroupBox employeeGroupBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage scheduleActionsTab;
         private System.Windows.Forms.GroupBox groupsGroupBox;
         private System.Windows.Forms.ComboBox groupsComboBox;
         private System.Windows.Forms.GroupBox subjectsDetailGroupBox;
@@ -1194,6 +1366,19 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.DataGridView generatedScheduleActionsDataGridView;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.DataGridView employeesDetailDataGridView;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.DataGridView assignedScheduleActionsDataGridView;
+        private System.Windows.Forms.Button asignButton;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckedListBox scheduleActionsCheckedListBox;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.ComboBox employeeComboBox;
+        private System.Windows.Forms.Button generateScheduleActionsButton;
+        private System.Windows.Forms.Button deleteAllScheduleActionsButton;
     }
 }
 

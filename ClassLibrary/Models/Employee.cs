@@ -47,5 +47,13 @@ namespace AP8PO_Projekt.Models
         /// List rozvrhových akci toho určitého zaměstnance
         /// </summary>
         public List<ScheduleAction> ScheduleActionList { get; set; }
+        /// <summary>
+        /// Všechny úvazkové body zaměstnance
+        /// </summary>
+        public float pointsAll { get; set; }
+        /// <summary>
+        /// Úvazkové body zaměstnance bez předmětů v EN
+        /// </summary>
+        public float pointsCZ { get; set; }
     }
 }
