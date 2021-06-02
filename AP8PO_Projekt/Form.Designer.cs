@@ -406,7 +406,7 @@ namespace AP8PO_Projekt
             // Label2
             // 
             this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(8, 78);
+            this.Label2.Location = new System.Drawing.Point(8, 75);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(116, 28);
             this.Label2.TabIndex = 1;
@@ -956,7 +956,7 @@ namespace AP8PO_Projekt
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(611, 116);
+            this.label21.Location = new System.Drawing.Point(611, 119);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(177, 28);
             this.label21.TabIndex = 16;
@@ -991,7 +991,7 @@ namespace AP8PO_Projekt
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(10, 104);
+            this.label20.Location = new System.Drawing.Point(10, 116);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(162, 28);
             this.label20.TabIndex = 15;
@@ -1000,7 +1000,7 @@ namespace AP8PO_Projekt
             // first_name
             // 
             this.first_name.AutoSize = true;
-            this.first_name.Location = new System.Drawing.Point(10, 36);
+            this.first_name.Location = new System.Drawing.Point(11, 36);
             this.first_name.Name = "first_name";
             this.first_name.Size = new System.Drawing.Size(69, 28);
             this.first_name.TabIndex = 1;
@@ -1027,7 +1027,7 @@ namespace AP8PO_Projekt
             // last_name
             // 
             this.last_name.AutoSize = true;
-            this.last_name.Location = new System.Drawing.Point(609, 36);
+            this.last_name.Location = new System.Drawing.Point(611, 39);
             this.last_name.Name = "last_name";
             this.last_name.Size = new System.Drawing.Size(83, 28);
             this.last_name.TabIndex = 2;
@@ -1094,6 +1094,7 @@ namespace AP8PO_Projekt
             this.deleteAllScheduleActionsButton.TabIndex = 9;
             this.deleteAllScheduleActionsButton.Text = "Odstranit všechny štítky";
             this.deleteAllScheduleActionsButton.UseVisualStyleBackColor = true;
+            this.deleteAllScheduleActionsButton.Click += new System.EventHandler(this.deleteAllScheduleActionsButton_Click);
             // 
             // groupBox10
             // 
@@ -1215,6 +1216,7 @@ namespace AP8PO_Projekt
             this.generateScheduleActionsButton.TabIndex = 0;
             this.generateScheduleActionsButton.Text = "Generovat štítky";
             this.generateScheduleActionsButton.UseVisualStyleBackColor = true;
+            this.generateScheduleActionsButton.Click += new System.EventHandler(this.generateScheduleActionsButton_Click);
             // 
             // errorProvider
             // 
@@ -1229,7 +1231,7 @@ namespace AP8PO_Projekt
             this.Controls.Add(this.tabs);
             this.MaximumSize = new System.Drawing.Size(5000, 5000);
             this.Name = "Form";
-            this.Text = "Je doktorand?        ";
+            this.Text = "Secretary ";
             this.tabs.ResumeLayout(false);
             this.subjectsTab.ResumeLayout(false);
             this.subjectsTab.PerformLayout();

@@ -220,7 +220,7 @@ namespace AP8PO_Projekt
 
         private void firstNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (firstNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            if (firstNameTextBox.Text.All(chr => char.IsLetter(chr) || chr == ' '))
             {
                 oldFirstName = firstNameTextBox.Text;
                 firstNameTextBox.Text = oldFirstName;
@@ -254,7 +254,7 @@ namespace AP8PO_Projekt
 
         private void lastNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (lastNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            if (lastNameTextBox.Text.All(chr => char.IsLetter(chr) || chr == ' '))
             {
                 oldLastName = lastNameTextBox.Text;
                 lastNameTextBox.Text = oldLastName;
@@ -473,7 +473,7 @@ namespace AP8PO_Projekt
 
         private void groupNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (groupNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            if (groupNameTextBox.Text.All(chr => char.IsLetter(chr) || chr == ' '))
             {
                 oldGroupName = groupNameTextBox.Text;
                 groupNameTextBox.Text = oldGroupName;
@@ -581,7 +581,7 @@ namespace AP8PO_Projekt
 
         private void subjectNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (subjectNameTextBox.Text.All(chr => char.IsLetter(chr)))
+            if (subjectNameTextBox.Text.All(chr => char.IsLetter(chr) || chr == ' '))
             {
                 oldSubjectName = subjectNameTextBox.Text;
                 subjectNameTextBox.Text = oldSubjectName;
@@ -696,8 +696,6 @@ namespace AP8PO_Projekt
                         }
                     }
                     populateDataGridView(true, employeeDataGridView, employeesColsNames, "EmployeeTable");
-
-                    MessageBox.Show(string.Format("Zaměstnanec \"{0} {1}\", byl úspěšně odstraněn!", employeeFirstName, employeeSurname), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -734,8 +732,6 @@ namespace AP8PO_Projekt
                         connection.Close();
                     }
                     populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
-
-                    MessageBox.Show(string.Format("Skupina \"{0}\", byla úspěšně odstraněna!", groupName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -772,8 +768,6 @@ namespace AP8PO_Projekt
                         connection.Close();
                     }
                     populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
-
-                    MessageBox.Show(string.Format("Předmět \"{0}\", byl úspěšně odstraněn!", subjectName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -910,6 +904,35 @@ namespace AP8PO_Projekt
             {
                 loadNumericUpDown.Enabled = true;
             }
+        }
+
+        private void deleteAllScheduleActionsButton_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("DELETE FROM dbo.EmployeeScheduleAction", connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }
+
+
+                using (SqlCommand command = new SqlCommand("DELETE FROM dbo.ScheduleActionTable", connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+            populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+            populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+
+        }
+
+        private void generateScheduleActionsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
