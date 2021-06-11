@@ -800,21 +800,24 @@ namespace AP8PO_Projekt
             comboBox.DataSource = dataTable;
             comboBox.ValueMember = dataTable.Columns[0].ColumnName;
 
-            if (isScheduleAction)
-            {
-                dataTable.Columns.Add("FullName", typeof(string));
+            dataTable.Columns.Add("Combined", typeof(string));
 
+            if (dbTableName == "EmployeeTable")
+            {
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
-                    dataRow["FullName"] = dataRow[1].ToString() + " " + dataRow[2].ToString();
+                    dataRow["Combined"] = dataRow[1].ToString() + " " + dataRow[2].ToString();
                 }
-
-                comboBox.DisplayMember = dataTable.Columns["FullName"].ColumnName;
             }
-            else
+            else if (dbTableName == "GroupTable")
             {
-                comboBox.DisplayMember = dataTable.Columns[1].ColumnName;
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    dataRow["Combined"] = dataRow[0].ToString() + " - " + dataRow[1].ToString();
+                }
             }
+                
+            comboBox.DisplayMember = dataTable.Columns["Combined"].ColumnName;
         }
 
         private void populateCheckableListBox(string dbTableName, CheckedListBox checkedListBox)

@@ -685,7 +685,7 @@ namespace AP8PO_Projekt
             // 
             this.numberOfStudentsNumericUpDown.Location = new System.Drawing.Point(198, 112);
             this.numberOfStudentsNumericUpDown.Maximum = new decimal(new int[] {
-            24,
+            1000,
             0,
             0,
             0});
