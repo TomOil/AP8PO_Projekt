@@ -34,6 +34,8 @@ namespace AP8PO_Projekt
         string oldSubjectName = string.Empty;
         bool isSubjectNameShortValid = false;
         bool isSubjectNameValid = false;
+
+        DataTable scheduleActionsDataTable;
         #endregion
 
         #region Lists
@@ -58,7 +60,7 @@ namespace AP8PO_Projekt
 
         private List<string> scheduleActionsColsNames = new List<string>
         {
-            "Id", "Název", "Id zaměstnance", "Id předmětu", "Typ", "Počet studentů", "Počet hodin", "Počet týdnů",
+            "Id", "Název", "Zkratka skupiny", "Id předmětu", "Typ", "Počet studentů", "Počet hodin", "Počet týdnů",
             "Jazyk", "Body"
         };
 
@@ -662,6 +664,11 @@ namespace AP8PO_Projekt
                 dataGrid.Columns[numberOfColumns - 3].DefaultCellStyle.Format = "N2";
             }
 
+            if (dbTableName == "ScheduleActionTable")
+            {
+                dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+            }
+
             if (showDeleteButton)
             {
                 var delButton = new DataGridViewButtonColumn();
@@ -833,7 +840,6 @@ namespace AP8PO_Projekt
                 {
                     sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo." + dbTableName, connection);
                     dataTable = new DataTable();
-
                 }
                 catch (SqlException e)
                 {
@@ -846,7 +852,23 @@ namespace AP8PO_Projekt
 
                 ((ListBox)checkedListBox).DataSource = dataTable;
                 ((ListBox)checkedListBox).ValueMember = dataTable.Columns[0].ColumnName;
-                ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[1].ColumnName;
+
+                if (dbTableName == "ScheduleActionTable")
+                {
+                    //List<string> scheduleActions = new List<string>();
+                    //foreach (DataRow dataRow in dataTable.Rows)
+                    //{
+                    //    scheduleActions.Add(dataRow["id"].ToString() + " | " + dataRow["title"].ToString());
+                    //}
+                    //((ListBox)checkedListBox).DataSource = scheduleActions;
+                    //((ListBox)checkedListBox).ValueMember = dataTable.Columns[0].ColumnName;
+
+                    ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[0].ColumnName;
+                }
+                else
+                {
+                    ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[1].ColumnName;
+                }
             }
         }
 
@@ -909,7 +931,7 @@ namespace AP8PO_Projekt
             }
         }
 
-        private void deleteAllScheduleActionsButton_Click(object sender, EventArgs e)
+        private void deleteAllScheduleActions()
         {
             using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
@@ -930,12 +952,251 @@ namespace AP8PO_Projekt
             }
             populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
             populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+            populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
+        }
 
+        private void deleteAllScheduleActionsButton_Click(object sender, EventArgs e)
+        {
+            bool confirmed = MessageBox.Show(string.Format("Opravdu chcete odstranit všechny rozvrhové akce ?"), "Potvrdit odstranění", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+
+            if (confirmed)
+            {
+                deleteAllScheduleActions();
+            }
+        }
+
+        private decimal calculatePoints(string type, string language, int multiplier)
+        {
+            switch (type)
+            {
+                case "Lecture":
+                    if (language == "CZ") { return 1.8m * multiplier; }
+                    else { return 2.4m * multiplier; }
+
+                case "Practice":
+                    if (language == "CZ") { return 1.2m * multiplier; }
+                    else { return 1.8m * multiplier; }
+
+                case "Seminar":
+                    if (language == "CZ") { return 1.2m * multiplier; }
+                    else { return 1.8m * multiplier; }
+
+                case "Credit":
+                    return 0.2m * multiplier;
+
+                case "ClassifiedCredit":
+                    return 0.3m * multiplier;
+
+                case "Exam":
+                    return 0.4m * multiplier;
+
+                default:
+                    return 0.0m;
+            }
         }
 
         private void generateScheduleActionsButton_Click(object sender, EventArgs e)
         {
+            deleteAllScheduleActions();
 
+            DataTable groupSubjectDataTable;
+            DataTable groupsDataTable;
+            DataTable subjectsDataTable;
+            List<ScheduleAction> scheduleActionsList = new List<ScheduleAction>();
+
+            //Fill groupSubjectDataTable
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlDataAdapter sqlDataAdapter;
+
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.GroupSubject", connection);
+                    groupSubjectDataTable = new DataTable();
+
+                }
+                catch (SqlException sqlerr)
+                {
+                    Console.WriteLine(sqlerr.ToString());
+                    return;
+                }
+                connection.Close();
+
+                sqlDataAdapter.Fill(groupSubjectDataTable);
+            }
+
+            //Fill subjectsDataTable
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlDataAdapter sqlDataAdapter;
+
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.SubjectTable", connection);
+                    subjectsDataTable = new DataTable();
+
+                }
+                catch (SqlException sqlerr)
+                {
+                    Console.WriteLine(sqlerr.ToString());
+                    return;
+                }
+                connection.Close();
+
+                sqlDataAdapter.Fill(subjectsDataTable);
+            }
+
+            //Fill groupsDataTable
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlDataAdapter sqlDataAdapter;
+
+                connection.Open();
+                try
+                {
+                    sqlDataAdapter = new SqlDataAdapter("SELECT * FROM dbo.GroupTable", connection);
+                    groupsDataTable = new DataTable();
+                }
+                catch (SqlException sqlerr)
+                {
+                    Console.WriteLine(sqlerr.ToString());
+                    return;
+                }
+
+                sqlDataAdapter.Fill(groupsDataTable);
+                connection.Close();
+            }
+
+            for (int gs = 0; gs < groupSubjectDataTable.Rows.Count; gs++)
+            {
+                for (int s = 0; s < subjectsDataTable.Rows.Count; s++)
+                {
+                    for (int g = 0; g < groupsDataTable.Rows.Count; g++)
+                    {
+                        if (groupsDataTable.Rows[g][0].ToString() == groupSubjectDataTable.Rows[gs][0].ToString())
+                        {
+                            if (subjectsDataTable.Rows[s][0].ToString() == groupSubjectDataTable.Rows[gs][1].ToString())
+                            {
+                                //Lecture
+                                if (Convert.ToInt32(subjectsDataTable.Rows[s][4]) != 0)
+                                {
+                                    ScheduleAction scheduleAction = new ScheduleAction();
+                                    string language = subjectsDataTable.Rows[s][8].ToString();
+                                    string type = TypeEnum.Lecture.ToString();
+                                    int weeks = (int)subjectsDataTable.Rows[s][3];
+
+                                    decimal points = calculatePoints(type, language, weeks);
+
+                                    scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                    scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                    scheduleAction.Type = type;
+                                    scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][4];
+                                    scheduleAction.NumberOfWeeks = weeks;
+                                    scheduleAction.Language = language;
+                                    scheduleAction.Points = (float)points;
+
+                                    scheduleAction.NumberOfStudents = (int)groupsDataTable.Rows[g][5];
+                                    scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                    scheduleActionsList.Add(scheduleAction);
+                                }
+
+                                //Practice
+                                if (Convert.ToInt32(subjectsDataTable.Rows[s][5]) != 0)
+                                {
+                                    int numberOfStudents = Convert.ToInt32(groupsDataTable.Rows[g][5]);
+                                    double capacity = Convert.ToDouble(subjectsDataTable.Rows[s][9]);
+
+                                    double scheduleActionsNumber =  numberOfStudents / capacity;
+                                    scheduleActionsNumber = Math.Ceiling(scheduleActionsNumber);
+
+                                    for (int n = 0; n < scheduleActionsNumber; n++)
+                                    {
+                                        ScheduleAction scheduleAction = new ScheduleAction();
+                                        string language = subjectsDataTable.Rows[s][8].ToString();
+                                        string type = TypeEnum.Practice.ToString();
+                                        int weeks = (int)subjectsDataTable.Rows[s][3];
+
+                                        decimal points = calculatePoints(type, language, weeks);
+
+                                        scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                        scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                        scheduleAction.Type = type;
+                                        scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][5];
+                                        scheduleAction.NumberOfWeeks = weeks;
+                                        scheduleAction.Language = language;
+                                        scheduleAction.Points = (float)points;
+                                        scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                        if (numberOfStudents > capacity)
+                                        {
+                                            scheduleAction.NumberOfStudents = (int)capacity;
+                                            numberOfStudents -= (int)capacity;
+                                        }
+                                        else
+                                        {
+                                            scheduleAction.NumberOfStudents = numberOfStudents;
+                                        }
+
+                                        scheduleActionsList.Add(scheduleAction);
+                                    }
+                                }
+
+                                //Seminar
+                                if (Convert.ToInt32(subjectsDataTable.Rows[s][6]) != 0)
+                                {
+                                    int numberOfStudents = Convert.ToInt32(groupsDataTable.Rows[g][5]);
+                                    double capacity = Convert.ToDouble(subjectsDataTable.Rows[s][9]);
+
+                                    double scheduleActionsNumber = numberOfStudents / capacity;
+                                    scheduleActionsNumber = Math.Ceiling(scheduleActionsNumber);
+
+                                    for (int n = 0; n < scheduleActionsNumber; n++)
+                                    {
+                                        ScheduleAction scheduleAction = new ScheduleAction();
+                                        string language = subjectsDataTable.Rows[s][8].ToString();
+                                        string type = TypeEnum.Seminar.ToString();
+                                        int weeks = (int)subjectsDataTable.Rows[s][3];
+
+                                        decimal points = calculatePoints(type, language, weeks);
+
+                                        scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                        scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                        scheduleAction.Type = type;
+                                        scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
+                                        scheduleAction.NumberOfWeeks = weeks;
+                                        scheduleAction.Language = language;
+                                        scheduleAction.Points = (float)points;
+                                        scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                        if (numberOfStudents > capacity)
+                                        {
+                                            scheduleAction.NumberOfStudents = (int)capacity;
+                                            numberOfStudents -= (int)capacity;
+                                        }
+                                        else
+                                        {
+                                            scheduleAction.NumberOfStudents = numberOfStudents;
+                                        }
+
+                                        scheduleActionsList.Add(scheduleAction);
+                                    }
+                                }
+
+                                //TODO - generovat i Zápočty, Klasáky a Zkoušky
+                            }
+                        }
+                    }
+                }
+            }
+
+            GlobalConfig.Connection.CreateScheduleActions(scheduleActionsList);
+
+            populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
+            populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+            populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
         }
     }
 }

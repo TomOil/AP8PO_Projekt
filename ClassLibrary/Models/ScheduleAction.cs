@@ -15,25 +15,17 @@ namespace AP8PO_Projekt.Models
         /// </summary>
         public string Title { get; set; }
         /// <summary>
-        /// Zaměstnanec, který tu rozvrhovou akci vyučuje
+        /// Název skupiny, které patří rozvrhová akce
         /// </summary>
-        public Employee Employee { get; set; }
+        public string GroupName { get; set; }
         /// <summary>
-        /// Předmět, který ten určitý zaměstnanec vyučuje v té rozvrhové akci(štítku)
+        /// Id předmětu rozvrhové akce
         /// </summary>
-        public Subject Subject { get; set; }
+        public int SubjectId { get; set; }
         /// <summary>
         /// Typ rozvrhové akce
         /// </summary>
-        public enum Type
-        {
-            Lecture,
-            Seminar,
-            Practice,
-            Credit,
-            ClassifiedCredit,
-            Exam
-        }
+        public string Type { get; set; }
         /// <summary>
         /// Počet studentů v rozvrhové akci
         /// </summary>
@@ -49,10 +41,10 @@ namespace AP8PO_Projekt.Models
         /// <summary>
         /// Jazyk, ve kterém je ta rozvrhová akce vyučovaná
         /// </summary>
-        public enum Language
-        {
-            CZ,
-            EN
-        }
+        public string Language { get; set; }
+        /// <summary>
+        /// Počet bodů pro zaměstnance za rozvrhovou akci
+        /// </summary>
+        public float Points { get; set; }
     }
 }

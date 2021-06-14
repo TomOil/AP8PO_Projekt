@@ -17,4 +17,6 @@ namespace ClassLibrary
     public enum FormOfCompletionEnum { Z, ZK, KL }
 
     public enum GuarantorInstituteEnum { AUIUI, AUPKS, AUART, AUEM }
+
+    public enum TypeEnum { Lecture, Seminar, Practice, Credit, ClassifiedCredit, Exam }
 }

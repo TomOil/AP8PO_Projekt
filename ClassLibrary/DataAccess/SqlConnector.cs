@@ -68,8 +68,8 @@ namespace ClassLibrary.DataAccess
                 var parameter = new DynamicParameters();
 
                 parameter.Add("@name", subjectModel.Name);
-                parameter.Add(@"nameShort", subjectModel.NameShort);
-                parameter.Add(@"numberOfWeeks", subjectModel.NumberOfWeeks);
+                parameter.Add("@nameShort", subjectModel.NameShort);
+                parameter.Add("@numberOfWeeks", subjectModel.NumberOfWeeks);
                 parameter.Add("@lectureHours", subjectModel.LectureHours);
                 parameter.Add("@practiceHours", subjectModel.PracticeHours);
                 parameter.Add("@seminarHours", subjectModel.SeminarHours);
@@ -85,6 +85,29 @@ namespace ClassLibrary.DataAccess
                 subjectModel.Id = parameter.Get<int>("@id");
 
                 return subjectModel;
+            }
+        }
+        public void CreateScheduleActions(List<ScheduleAction> scheduleActionsList)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                foreach (var scheduleAction in scheduleActionsList)
+                {
+                    var parameter = new DynamicParameters();
+
+                    parameter.Add("@title", scheduleAction.Title);
+                    parameter.Add("@groupName", scheduleAction.GroupName);
+                    parameter.Add("@subjectId", scheduleAction.SubjectId);
+                    parameter.Add("@type", scheduleAction.Type);
+                    parameter.Add("@numberOfStudents", scheduleAction.NumberOfStudents);
+                    parameter.Add("@numberOfHours", scheduleAction.NumberOfHours);
+                    parameter.Add("@numberOfWeeks", scheduleAction.NumberOfWeeks);
+                    parameter.Add("@language", scheduleAction.Language);
+                    parameter.Add("@points", scheduleAction.Points);
+                    parameter.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    connection.Execute("dbo.spScheduleAction_Insert", parameter, commandType: CommandType.StoredProcedure);
+                }
             }
         }
     }

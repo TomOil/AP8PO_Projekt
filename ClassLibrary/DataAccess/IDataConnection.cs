@@ -11,5 +11,6 @@ namespace ClassLibrary.DataAccess
         Employee CreateEmployee(Employee employeeModel);
         Group CreateGroup(Group groupModel);
         Subject CreateSubject(Subject subjectModel);
+        void CreateScheduleActions(List<ScheduleAction> scheduleActionsList);
     }
 }

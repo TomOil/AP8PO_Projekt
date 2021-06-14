@@ -32,6 +32,16 @@ namespace ClassLibrary.DataAccess
             return subjectModel;
         }
 
+        public void CreateScheduleActions(List<ScheduleAction> scheduleActionsList)
+        {
+            foreach (var scheduleAction in scheduleActionsList)
+            {
+                XmlSerialize(typeof(ScheduleAction), scheduleAction, "scheduleActions.xml");
+            }
+        }
+
+
+
         public void XmlSerialize(Type dataType, object model, string filePath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(dataType);
