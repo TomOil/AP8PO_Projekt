@@ -120,7 +120,7 @@ namespace AP8PO_Projekt
             this.employeesDetailDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.assignedScheduleActionsDataGridView = new System.Windows.Forms.DataGridView();
-            this.asignButton = new System.Windows.Forms.Button();
+            this.assignButton = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.scheduleActionsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.generateScheduleActionsButton = new System.Windows.Forms.Button();
@@ -1074,7 +1074,7 @@ namespace AP8PO_Projekt
             this.scheduleActionsTab.Controls.Add(this.groupBox6);
             this.scheduleActionsTab.Controls.Add(this.groupBox8);
             this.scheduleActionsTab.Controls.Add(this.groupBox9);
-            this.scheduleActionsTab.Controls.Add(this.asignButton);
+            this.scheduleActionsTab.Controls.Add(this.assignButton);
             this.scheduleActionsTab.Controls.Add(this.groupBox7);
             this.scheduleActionsTab.Controls.Add(this.generateScheduleActionsButton);
             this.scheduleActionsTab.Location = new System.Drawing.Point(4, 32);
@@ -1178,15 +1178,16 @@ namespace AP8PO_Projekt
             this.assignedScheduleActionsDataGridView.Size = new System.Drawing.Size(308, 247);
             this.assignedScheduleActionsDataGridView.TabIndex = 4;
             // 
-            // asignButton
+            // assignButton
             // 
-            this.asignButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.asignButton.Location = new System.Drawing.Point(8, 372);
-            this.asignButton.Name = "asignButton";
-            this.asignButton.Size = new System.Drawing.Size(322, 45);
-            this.asignButton.TabIndex = 3;
-            this.asignButton.Text = "Přiřadit";
-            this.asignButton.UseVisualStyleBackColor = true;
+            this.assignButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.assignButton.Location = new System.Drawing.Point(8, 372);
+            this.assignButton.Name = "assignButton";
+            this.assignButton.Size = new System.Drawing.Size(322, 45);
+            this.assignButton.TabIndex = 3;
+            this.assignButton.Text = "Přiřadit";
+            this.assignButton.UseVisualStyleBackColor = true;
+            this.assignButton.Click += new System.EventHandler(this.assignButton_Click);
             // 
             // groupBox7
             // 
@@ -1374,7 +1375,7 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.DataGridView employeesDetailDataGridView;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.DataGridView assignedScheduleActionsDataGridView;
-        private System.Windows.Forms.Button asignButton;
+        private System.Windows.Forms.Button assignButton;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.CheckedListBox scheduleActionsCheckedListBox;
         private System.Windows.Forms.GroupBox groupBox6;

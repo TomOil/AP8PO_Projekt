@@ -1185,7 +1185,8 @@ namespace AP8PO_Projekt
                                     }
                                 }
 
-                                //TODO - generovat i Zápočty, Klasáky a Zkoušky
+                                //TODO - Generovat - Zkouška, Zápočet nebo klasifikovaný zápočet
+
                             }
                         }
                     }
@@ -1197,6 +1198,53 @@ namespace AP8PO_Projekt
             populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
             populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
             populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+        }
+
+        private void assignButton_Click(object sender, EventArgs e)
+        {
+            string selectedEmployeeId = employeeComboBox.SelectedValue.ToString();
+            int succesful = 0;
+
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                connection.Open();
+                foreach (object checkedItem in scheduleActionsCheckedListBox.CheckedItems)
+                {
+                    DataRowView dataRowView = (DataRowView)checkedItem;
+                    string checkedItemValue = dataRowView[0].ToString();
+
+                    using (var command = new SqlCommand())
+                    {
+                        try
+                        {
+                            //TODO - FIX adding to db only one record
+                            command.Connection = connection;
+                            command.CommandText = @"INSERT INTO dbo.EmployeeScheduleAction (employeeId, scheduleActionId) VALUES (@employeeId, @scheduleActionId)";
+                            command.Parameters.AddWithValue("@employeeId", Convert.ToInt32(selectedEmployeeId));
+                            command.Parameters.AddWithValue("@scheduleActionId", Convert.ToInt32(checkedItemValue));
+
+                            succesful = command.ExecuteNonQuery();
+                            
+                        }
+                        catch (SqlException exception)
+                        {
+                            Console.WriteLine(exception.ToString());
+                        }
+                    }
+                }
+                connection.Close();
+            }
+
+            if (succesful > 0)
+            {
+                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+                populateComboBox(groupTable, groupsComboBox, false);
+                populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+
+                MessageBox.Show(string.Format("Rozvrhové(á) akce byly(a) úspěšně přiřazeny(a) zaměstnanci s ID: {0}.", selectedEmployeeId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
