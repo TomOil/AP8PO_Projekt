@@ -99,28 +99,28 @@ namespace AP8PO_Projekt
             formOfCompletionComboBox.DataSource = Enum.GetValues(typeof(FormOfCompletionEnum));
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
 
-            populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
+            populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
         }
 
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabs.SelectedTab == subjectsTab)
             {
-                populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
             }
             else if (tabs.SelectedTab == groupsTab)
             {
-                populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(true, true, groupDataGridView, groupsColsNames, groupTable);
             }
             else if (tabs.SelectedTab == employeesTab)
             {
-                populateDataGridView(true, employeeDataGridView, employeesColsNames, employeeTable);
+                populateDataGridView(true, false, employeeDataGridView, employeesColsNames, employeeTable);
             }
             else if (tabs.SelectedTab == subjectsGroupsTab)
             {
-                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
-                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
-                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+                populateDataGridView(false, false, groupsDetailDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(false, false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(false, false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
                 populateComboBox(groupTable, groupsComboBox, false);
                 populateCheckableListBox(subjectTable, subjectsCheckedListBox);
             }
@@ -128,9 +128,9 @@ namespace AP8PO_Projekt
             {
                 populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
                 populateComboBox(employeeTable, employeeComboBox, true);
-                populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
-                populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
-                populateDataGridView(false, employeesDetailDataGridView, employeesColsNames, employeeTable);
+                populateDataGridView(false, false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+                populateDataGridView(false, false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+                populateDataGridView(false, false, employeesDetailDataGridView, employeesColsNames, employeeTable);
             }
         }
 
@@ -191,7 +191,7 @@ namespace AP8PO_Projekt
                 IsDoctorandCheckbox.Checked = false;
                 loadNumericUpDown.Value = 0.00M;
 
-                populateDataGridView(true, employeeDataGridView, employeesColsNames, "EmployeeTable");
+                populateDataGridView(true, false, employeeDataGridView, employeesColsNames, "EmployeeTable");
             }
             else
             {
@@ -413,7 +413,7 @@ namespace AP8PO_Projekt
                 groupLanguageComboBox.SelectedIndex = 0;
                 semesterComboBox.SelectedIndex = 0;
 
-                populateDataGridView(true, groupDataGridView, groupsColsNames, "GroupTable");
+                populateDataGridView(true, true, groupDataGridView, groupsColsNames, "GroupTable");
             }
             else
             {
@@ -528,7 +528,7 @@ namespace AP8PO_Projekt
                 subjectLanguageComboBox.SelectedIndex = 0;
                 formOfCompletionComboBox.SelectedIndex = 0;
 
-                populateDataGridView(true, subjectDataGridView, subjectsColsNames, "SubjectTable");
+                populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, "SubjectTable");
             }
         }
 
@@ -607,11 +607,11 @@ namespace AP8PO_Projekt
         /// <param name="dataGrid">dataGridView to fill with data</param>
         /// <param name="columnsNames">List with names of columns in dataGridView</param>
         /// <param name="dbTableName">Name of relevant table in db (without dbo. !)</param>
-        private void populateDataGridView(bool showDeleteButton, DataGridView dataGrid, List<string> columnsNames, string dbTableName)
+        private void populateDataGridView(bool showDeleteButton, bool showUpdateButton, DataGridView dataGrid, List<string> columnsNames, string dbTableName)
         {
             if (dataGrid.ColumnCount > 0)
             {
-                dataGrid.Columns.RemoveAt(dataGrid.ColumnCount - 1);
+                dataGrid.Columns.Clear();
             }
 
             using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
@@ -661,12 +661,23 @@ namespace AP8PO_Projekt
 
             if (dbTableName == "EmployeeTable")
             {
+                dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+                dataGrid.Columns[numberOfColumns - 2].DefaultCellStyle.Format = "N2";
                 dataGrid.Columns[numberOfColumns - 3].DefaultCellStyle.Format = "N2";
             }
 
             if (dbTableName == "ScheduleActionTable")
             {
                 dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
+            }
+
+            if (showUpdateButton)
+            {
+                var updateButton = new DataGridViewButtonColumn();
+                updateButton.Text = "Upravit";
+                updateButton.UseColumnTextForButtonValue = true;
+                updateButton.ReadOnly = false;
+                dataGrid.Columns.Add(updateButton);
             }
 
             if (showDeleteButton)
@@ -702,7 +713,7 @@ namespace AP8PO_Projekt
                             connection.Close();
                         }
                     }
-                    populateDataGridView(true, employeeDataGridView, employeesColsNames, "EmployeeTable");
+                    populateDataGridView(true, false, employeeDataGridView, employeesColsNames, "EmployeeTable");
                 }
             }
         }
@@ -738,7 +749,7 @@ namespace AP8PO_Projekt
                         }
                         connection.Close();
                     }
-                    populateDataGridView(true, groupDataGridView, groupsColsNames, groupTable);
+                    populateDataGridView(true, true, groupDataGridView, groupsColsNames, groupTable);
                 }
             }
         }
@@ -774,7 +785,7 @@ namespace AP8PO_Projekt
                         }
                         connection.Close();
                     }
-                    populateDataGridView(true, subjectDataGridView, subjectsColsNames, subjectTable);
+                    populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
                 }
             }
         }
@@ -855,14 +866,6 @@ namespace AP8PO_Projekt
 
                 if (dbTableName == "ScheduleActionTable")
                 {
-                    //List<string> scheduleActions = new List<string>();
-                    //foreach (DataRow dataRow in dataTable.Rows)
-                    //{
-                    //    scheduleActions.Add(dataRow["id"].ToString() + " | " + dataRow["title"].ToString());
-                    //}
-                    //((ListBox)checkedListBox).DataSource = scheduleActions;
-                    //((ListBox)checkedListBox).ValueMember = dataTable.Columns[0].ColumnName;
-
                     ((ListBox)checkedListBox).DisplayMember = dataTable.Columns[0].ColumnName;
                 }
                 else
@@ -908,9 +911,9 @@ namespace AP8PO_Projekt
 
             if (succesful > 0)
             {
-                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
-                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
-                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
+                populateDataGridView(false, false, groupsDetailDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(false, false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
+                populateDataGridView(false, false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
                 populateComboBox(groupTable, groupsComboBox, false);
                 populateCheckableListBox(subjectTable, subjectsCheckedListBox);
 
@@ -942,17 +945,23 @@ namespace AP8PO_Projekt
                     command.ExecuteNonQuery();
                 }
 
-
                 using (SqlCommand command = new SqlCommand("DELETE FROM dbo.ScheduleActionTable", connection))
+                {
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }
+
+                using (SqlCommand command = new SqlCommand("UPDATE dbo.EmployeeTable SET pointsAll = 0, pointsCZ = 0", connection))
                 {
                     command.CommandType = CommandType.Text;
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
             }
-            populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
-            populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+            populateDataGridView(false, false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+            populateDataGridView(false, false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
             populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
+            populateDataGridView(false, false, employeesDetailDataGridView, employeesColsNames, employeeTable);
         }
 
         private void deleteAllScheduleActionsButton_Click(object sender, EventArgs e)
@@ -1087,15 +1096,13 @@ namespace AP8PO_Projekt
                                     string type = TypeEnum.Lecture.ToString();
                                     int weeks = (int)subjectsDataTable.Rows[s][3];
 
-                                    decimal points = calculatePoints(type, language, weeks);
-
                                     scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
                                     scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
                                     scheduleAction.Type = type;
                                     scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][4];
                                     scheduleAction.NumberOfWeeks = weeks;
                                     scheduleAction.Language = language;
-                                    scheduleAction.Points = (float)points;
+                                    scheduleAction.Points = (float)calculatePoints(type, language, weeks);
 
                                     scheduleAction.NumberOfStudents = (int)groupsDataTable.Rows[g][5];
                                     scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
@@ -1119,15 +1126,13 @@ namespace AP8PO_Projekt
                                         string type = TypeEnum.Practice.ToString();
                                         int weeks = (int)subjectsDataTable.Rows[s][3];
 
-                                        decimal points = calculatePoints(type, language, weeks);
-
                                         scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
                                         scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
                                         scheduleAction.Type = type;
                                         scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][5];
                                         scheduleAction.NumberOfWeeks = weeks;
                                         scheduleAction.Language = language;
-                                        scheduleAction.Points = (float)points;
+                                        scheduleAction.Points = (float)calculatePoints(type, language, weeks);
                                         scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
 
                                         if (numberOfStudents > capacity)
@@ -1160,15 +1165,13 @@ namespace AP8PO_Projekt
                                         string type = TypeEnum.Seminar.ToString();
                                         int weeks = (int)subjectsDataTable.Rows[s][3];
 
-                                        decimal points = calculatePoints(type, language, weeks);
-
                                         scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
                                         scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
                                         scheduleAction.Type = type;
                                         scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
                                         scheduleAction.NumberOfWeeks = weeks;
                                         scheduleAction.Language = language;
-                                        scheduleAction.Points = (float)points;
+                                        scheduleAction.Points = (float)calculatePoints(type, language, weeks);
                                         scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
 
                                         if (numberOfStudents > capacity)
@@ -1185,8 +1188,85 @@ namespace AP8PO_Projekt
                                     }
                                 }
 
-                                //TODO - Generovat - Zkouška, Zápočet nebo klasifikovaný zápočet
+                                //Zápočet
+                                if (subjectsDataTable.Rows[s][7].ToString() == "Z")
+                                {
+                                    ScheduleAction scheduleAction = new ScheduleAction();
+                                    string language = subjectsDataTable.Rows[s][8].ToString();
+                                    string type = TypeEnum.Credit.ToString();
+                                    int numberOfStudents = (int)groupsDataTable.Rows[g][5];
 
+                                    scheduleAction.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                    scheduleAction.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                    scheduleAction.Type = type;
+                                    scheduleAction.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
+                                    scheduleAction.NumberOfWeeks = 0;
+                                    scheduleAction.NumberOfStudents = numberOfStudents;
+                                    scheduleAction.Language = language;
+                                    scheduleAction.Points = (float)calculatePoints(type, language, numberOfStudents);
+                                    scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                    scheduleActionsList.Add(scheduleAction);
+                                }
+                                //Zápočet a zkouška
+                                else if (subjectsDataTable.Rows[s][7].ToString() == "ZK")
+                                {
+                                    //Zápočet
+                                    ScheduleAction scheduleActionCredit = new ScheduleAction();
+                                    string language = subjectsDataTable.Rows[s][8].ToString();
+                                    string type = TypeEnum.Credit.ToString();
+                                    int numberOfStudents = (int)groupsDataTable.Rows[g][5];
+
+                                    scheduleActionCredit.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                    scheduleActionCredit.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                    scheduleActionCredit.Type = type;
+                                    scheduleActionCredit.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
+                                    scheduleActionCredit.NumberOfWeeks = 0;
+                                    scheduleActionCredit.NumberOfStudents = numberOfStudents;
+                                    scheduleActionCredit.Language = language;
+                                    scheduleActionCredit.Points = (float)calculatePoints(type, language, numberOfStudents);
+                                    scheduleActionCredit.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                    scheduleActionsList.Add(scheduleActionCredit);
+
+                                    //Zkouška
+                                    ScheduleAction scheduleActionExam = new ScheduleAction();
+                                    language = subjectsDataTable.Rows[s][8].ToString();
+                                    type = TypeEnum.Exam.ToString();
+                                    numberOfStudents = (int)groupsDataTable.Rows[g][5];
+
+                                    scheduleActionExam.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                    scheduleActionExam.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                    scheduleActionExam.Type = type;
+                                    scheduleActionExam.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
+                                    scheduleActionExam.NumberOfWeeks = 0;
+                                    scheduleActionExam.NumberOfStudents = numberOfStudents;
+                                    scheduleActionExam.Language = language;
+                                    scheduleActionExam.Points = (float)calculatePoints(type, language, numberOfStudents);
+                                    scheduleActionExam.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                    scheduleActionsList.Add(scheduleActionExam);
+                                }
+                                //Klasifikovaný zápočet
+                                else if (subjectsDataTable.Rows[s][7].ToString() == "KL")
+                                {
+                                    ScheduleAction scheduleActionCredit = new ScheduleAction();
+                                    string language = subjectsDataTable.Rows[s][8].ToString();
+                                    string type = TypeEnum.ClassifiedCredit.ToString();
+                                    int numberOfStudents = (int)groupsDataTable.Rows[g][5];
+
+                                    scheduleActionCredit.Title = subjectsDataTable.Rows[s][2].ToString() + " - " + subjectsDataTable.Rows[s][1].ToString();
+                                    scheduleActionCredit.SubjectId = (int)groupSubjectDataTable.Rows[gs][1];
+                                    scheduleActionCredit.Type = type;
+                                    scheduleActionCredit.NumberOfHours = (int)subjectsDataTable.Rows[s][6];
+                                    scheduleActionCredit.NumberOfWeeks = 0;
+                                    scheduleActionCredit.NumberOfStudents = numberOfStudents;
+                                    scheduleActionCredit.Language = language;
+                                    scheduleActionCredit.Points = (float)calculatePoints(type, language, numberOfStudents);
+                                    scheduleActionCredit.GroupName = groupsDataTable.Rows[g][2].ToString();
+
+                                    scheduleActionsList.Add(scheduleActionCredit);
+                                }
                             }
                         }
                     }
@@ -1196,8 +1276,88 @@ namespace AP8PO_Projekt
             GlobalConfig.Connection.CreateScheduleActions(scheduleActionsList);
 
             populateCheckableListBox(scheduleActionsTable, scheduleActionsCheckedListBox);
-            populateDataGridView(false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
-            populateDataGridView(false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+            populateDataGridView(false, false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+            populateDataGridView(false, false, generatedScheduleActionsDataGridView, scheduleActionsColsNames, scheduleActionsTable);
+        }
+
+        private void addPoints(string selectedEmployeeId, double points, string language)
+        {
+            double oldPointsAll = 0;
+            double oldPointsCZ = 0;
+
+            using (SqlConnection con = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT ISNULL(pointsAll, 0) FROM dbo.EmployeeTable WHERE id = '" + selectedEmployeeId + "'";
+                cmd.Connection = con;
+                con.Open();
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+
+                oldPointsAll = dataReader.GetDouble(0);
+
+                
+                con.Close();
+            }
+
+            using (SqlConnection con = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT ISNULL(pointsCZ, 0) FROM dbo.EmployeeTable WHERE id = '" + selectedEmployeeId + "'";
+                cmd.Connection = con;
+                con.Open();
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                dataReader.Read();
+                oldPointsCZ = dataReader.GetDouble(0);
+                con.Close();
+            }
+
+            using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+            {
+                using (var command = new SqlCommand())
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        command.Connection = connection;
+                        if (language == "CZ")
+                        {
+                            double pointsAll = oldPointsAll + Convert.ToDouble(points);
+                            double pointsCZ = oldPointsCZ + Convert.ToDouble(points);
+
+                            command.CommandText = @"UPDATE dbo.EmployeeTable SET pointsAll=@pointsAll, pointsCZ=@pointsCZ WHERE id='" + selectedEmployeeId + "'";
+                            command.Parameters.AddWithValue("@pointsAll", pointsAll);
+                            command.Parameters.AddWithValue("@pointsCZ", pointsCZ);
+
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            double pointsAll = oldPointsAll + Convert.ToDouble(points);
+
+                            command.CommandText = @"UPDATE dbo.EmployeeTable SET pointsAll=@pointsAll WHERE id='" + selectedEmployeeId + "'";
+                            command.Parameters.AddWithValue("@pointsAll", pointsAll);
+
+                            command.ExecuteNonQuery();
+                        }
+
+                        connection.Close();
+                    }
+                    catch (SqlException exception)
+                    {
+                        MessageBox.Show(exception.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        Console.WriteLine(exception.ToString());
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
         }
 
         private void assignButton_Click(object sender, EventArgs e)
@@ -1207,7 +1367,6 @@ namespace AP8PO_Projekt
 
             using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
             {
-                connection.Open();
                 foreach (object checkedItem in scheduleActionsCheckedListBox.CheckedItems)
                 {
                     DataRowView dataRowView = (DataRowView)checkedItem;
@@ -1217,31 +1376,65 @@ namespace AP8PO_Projekt
                     {
                         try
                         {
-                            //TODO - FIX adding to db only one record
+                            connection.Open();
+
                             command.Connection = connection;
                             command.CommandText = @"INSERT INTO dbo.EmployeeScheduleAction (employeeId, scheduleActionId) VALUES (@employeeId, @scheduleActionId)";
                             command.Parameters.AddWithValue("@employeeId", Convert.ToInt32(selectedEmployeeId));
                             command.Parameters.AddWithValue("@scheduleActionId", Convert.ToInt32(checkedItemValue));
 
                             succesful = command.ExecuteNonQuery();
-                            
+                            connection.Close();
                         }
                         catch (SqlException exception)
                         {
+                            MessageBox.Show(string.Format("Štítek s ID: {0} je již přiřazený!", checkedItemValue), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                             Console.WriteLine(exception.ToString());
                         }
+                        finally
+                        {
+                            connection.Close();
+                        }
                     }
+
+                    double points = 0.0;
+                    string language = string.Empty;
+
+                    using (SqlConnection con = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT points FROM dbo.ScheduleActionTable WHERE id = '" + checkedItemValue + "'";
+                        cmd.Connection = con;
+                        con.Open();
+                        SqlDataReader dataReader = cmd.ExecuteReader();
+                        dataReader.Read();
+                        points = dataReader.GetDouble(0);
+                        con.Close();
+                    }
+
+                    using (SqlConnection con = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "SELECT language FROM dbo.ScheduleActionTable WHERE id = '" + checkedItemValue + "'";
+                        cmd.Connection = con;
+                        con.Open();
+                        SqlDataReader dataReader = cmd.ExecuteReader();
+                        dataReader.Read();
+                        language = dataReader.GetString(0);
+                        con.Close();
+                    }
+
+                    addPoints(selectedEmployeeId, points, language);
                 }
-                connection.Close();
             }
 
             if (succesful > 0)
             {
-                populateDataGridView(false, groupsDetailDataGridView, groupsColsNames, groupTable);
-                populateDataGridView(false, subjectsDetailDataGridView, subjectsColsNames, subjectTable);
-                populateDataGridView(false, subjectsGroupsDataGridView, groupSubjectsColsNames, groupSubjectTable);
-                populateComboBox(groupTable, groupsComboBox, false);
-                populateCheckableListBox(subjectTable, subjectsCheckedListBox);
+                populateDataGridView(false, false, assignedScheduleActionsDataGridView, employeesScheduleActionsColsNames, employeeScheduleActionTable);
+                populateDataGridView(false, false, employeesDetailDataGridView, employeesColsNames, employeeTable);
 
                 MessageBox.Show(string.Format("Rozvrhové(á) akce byly(a) úspěšně přiřazeny(a) zaměstnanci s ID: {0}.", selectedEmployeeId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
