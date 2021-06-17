@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
+using System.IO;
+using System.Diagnostics;
+
 
 namespace AP8PO_Projekt
 {
@@ -100,6 +103,7 @@ namespace AP8PO_Projekt
             subjectLanguageComboBox.DataSource = Enum.GetValues(typeof(LanguageEnum));
 
             populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
+            populateComboBox(subjectTable, classNameComboBox, false);
         }
 
         private void tabs_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,10 +111,12 @@ namespace AP8PO_Projekt
             if (tabs.SelectedTab == subjectsTab)
             {
                 populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
+                populateComboBox(subjectTable, classNameComboBox, false);
             }
             else if (tabs.SelectedTab == groupsTab)
             {
-                populateDataGridView(true, true, groupDataGridView, groupsColsNames, groupTable);
+                populateDataGridView(true, false, groupDataGridView, groupsColsNames, groupTable);
+                populateComboBox(groupTable, changeStudentsComboBox, false);
             }
             else if (tabs.SelectedTab == employeesTab)
             {
@@ -414,6 +420,7 @@ namespace AP8PO_Projekt
                 semesterComboBox.SelectedIndex = 0;
 
                 populateDataGridView(true, true, groupDataGridView, groupsColsNames, "GroupTable");
+                populateComboBox(groupTable, changeStudentsComboBox, false);
             }
             else
             {
@@ -529,6 +536,8 @@ namespace AP8PO_Projekt
                 formOfCompletionComboBox.SelectedIndex = 0;
 
                 populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, "SubjectTable");
+                populateComboBox(subjectTable, classNameComboBox, false);
+
             }
         }
 
@@ -671,14 +680,14 @@ namespace AP8PO_Projekt
                 dataGrid.Columns[numberOfColumns - 1].DefaultCellStyle.Format = "N2";
             }
 
-            if (showUpdateButton)
-            {
-                var updateButton = new DataGridViewButtonColumn();
-                updateButton.Text = "Upravit";
-                updateButton.UseColumnTextForButtonValue = true;
-                updateButton.ReadOnly = false;
-                dataGrid.Columns.Add(updateButton);
-            }
+            //if (showUpdateButton)
+            //{
+            //    var updateButton = new DataGridViewButtonColumn();
+            //    updateButton.Text = "Upravit";
+            //    updateButton.UseColumnTextForButtonValue = true;
+            //    updateButton.ReadOnly = false;
+            //    dataGrid.Columns.Add(updateButton);
+            //}
 
             if (showDeleteButton)
             {
@@ -750,7 +759,14 @@ namespace AP8PO_Projekt
                         connection.Close();
                     }
                     populateDataGridView(true, true, groupDataGridView, groupsColsNames, groupTable);
+                    populateComboBox(groupTable, changeStudentsComboBox, false);
+
                 }
+            }
+
+            if (e.ColumnIndex == groupDataGridView.ColumnCount - 2)
+            {
+                
             }
         }
 
@@ -827,7 +843,7 @@ namespace AP8PO_Projekt
                     dataRow["Combined"] = dataRow[1].ToString() + " " + dataRow[2].ToString();
                 }
             }
-            else if (dbTableName == "GroupTable")
+            else if (dbTableName == "GroupTable" || dbTableName == "SubjectTable")
             {
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -1116,8 +1132,10 @@ namespace AP8PO_Projekt
                                     int numberOfStudents = Convert.ToInt32(groupsDataTable.Rows[g][5]);
                                     double capacity = Convert.ToDouble(subjectsDataTable.Rows[s][9]);
 
-                                    double scheduleActionsNumber =  numberOfStudents / capacity;
+                                    double scheduleActionsNumber = Math.Ceiling(numberOfStudents / capacity); 
                                     scheduleActionsNumber = Math.Ceiling(scheduleActionsNumber);
+
+                                    double studentsPerClass = Math.Ceiling(numberOfStudents / scheduleActionsNumber);
 
                                     for (int n = 0; n < scheduleActionsNumber; n++)
                                     {
@@ -1135,10 +1153,10 @@ namespace AP8PO_Projekt
                                         scheduleAction.Points = (float)calculatePoints(type, language, weeks);
                                         scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
 
-                                        if (numberOfStudents > capacity)
+                                        if (n != scheduleActionsNumber - 1)
                                         {
-                                            scheduleAction.NumberOfStudents = (int)capacity;
-                                            numberOfStudents -= (int)capacity;
+                                            scheduleAction.NumberOfStudents = (int)studentsPerClass;
+                                            numberOfStudents -= (int)studentsPerClass;
                                         }
                                         else
                                         {
@@ -1155,8 +1173,10 @@ namespace AP8PO_Projekt
                                     int numberOfStudents = Convert.ToInt32(groupsDataTable.Rows[g][5]);
                                     double capacity = Convert.ToDouble(subjectsDataTable.Rows[s][9]);
 
-                                    double scheduleActionsNumber = numberOfStudents / capacity;
+                                    double scheduleActionsNumber = Math.Ceiling(numberOfStudents / capacity);
                                     scheduleActionsNumber = Math.Ceiling(scheduleActionsNumber);
+
+                                    double studentsPerClass = Math.Ceiling(numberOfStudents / scheduleActionsNumber);
 
                                     for (int n = 0; n < scheduleActionsNumber; n++)
                                     {
@@ -1174,10 +1194,10 @@ namespace AP8PO_Projekt
                                         scheduleAction.Points = (float)calculatePoints(type, language, weeks);
                                         scheduleAction.GroupName = groupsDataTable.Rows[g][2].ToString();
 
-                                        if (numberOfStudents > capacity)
+                                        if (n != scheduleActionsNumber - 1)
                                         {
-                                            scheduleAction.NumberOfStudents = (int)capacity;
-                                            numberOfStudents -= (int)capacity;
+                                            scheduleAction.NumberOfStudents = (int)studentsPerClass;
+                                            numberOfStudents -= (int)studentsPerClass;
                                         }
                                         else
                                         {
@@ -1437,6 +1457,253 @@ namespace AP8PO_Projekt
                 populateDataGridView(false, false, employeesDetailDataGridView, employeesColsNames, employeeTable);
 
                 MessageBox.Show(string.Format("Rozvrhové(á) akce byly(a) úspěšně přiřazeny(a) zaměstnanci s ID: {0}.", selectedEmployeeId), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            var groupId = changeStudentsComboBox.SelectedValue.ToString();
+            var numberOfStudents = newNumberOfStudentsTextBox.Text;
+
+            if (newNumberOfStudentsTextBox.Text != null)
+            {
+                using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    using (var command = new SqlCommand())
+                    {
+                        try
+                        {
+                            connection.Open();
+
+                            command.Connection = connection;
+
+                            command.CommandText = @"UPDATE dbo.GroupTable SET numberOfStudents=@numberOfStudents WHERE id='" + groupId + "'";
+                            command.Parameters.AddWithValue("@numberOfStudents", numberOfStudents);
+
+                            command.ExecuteNonQuery();
+
+                            connection.Close();
+                        }
+                        catch (SqlException exception)
+                        {
+                            MessageBox.Show(exception.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            Console.WriteLine(exception.ToString());
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+
+                populateDataGridView(true, true, groupDataGridView, groupsColsNames, "GroupTable");
+                populateComboBox(groupTable, changeStudentsComboBox, false);
+
+            }
+            else
+            {
+                MessageBox.Show("Vyplňte prosím nový počet studentů!", "Nevyplněno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            var exportDialog = new FolderBrowserDialog();
+            string folderName = string.Empty;
+
+            DialogResult result = exportDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                folderName = exportDialog.SelectedPath;
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM dbo.EmployeeTable";
+                    command.Connection = connection;
+                    SqlDataAdapter dataAdapter;
+                    DataTable dataTable;
+
+                    connection.Open();
+
+                    dataTable = new DataTable("EmployeeTable");
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                    dataTable.WriteXml(folderName + "/employees.xml");
+
+                    connection.Close();
+                }
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM dbo.GroupTable";
+                    command.Connection = connection;
+                    SqlDataAdapter dataAdapter;
+                    DataTable dataTable;
+
+                    connection.Open();
+
+                    dataTable = new DataTable("GroupTable");
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                    dataTable.WriteXml(folderName + "/groups.xml");
+
+                    connection.Close();
+                }
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM dbo.ScheduleActionTable";
+                    command.Connection = connection;
+                    SqlDataAdapter dataAdapter;
+                    DataTable dataTable;
+
+                    connection.Open();
+
+                    dataTable = new DataTable("ScheduleActionTable");
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                    dataTable.WriteXml(folderName + "/scheduleActions.xml");
+
+                    connection.Close();
+                }
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM dbo.SubjectTable";
+                    command.Connection = connection;
+                    SqlDataAdapter dataAdapter;
+                    DataTable dataTable;
+
+                    connection.Open();
+
+                    dataTable = new DataTable("SubjectTable");
+                    dataAdapter = new SqlDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                    dataTable.WriteXml(folderName + "/subjects.xml");
+
+                    connection.Close();
+                }
+            }
+
+            MessageBox.Show(string.Format("XML soubory byly vytvořeny v umístění {0} ", folderName), "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start("Explorer.exe", folderName);
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
+
+            if (fileContent != null)
+            {
+                StringReader strReader = new StringReader(fileContent);
+                DataSet dataSet = new DataSet();
+                dataSet.ReadXml(strReader);
+
+                DataTable table = dataSet.Tables[0];
+
+                DataTable dtCloned = table.Clone();
+                dtCloned.Columns[8].DataType = typeof(float);
+                foreach (DataRow row in table.Rows)
+                {
+                    dtCloned.ImportRow(row);
+                }
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    connection.Open();
+                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                    {
+                        foreach (DataColumn col in dtCloned.Columns)
+                        {
+                            bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName);
+                        }
+                            
+                        bulkCopy.DestinationTableName = "dbo." + dtCloned.TableName;
+                        try
+                        {
+                            bulkCopy.WriteToServer(dtCloned);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void changeClassSizeButton_Click(object sender, EventArgs e)
+        {
+            var subjectId = classNameComboBox.SelectedValue.ToString();
+            var newSize = classSizeTextBox.Text;
+
+            if (classSizeTextBox.Text != null)
+            {
+                using (var connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    using (var command = new SqlCommand())
+                    {
+                        try
+                        {
+                            connection.Open();
+
+                            command.Connection = connection;
+
+                            command.CommandText = @"UPDATE dbo.SubjectTable SET classSize=@classSize WHERE id='" + subjectId + "'";
+                            command.Parameters.AddWithValue("@classSize", newSize);
+
+                            command.ExecuteNonQuery();
+
+                            connection.Close();
+                        }
+                        catch (SqlException exception)
+                        {
+                            MessageBox.Show(exception.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                            Console.WriteLine(exception.ToString());
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+
+                populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
+                populateComboBox(subjectTable, classNameComboBox, false);
+
+            }
+            else
+            {
+                MessageBox.Show("Vyplňte prosím velikost třídy!", "Nevyplněno", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

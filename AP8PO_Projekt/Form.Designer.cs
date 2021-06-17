@@ -35,6 +35,12 @@ namespace AP8PO_Projekt
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.subjectDataGridView = new System.Windows.Forms.DataGridView();
             this.Label9 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.changeClassSizeButton = new System.Windows.Forms.Button();
+            this.classNameComboBox = new System.Windows.Forms.ComboBox();
+            this.classSizeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.addSubjectButton = new System.Windows.Forms.Button();
             this.creditsNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -60,6 +66,12 @@ namespace AP8PO_Projekt
             this.groupsTab = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupDataGridView = new System.Windows.Forms.DataGridView();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.newStudentsLabel = new System.Windows.Forms.Label();
+            this.newStudentsGroupLabel = new System.Windows.Forms.Label();
+            this.newNumberOfStudentsTextBox = new System.Windows.Forms.TextBox();
+            this.changeStudentsComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.formOfStudyComboBox = new System.Windows.Forms.ComboBox();
             this.groupNameShortTextBox = new System.Windows.Forms.TextBox();
@@ -124,11 +136,15 @@ namespace AP8PO_Projekt
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.scheduleActionsCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.generateScheduleActionsButton = new System.Windows.Forms.Button();
+            this.exportImportTab = new System.Windows.Forms.TabPage();
+            this.importButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabs.SuspendLayout();
             this.subjectsTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).BeginInit();
+            this.groupBox12.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classSizeNumericUpDown)).BeginInit();
@@ -139,6 +155,7 @@ namespace AP8PO_Projekt
             this.groupsTab.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).BeginInit();
+            this.groupBox11.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfStudentsNumericUpDown)).BeginInit();
@@ -165,6 +182,7 @@ namespace AP8PO_Projekt
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assignedScheduleActionsDataGridView)).BeginInit();
             this.groupBox7.SuspendLayout();
+            this.exportImportTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,11 +195,12 @@ namespace AP8PO_Projekt
             this.tabs.Controls.Add(this.subjectsGroupsTab);
             this.tabs.Controls.Add(this.employeesTab);
             this.tabs.Controls.Add(this.scheduleActionsTab);
+            this.tabs.Controls.Add(this.exportImportTab);
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Location = new System.Drawing.Point(0, 0);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(1232, 753);
+            this.tabs.Size = new System.Drawing.Size(1232, 853);
             this.tabs.TabIndex = 1;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_SelectedIndexChanged);
             // 
@@ -189,12 +208,13 @@ namespace AP8PO_Projekt
             // 
             this.subjectsTab.Controls.Add(this.groupBox3);
             this.subjectsTab.Controls.Add(this.Label9);
+            this.subjectsTab.Controls.Add(this.groupBox12);
             this.subjectsTab.Controls.Add(this.groupBox2);
             this.subjectsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.subjectsTab.Location = new System.Drawing.Point(4, 32);
             this.subjectsTab.Name = "subjectsTab";
             this.subjectsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subjectsTab.Size = new System.Drawing.Size(1224, 717);
+            this.subjectsTab.Size = new System.Drawing.Size(1224, 817);
             this.subjectsTab.TabIndex = 2;
             this.subjectsTab.Text = "Předměty";
             this.subjectsTab.UseVisualStyleBackColor = true;
@@ -227,6 +247,64 @@ namespace AP8PO_Projekt
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(0, 28);
             this.Label9.TabIndex = 19;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label22);
+            this.groupBox12.Controls.Add(this.label10);
+            this.groupBox12.Controls.Add(this.changeClassSizeButton);
+            this.groupBox12.Controls.Add(this.classNameComboBox);
+            this.groupBox12.Controls.Add(this.classSizeTextBox);
+            this.groupBox12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox12.Location = new System.Drawing.Point(3, 715);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(1213, 88);
+            this.groupBox12.TabIndex = 24;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Změnit velikost třídy";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(407, 41);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(54, 28);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Třída";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 41);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(80, 28);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Velikost";
+            // 
+            // changeClassSizeButton
+            // 
+            this.changeClassSizeButton.Location = new System.Drawing.Point(993, 33);
+            this.changeClassSizeButton.Name = "changeClassSizeButton";
+            this.changeClassSizeButton.Size = new System.Drawing.Size(196, 39);
+            this.changeClassSizeButton.TabIndex = 2;
+            this.changeClassSizeButton.Text = "Upravit";
+            this.changeClassSizeButton.UseVisualStyleBackColor = true;
+            this.changeClassSizeButton.Click += new System.EventHandler(this.changeClassSizeButton_Click);
+            // 
+            // classNameComboBox
+            // 
+            this.classNameComboBox.FormattingEnabled = true;
+            this.classNameComboBox.Location = new System.Drawing.Point(467, 36);
+            this.classNameComboBox.Name = "classNameComboBox";
+            this.classNameComboBox.Size = new System.Drawing.Size(352, 36);
+            this.classNameComboBox.TabIndex = 1;
+            // 
+            // classSizeTextBox
+            // 
+            this.classSizeTextBox.Location = new System.Drawing.Point(92, 38);
+            this.classSizeTextBox.Name = "classSizeTextBox";
+            this.classSizeTextBox.Size = new System.Drawing.Size(172, 34);
+            this.classSizeTextBox.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -497,12 +575,13 @@ namespace AP8PO_Projekt
             // groupsTab
             // 
             this.groupsTab.Controls.Add(this.groupBox4);
+            this.groupsTab.Controls.Add(this.groupBox11);
             this.groupsTab.Controls.Add(this.groupBox1);
             this.groupsTab.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupsTab.Location = new System.Drawing.Point(4, 32);
             this.groupsTab.Name = "groupsTab";
             this.groupsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.groupsTab.Size = new System.Drawing.Size(1224, 717);
+            this.groupsTab.Size = new System.Drawing.Size(1224, 817);
             this.groupsTab.TabIndex = 1;
             this.groupsTab.Text = "Skupiny";
             this.groupsTab.UseVisualStyleBackColor = true;
@@ -527,6 +606,65 @@ namespace AP8PO_Projekt
             this.groupDataGridView.Size = new System.Drawing.Size(1202, 411);
             this.groupDataGridView.TabIndex = 17;
             this.groupDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.groupDataGridView_CellClick);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.updateButton);
+            this.groupBox11.Controls.Add(this.newStudentsLabel);
+            this.groupBox11.Controls.Add(this.newStudentsGroupLabel);
+            this.groupBox11.Controls.Add(this.newNumberOfStudentsTextBox);
+            this.groupBox11.Controls.Add(this.changeStudentsComboBox);
+            this.groupBox11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox11.Location = new System.Drawing.Point(4, 715);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(1212, 81);
+            this.groupBox11.TabIndex = 22;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Upravit počet studentů";
+            // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(1008, 31);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(178, 36);
+            this.updateButton.TabIndex = 21;
+            this.updateButton.Text = "Upravit";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // newStudentsLabel
+            // 
+            this.newStudentsLabel.AutoSize = true;
+            this.newStudentsLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newStudentsLabel.Location = new System.Drawing.Point(6, 35);
+            this.newStudentsLabel.Name = "newStudentsLabel";
+            this.newStudentsLabel.Size = new System.Drawing.Size(114, 28);
+            this.newStudentsLabel.TabIndex = 18;
+            this.newStudentsLabel.Text = "Nový počet";
+            // 
+            // newStudentsGroupLabel
+            // 
+            this.newStudentsGroupLabel.AutoSize = true;
+            this.newStudentsGroupLabel.Location = new System.Drawing.Point(445, 34);
+            this.newStudentsGroupLabel.Name = "newStudentsGroupLabel";
+            this.newStudentsGroupLabel.Size = new System.Drawing.Size(82, 28);
+            this.newStudentsGroupLabel.TabIndex = 20;
+            this.newStudentsGroupLabel.Text = "Skupina";
+            // 
+            // newNumberOfStudentsTextBox
+            // 
+            this.newNumberOfStudentsTextBox.Location = new System.Drawing.Point(126, 35);
+            this.newNumberOfStudentsTextBox.Name = "newNumberOfStudentsTextBox";
+            this.newNumberOfStudentsTextBox.Size = new System.Drawing.Size(220, 34);
+            this.newNumberOfStudentsTextBox.TabIndex = 17;
+            // 
+            // changeStudentsComboBox
+            // 
+            this.changeStudentsComboBox.FormattingEnabled = true;
+            this.changeStudentsComboBox.Location = new System.Drawing.Point(533, 31);
+            this.changeStudentsComboBox.Name = "changeStudentsComboBox";
+            this.changeStudentsComboBox.Size = new System.Drawing.Size(365, 36);
+            this.changeStudentsComboBox.TabIndex = 19;
             // 
             // groupBox1
             // 
@@ -600,7 +738,7 @@ namespace AP8PO_Projekt
             // 
             // addGroupButton
             // 
-            this.addGroupButton.Location = new System.Drawing.Point(402, 166);
+            this.addGroupButton.Location = new System.Drawing.Point(387, 176);
             this.addGroupButton.Name = "addGroupButton";
             this.addGroupButton.Size = new System.Drawing.Size(373, 63);
             this.addGroupButton.TabIndex = 16;
@@ -741,7 +879,7 @@ namespace AP8PO_Projekt
             this.subjectsGroupsTab.Location = new System.Drawing.Point(4, 32);
             this.subjectsGroupsTab.Name = "subjectsGroupsTab";
             this.subjectsGroupsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subjectsGroupsTab.Size = new System.Drawing.Size(1224, 717);
+            this.subjectsGroupsTab.Size = new System.Drawing.Size(1224, 817);
             this.subjectsGroupsTab.TabIndex = 3;
             this.subjectsGroupsTab.Text = "Předměty/Skupiny";
             this.subjectsGroupsTab.UseVisualStyleBackColor = true;
@@ -752,7 +890,7 @@ namespace AP8PO_Projekt
             this.subjectsGroupsGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.subjectsGroupsGroupBox.Location = new System.Drawing.Point(9, 425);
             this.subjectsGroupsGroupBox.Name = "subjectsGroupsGroupBox";
-            this.subjectsGroupsGroupBox.Size = new System.Drawing.Size(349, 284);
+            this.subjectsGroupsGroupBox.Size = new System.Drawing.Size(349, 384);
             this.subjectsGroupsGroupBox.TabIndex = 5;
             this.subjectsGroupsGroupBox.TabStop = false;
             this.subjectsGroupsGroupBox.Text = "Předměty přiřazené ke skupinám";
@@ -764,16 +902,16 @@ namespace AP8PO_Projekt
             this.subjectsGroupsDataGridView.Name = "subjectsGroupsDataGridView";
             this.subjectsGroupsDataGridView.RowHeadersWidth = 51;
             this.subjectsGroupsDataGridView.RowTemplate.Height = 29;
-            this.subjectsGroupsDataGridView.Size = new System.Drawing.Size(337, 245);
+            this.subjectsGroupsDataGridView.Size = new System.Drawing.Size(337, 345);
             this.subjectsGroupsDataGridView.TabIndex = 0;
             // 
             // subjectsDetailGroupBox
             // 
             this.subjectsDetailGroupBox.Controls.Add(this.subjectsDetailDataGridView);
             this.subjectsDetailGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.subjectsDetailGroupBox.Location = new System.Drawing.Point(364, 335);
+            this.subjectsDetailGroupBox.Location = new System.Drawing.Point(364, 375);
             this.subjectsDetailGroupBox.Name = "subjectsDetailGroupBox";
-            this.subjectsDetailGroupBox.Size = new System.Drawing.Size(852, 374);
+            this.subjectsDetailGroupBox.Size = new System.Drawing.Size(852, 434);
             this.subjectsDetailGroupBox.TabIndex = 4;
             this.subjectsDetailGroupBox.TabStop = false;
             this.subjectsDetailGroupBox.Text = "Detail předmětů";
@@ -785,7 +923,7 @@ namespace AP8PO_Projekt
             this.subjectsDetailDataGridView.Name = "subjectsDetailDataGridView";
             this.subjectsDetailDataGridView.RowHeadersWidth = 51;
             this.subjectsDetailDataGridView.RowTemplate.Height = 29;
-            this.subjectsDetailDataGridView.Size = new System.Drawing.Size(839, 335);
+            this.subjectsDetailDataGridView.Size = new System.Drawing.Size(839, 435);
             this.subjectsDetailDataGridView.TabIndex = 0;
             // 
             // groupsDetailGroupBox
@@ -794,7 +932,7 @@ namespace AP8PO_Projekt
             this.groupsDetailGroupBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupsDetailGroupBox.Location = new System.Drawing.Point(364, 3);
             this.groupsDetailGroupBox.Name = "groupsDetailGroupBox";
-            this.groupsDetailGroupBox.Size = new System.Drawing.Size(852, 326);
+            this.groupsDetailGroupBox.Size = new System.Drawing.Size(852, 366);
             this.groupsDetailGroupBox.TabIndex = 3;
             this.groupsDetailGroupBox.TabStop = false;
             this.groupsDetailGroupBox.Text = "Detail skupin";
@@ -806,7 +944,7 @@ namespace AP8PO_Projekt
             this.groupsDetailDataGridView.Name = "groupsDetailDataGridView";
             this.groupsDetailDataGridView.RowHeadersWidth = 51;
             this.groupsDetailDataGridView.RowTemplate.Height = 29;
-            this.groupsDetailDataGridView.Size = new System.Drawing.Size(832, 281);
+            this.groupsDetailDataGridView.Size = new System.Drawing.Size(832, 323);
             this.groupsDetailDataGridView.TabIndex = 0;
             // 
             // groupSubjectsButton
@@ -866,7 +1004,7 @@ namespace AP8PO_Projekt
             this.employeesTab.Location = new System.Drawing.Point(4, 32);
             this.employeesTab.Name = "employeesTab";
             this.employeesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.employeesTab.Size = new System.Drawing.Size(1224, 717);
+            this.employeesTab.Size = new System.Drawing.Size(1224, 817);
             this.employeesTab.TabIndex = 0;
             this.employeesTab.Text = "Zaměstnanci";
             this.employeesTab.UseVisualStyleBackColor = true;
@@ -876,7 +1014,7 @@ namespace AP8PO_Projekt
             this.groupBox5.Controls.Add(this.employeeDataGridView);
             this.groupBox5.Location = new System.Drawing.Point(4, 259);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1212, 450);
+            this.groupBox5.Size = new System.Drawing.Size(1212, 541);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Všichni zaměstnanci";
@@ -888,7 +1026,7 @@ namespace AP8PO_Projekt
             this.employeeDataGridView.Name = "employeeDataGridView";
             this.employeeDataGridView.RowHeadersWidth = 51;
             this.employeeDataGridView.RowTemplate.Height = 29;
-            this.employeeDataGridView.Size = new System.Drawing.Size(1202, 411);
+            this.employeeDataGridView.Size = new System.Drawing.Size(1202, 502);
             this.employeeDataGridView.TabIndex = 17;
             this.employeeDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeeDataGridView_CellClick);
             // 
@@ -1080,7 +1218,7 @@ namespace AP8PO_Projekt
             this.scheduleActionsTab.Location = new System.Drawing.Point(4, 32);
             this.scheduleActionsTab.Name = "scheduleActionsTab";
             this.scheduleActionsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.scheduleActionsTab.Size = new System.Drawing.Size(1224, 717);
+            this.scheduleActionsTab.Size = new System.Drawing.Size(1224, 817);
             this.scheduleActionsTab.TabIndex = 4;
             this.scheduleActionsTab.Text = "Štítky";
             this.scheduleActionsTab.UseVisualStyleBackColor = true;
@@ -1142,7 +1280,7 @@ namespace AP8PO_Projekt
             this.groupBox8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox8.Location = new System.Drawing.Point(336, 423);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(874, 286);
+            this.groupBox8.Size = new System.Drawing.Size(874, 386);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Detail zaměstnanců";
@@ -1154,7 +1292,7 @@ namespace AP8PO_Projekt
             this.employeesDetailDataGridView.Name = "employeesDetailDataGridView";
             this.employeesDetailDataGridView.RowHeadersWidth = 51;
             this.employeesDetailDataGridView.RowTemplate.Height = 29;
-            this.employeesDetailDataGridView.Size = new System.Drawing.Size(862, 247);
+            this.employeesDetailDataGridView.Size = new System.Drawing.Size(862, 347);
             this.employeesDetailDataGridView.TabIndex = 0;
             // 
             // groupBox9
@@ -1163,7 +1301,7 @@ namespace AP8PO_Projekt
             this.groupBox9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox9.Location = new System.Drawing.Point(9, 423);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(321, 286);
+            this.groupBox9.Size = new System.Drawing.Size(321, 386);
             this.groupBox9.TabIndex = 6;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Přiřazené štítky";
@@ -1175,7 +1313,7 @@ namespace AP8PO_Projekt
             this.assignedScheduleActionsDataGridView.Name = "assignedScheduleActionsDataGridView";
             this.assignedScheduleActionsDataGridView.RowHeadersWidth = 51;
             this.assignedScheduleActionsDataGridView.RowTemplate.Height = 29;
-            this.assignedScheduleActionsDataGridView.Size = new System.Drawing.Size(308, 247);
+            this.assignedScheduleActionsDataGridView.Size = new System.Drawing.Size(308, 347);
             this.assignedScheduleActionsDataGridView.TabIndex = 4;
             // 
             // assignButton
@@ -1219,6 +1357,39 @@ namespace AP8PO_Projekt
             this.generateScheduleActionsButton.UseVisualStyleBackColor = true;
             this.generateScheduleActionsButton.Click += new System.EventHandler(this.generateScheduleActionsButton_Click);
             // 
+            // exportImportTab
+            // 
+            this.exportImportTab.Controls.Add(this.importButton);
+            this.exportImportTab.Controls.Add(this.exportButton);
+            this.exportImportTab.Location = new System.Drawing.Point(4, 32);
+            this.exportImportTab.Name = "exportImportTab";
+            this.exportImportTab.Padding = new System.Windows.Forms.Padding(3);
+            this.exportImportTab.Size = new System.Drawing.Size(1224, 817);
+            this.exportImportTab.TabIndex = 5;
+            this.exportImportTab.Text = "Export/Import";
+            this.exportImportTab.UseVisualStyleBackColor = true;
+            // 
+            // importButton
+            // 
+            this.importButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.importButton.Location = new System.Drawing.Point(684, 33);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(296, 136);
+            this.importButton.TabIndex = 11;
+            this.importButton.Text = "Načíst z XML";
+            this.importButton.UseVisualStyleBackColor = true;
+            // 
+            // exportButton
+            // 
+            this.exportButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.exportButton.Location = new System.Drawing.Point(281, 33);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(296, 136);
+            this.exportButton.TabIndex = 1;
+            this.exportButton.Text = "Uložit do XML";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
@@ -1228,9 +1399,9 @@ namespace AP8PO_Projekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1232, 753);
+            this.ClientSize = new System.Drawing.Size(1232, 853);
             this.Controls.Add(this.tabs);
-            this.MaximumSize = new System.Drawing.Size(5000, 5000);
+            this.MaximumSize = new System.Drawing.Size(1250, 900);
             this.Name = "Form";
             this.Text = "Secretary ";
             this.tabs.ResumeLayout(false);
@@ -1238,6 +1409,8 @@ namespace AP8PO_Projekt
             this.subjectsTab.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.subjectDataGridView)).EndInit();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.creditsNumericUpDown)).EndInit();
@@ -1249,6 +1422,8 @@ namespace AP8PO_Projekt
             this.groupsTab.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupDataGridView)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).EndInit();
@@ -1277,6 +1452,7 @@ namespace AP8PO_Projekt
             this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.assignedScheduleActionsDataGridView)).EndInit();
             this.groupBox7.ResumeLayout(false);
+            this.exportImportTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -1382,6 +1558,22 @@ namespace AP8PO_Projekt
         private System.Windows.Forms.ComboBox employeeComboBox;
         private System.Windows.Forms.Button generateScheduleActionsButton;
         private System.Windows.Forms.Button deleteAllScheduleActionsButton;
+        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Label newStudentsGroupLabel;
+        private System.Windows.Forms.ComboBox changeStudentsComboBox;
+        private System.Windows.Forms.Label newStudentsLabel;
+        private System.Windows.Forms.TextBox newNumberOfStudentsTextBox;
+        private System.Windows.Forms.ComboBox changeS;
+        private System.Windows.Forms.TabPage exportImportTab;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button changeClassSizeButton;
+        private System.Windows.Forms.ComboBox classNameComboBox;
+        private System.Windows.Forms.TextBox classSizeTextBox;
+        private System.Windows.Forms.Button importButton;
     }
 }
 

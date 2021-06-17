@@ -19,7 +19,7 @@ namespace AP8PO_Projekt
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Initialize the connections
+            //Initialize the connection
             GlobalConfig.InitializeConnections(DatabaseType.Sql);
 
             Application.Run(new Form());
