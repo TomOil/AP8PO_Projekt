@@ -802,6 +802,8 @@ namespace AP8PO_Projekt
                         connection.Close();
                     }
                     populateDataGridView(true, false, subjectDataGridView, subjectsColsNames, subjectTable);
+                    populateComboBox(subjectTable, classNameComboBox, false);
+
                 }
             }
         }
@@ -1704,6 +1706,68 @@ namespace AP8PO_Projekt
             else
             {
                 MessageBox.Show("Vyplňte prosím velikost třídy!", "Nevyplněno", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void importButton_Click_1(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
+
+            if (fileContent != null)
+            {
+                StringReader strReader = new StringReader(fileContent);
+                DataSet dataSet = new DataSet();
+                dataSet.ReadXml(strReader);
+
+                DataTable table = dataSet.Tables[0];
+
+                DataTable dtCloned = table.Clone();
+                dtCloned.Columns[8].DataType = typeof(float);
+                foreach (DataRow row in table.Rows)
+                {
+                    dtCloned.ImportRow(row);
+                }
+
+                using (SqlConnection connection = new SqlConnection(GlobalConfig.ConnectionString("AP8PO_Projekt")))
+                {
+                    connection.Open();
+                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(connection))
+                    {
+                        foreach (DataColumn col in dtCloned.Columns)
+                        {
+                            bulkCopy.ColumnMappings.Add(col.ColumnName, col.ColumnName);
+                        }
+
+                        bulkCopy.DestinationTableName = "dbo." + dtCloned.TableName;
+                        try
+                        {
+                            bulkCopy.WriteToServer(dtCloned);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
             }
         }
     }

@@ -1378,6 +1378,7 @@ namespace AP8PO_Projekt
             this.importButton.TabIndex = 11;
             this.importButton.Text = "Načíst z XML";
             this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.importButton_Click_1);
             // 
             // exportButton
             // 
